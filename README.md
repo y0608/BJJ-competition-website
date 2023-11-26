@@ -1,2 +1,2 @@
 # BJJ-competition-website
-A Brazilian Jiu Jitsu website for competitions
+A website for Brazilian Jiu Jitsu competitions
