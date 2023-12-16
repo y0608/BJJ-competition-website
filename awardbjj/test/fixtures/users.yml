@@ -1,11 +1,28 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+competitor1:
+  first_name: Competitor
+  last_name: One
+  role: <%= User.roles[:competitor] %>
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+  email: competitor@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+  confirmed_at: <%= Time.current %>
+
+competitor2:
+  first_name: Competitor
+  last_name: Two
+  role: <%= User.roles[:competitor] %>
+  
+  email: competitor2@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  
+  confirmed_at: <%= Time.current %>
+
+organizer1:
+  role: <%= User.roles[:competitor] %>
+  organization_name: organization1
+
+  email: organizer1@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+  confirmed_at: <%= Time.current %>

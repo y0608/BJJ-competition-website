@@ -1,13 +1,16 @@
 <nav class="bg-gray-800 p-4">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Left Side -->
-    <a href="/" class="text-white text-lg font-bold">Award BJJ</a>
-
+    <%= link_to "Award BJJ", root_path, class: "text-white text-lg font-bold" %>
     <!-- Right Side -->
     <div class="flex items-center space-x-4">
-      <a href="#" class="text-white">Events</a>
-      <a href="#" class="text-white">Login</a>
-      <a href="#" class="bg-white text-gray-800 py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300">Sign Up</a>
+      <%= link_to "Events", root_path, class: "text-white" %>
+      <% if user_signed_in? %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "text-white" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "bg-white text-gray-800 py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300" %>
+      <% end %>
     </div>
   </div>
 </nav>
