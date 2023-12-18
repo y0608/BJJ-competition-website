@@ -8,9 +8,16 @@ class User < ApplicationRecord
     competitor: 1
   }
 
-  validates :role, presence: true
   validates_presence_of :first_name, :last_name, if: :competitor?
   validates_presence_of :organization_name, if: :organizer?
+
+  def full_name
+    if role == "organizer"
+      return organization_name
+    else role == "competitor"
+      return first_name+ " " + last_name
+    end
+  end
 
   def organizer?
     role == "organizer"

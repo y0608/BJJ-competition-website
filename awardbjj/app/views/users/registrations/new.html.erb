@@ -4,8 +4,30 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.radio_button :role, "competitor", checked: true %>
+    <%= f.label :role, "Competitor" %><br/>
+    <%= f.radio_button :role, "organizer" %>
+    <%= f.label :role, "Organizer" %> <br/>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %><br/>
+    <%= f.text_field :first_name, autofocus: true,  autocomplete: "given-name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br/>
+    <%= f.text_field :last_name,  autocomplete: "family-name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :organization_name %><br/>
+    <%= f.text_field :organization_name %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">

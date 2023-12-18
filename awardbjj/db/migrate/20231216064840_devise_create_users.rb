@@ -5,11 +5,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     create_table :users do |t|
 
       ## Identifying fields
+      t.integer :role, null: false
       # For Competitors
-      t.string :first_name, default: ""
-      t.string :last_name, default: ""
+      t.string :first_name
+      t.string :last_name
       # For Organizers
-      t.string :organization_name, default: ""
+      t.string :organization_name
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

@@ -2,10 +2,12 @@
   <div class="container mx-auto flex justify-between items-center">
     <!-- Left Side -->
     <%= link_to "Award BJJ", root_path, class: "text-white text-lg font-bold" %>
+
     <!-- Right Side -->
     <div class="flex items-center space-x-4">
       <%= link_to "Events", root_path, class: "text-white" %>
       <% if user_signed_in? %>
+        <%= link_to current_user.full_name, root_path , class: "text-white"%>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
       <% else %>
         <%= link_to "Login", new_user_session_path, class: "text-white" %>

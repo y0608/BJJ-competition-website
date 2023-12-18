@@ -7,22 +7,3 @@ competitor1:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
   confirmed_at: <%= Time.current %>
-
-competitor2:
-  first_name: Competitor
-  last_name: Two
-  role: <%= User.roles[:competitor] %>
-  
-  email: competitor2@gmail.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  
-  confirmed_at: <%= Time.current %>
-
-organizer1:
-  role: <%= User.roles[:competitor] %>
-  organization_name: organization1
-
-  email: organizer1@gmail.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-
-  confirmed_at: <%= Time.current %>
