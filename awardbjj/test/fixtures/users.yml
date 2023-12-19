@@ -4,6 +4,15 @@ competitor1:
   role: <%= User.roles[:competitor] %>
 
   email: competitor@gmail.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
+
+  confirmed_at: <%= Time.current %>
+
+organizer1:
+  organization_name: "Organization One"
+  role: <%= User.roles[:organizer] %>
+
+  email: organizer@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
 
   confirmed_at: <%= Time.current %>
