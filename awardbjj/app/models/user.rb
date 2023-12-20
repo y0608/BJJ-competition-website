@@ -3,6 +3,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+
+  has_many :events, inverse_of: :organizer, dependent: :destroy
+
   enum role: { 
     organizer: 0, 
     competitor: 1
