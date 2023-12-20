@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  resources :events, only: [:index, :show]
+
   root 'pages#home'
 end

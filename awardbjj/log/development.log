@@ -205,3 +205,946 @@ FOREIGN KEY ("organizer_id")
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
   [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
   [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2023-12-20 15:01:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.4ms | Allocations: 87)
+  Rendered layouts/_navbar.html.erb (Duration: 4.6ms | Allocations: 490)
+  Rendered layout layouts/application.html.erb (Duration: 26.7ms | Allocations: 25141)
+Completed 200 OK in 30ms (Views: 28.8ms | ActiveRecord: 0.0ms | Allocations: 26065)
+
+
+Started GET "/" for 127.0.0.1 at 2023-12-20 15:02:23 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 85)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 493)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | Allocations: 25094)
+Completed 200 OK in 16ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 26019)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:02:24 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (7.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered events/index.html.erb within layouts/application (Duration: 26.2ms | Allocations: 14328)
+  Rendered layout layouts/application.html.erb (Duration: 26.4ms | Allocations: 14419)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 15.7ms | Allocations: 17876)
+
+
+  
+ActionView::Template::Error (Missing partial events/_event with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/mydell/Documents/Programming/Ruby on Rails/BJJ-competition-website/awardbjj/app/views"
+  * "/usr/share/rvm/gems/ruby-3.2.0/gems/devise-4.9.3/app/views"
+  * "/usr/share/rvm/gems/ruby-3.2.0/gems/turbo-rails-1.5.0/app/views"
+  * "/usr/share/rvm/gems/ruby-3.2.0/gems/actiontext-7.1.2/app/views"
+  * "/usr/share/rvm/gems/ruby-3.2.0/gems/actionmailbox-7.1.2/app/views"
+):
+    1: <%= render @events %>
+  
+app/views/events/index.html.erb:1
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:04:09 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.6ms | Allocations: 241)
+  Rendered events/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 4797)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | Allocations: 29596)
+Completed 200 OK in 28ms (Views: 22.6ms | ActiveRecord: 2.2ms | Allocations: 32089)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:04:11 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+Completed 406 Not Acceptable in 7ms (ActiveRecord: 0.2ms | Allocations: 4515)
+
+
+  
+ActionController::MissingExactTemplate (EventsController#show is missing a template for request formats: text/html):
+  
+actionpack (7.1.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+actiontext (7.1.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.0.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.8) lib/rack/etag.rb:29:in `call'
+rack (3.0.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.8) lib/rack/head.rb:15:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/method_override.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:04:19 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 586)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 8803)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 9706)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:05:33 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.5ms | Allocations: 199)
+  Rendered events/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 4742)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | Allocations: 29547)
+Completed 200 OK in 31ms (Views: 26.0ms | ActiveRecord: 2.0ms | Allocations: 32041)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:05:35 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 397)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 8597)
+Completed 200 OK in 17ms (Views: 9.5ms | ActiveRecord: 0.3ms | Allocations: 11324)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:05:36 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.7ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 8770)
+Completed 200 OK in 17ms (Views: 14.8ms | ActiveRecord: 0.6ms | Allocations: 9693)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:06:31 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 58.6ms | Allocations: 8797)
+Completed 200 OK in 61ms (Views: 58.6ms | ActiveRecord: 0.4ms | Allocations: 9728)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:06:46 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.6ms | Allocations: 196)
+  Rendered events/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 4724)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | Allocations: 29573)
+Completed 200 OK in 25ms (Views: 20.2ms | ActiveRecord: 2.1ms | Allocations: 32053)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:06:48 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 269)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 8458)
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms | Allocations: 11189)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:08:59 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.8ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | Allocations: 8805)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.4ms | Allocations: 9720)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:00 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 8810)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.4ms | Allocations: 9722)
+
+
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:24 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 8771)
+Completed 200 OK in 15ms (Views: 11.3ms | ActiveRecord: 0.7ms | Allocations: 9692)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:24 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.3ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 8770)
+Completed 200 OK in 14ms (Views: 11.2ms | ActiveRecord: 0.6ms | Allocations: 9691)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:24 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 8772)
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 0.6ms | Allocations: 9696)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:25 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.3ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 8770)
+Completed 200 OK in 13ms (Views: 9.9ms | ActiveRecord: 0.4ms | Allocations: 9697)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:25 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 52)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 581)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 8770)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.5ms | Allocations: 9704)
+
+
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Update (1.2ms)[0m  [1m[33mUPDATE "events" SET "name" = $1, "updated_at" = $2 WHERE "events"."id" = $3[0m  [["name", "Test"], ["updated_at", "2023-12-20 13:09:28.319323"], ["id", 1]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:29 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 8807)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 0.4ms | Allocations: 9720)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:30 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 8806)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.4ms | Allocations: 9721)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:30 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.3ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 8779)
+Completed 200 OK in 15ms (Views: 11.5ms | ActiveRecord: 0.5ms | Allocations: 9703)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:09:33 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 140)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 8329)
+Completed 200 OK in 15ms (Views: 9.0ms | ActiveRecord: 0.3ms | Allocations: 10319)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:35 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.5ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | Allocations: 8772)
+Completed 200 OK in 19ms (Views: 14.1ms | ActiveRecord: 0.5ms | Allocations: 9692)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:09:58 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 140)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 8330)
+Completed 200 OK in 17ms (Views: 8.8ms | ActiveRecord: 0.4ms | Allocations: 10336)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:09:59 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.6ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | Allocations: 8772)
+Completed 200 OK in 18ms (Views: 14.2ms | ActiveRecord: 0.5ms | Allocations: 9680)
+
+
+Started GET "/" for 127.0.0.1 at 2023-12-20 15:10:01 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 175)
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | Allocations: 8590)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.0ms | Allocations: 9062)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:10:03 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.3ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 583)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 8808)
+Completed 200 OK in 22ms (Views: 18.7ms | ActiveRecord: 0.4ms | Allocations: 9725)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:10:05 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 140)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 8330)
+Completed 200 OK in 18ms (Views: 13.1ms | ActiveRecord: 0.3ms | Allocations: 10319)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:10:49 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 311)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | Allocations: 25159)
+Completed 200 OK in 34ms (Views: 22.2ms | ActiveRecord: 2.5ms | Allocations: 33135)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:05 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 403)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | Allocations: 25243)
+Completed 200 OK in 30ms (Views: 19.5ms | ActiveRecord: 2.1ms | Allocations: 33207)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:09 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 390)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 400)
+  Rendered layout layouts/application.html.erb (Duration: 50.2ms | Allocations: 25315)
+Completed 200 OK in 72ms (Views: 53.6ms | ActiveRecord: 2.2ms | Allocations: 33325)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:19 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 384)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 27.2ms | Allocations: 25107)
+Completed 200 OK in 41ms (Views: 28.9ms | ActiveRecord: 1.9ms | Allocations: 33123)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:27 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 390)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | Allocations: 25161)
+Completed 200 OK in 32ms (Views: 21.5ms | ActiveRecord: 2.2ms | Allocations: 33150)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:28 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 145)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 8390)
+Completed 200 OK in 17ms (Views: 10.4ms | ActiveRecord: 0.2ms | Allocations: 10368)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:41 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 389)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | Allocations: 25125)
+Completed 200 OK in 33ms (Views: 22.3ms | ActiveRecord: 2.6ms | Allocations: 33103)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:54 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 389)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | Allocations: 25151)
+Completed 200 OK in 26ms (Views: 15.8ms | ActiveRecord: 2.3ms | Allocations: 33160)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2023-12-20 15:12:59 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 392)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 25163)
+Completed 200 OK in 28ms (Views: 14.7ms | ActiveRecord: 2.9ms | Allocations: 33131)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[31mDELETE FROM "events";
+DELETE FROM "users";
+INSERT INTO "events" ("id", "name", "location", "start_at", "end_at", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', 'Event One Location', '2023-12-20 13:13:59', '2023-12-21 13:13:59', 'Event One Description', NULL, '2023-12-20 13:13:59.918298', '2023-12-20 13:13:59.918298');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (893350012, 1, 'Competitor', 'One', DEFAULT, 'competitor@gmail.com', '$2a$12$czXFk2qipiIEFrIX2oudzutF/D03UKjYyfOTdyLLqqa1n8MJ48ql6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2023-12-20 13:13:59', DEFAULT, DEFAULT, '2023-12-20 13:13:59.923038', '2023-12-20 13:13:59.923038'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$wcBKxSnArYfeJ9i3FsmpjeeFS361y0AMn5JUhjlGA6xfu4fBvlXkG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2023-12-20 13:13:59', DEFAULT, DEFAULT, '2023-12-20 13:13:59.923038', '2023-12-20 13:13:59.923038')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.4ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/events/" for 127.0.0.1 at 2023-12-20 15:14:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.7ms | Allocations: 352)
+  Rendered events/index.html.erb within layouts/application (Duration: 30.9ms | Allocations: 17214)
+  Rendered layouts/_navbar.html.erb (Duration: 4.3ms | Allocations: 420)
+  Rendered layout layouts/application.html.erb (Duration: 160.8ms | Allocations: 77602)
+Completed 200 OK in 187ms (Views: 156.4ms | ActiveRecord: 7.9ms | Allocations: 86212)
+
+
+Started GET "/events/" for 127.0.0.1 at 2023-12-20 15:14:23 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 595)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 8786)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.4ms | Allocations: 9710)
+
+
+Started GET "/events/" for 127.0.0.1 at 2023-12-20 15:14:23 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.1ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 593)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 8782)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 9709)
+
+
+Started GET "/" for 127.0.0.1 at 2023-12-20 15:14:24 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.5ms | Allocations: 80)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 175)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 8596)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.0ms | Allocations: 9108)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:14:26 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.4ms | Allocations: 53)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 593)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 8826)
+Completed 200 OK in 15ms (Views: 11.5ms | ActiveRecord: 0.6ms | Allocations: 9757)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:14:27 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 611)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 8800)
+Completed 200 OK in 18ms (Views: 8.8ms | ActiveRecord: 0.5ms | Allocations: 12891)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:36 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 410)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 400)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 25300)
+Completed 200 OK in 33ms (Views: 21.3ms | ActiveRecord: 2.4ms | Allocations: 33293)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:48 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 408)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 27.7ms | Allocations: 25149)
+Completed 200 OK in 39ms (Views: 29.3ms | ActiveRecord: 2.1ms | Allocations: 33173)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:49 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 170)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 8421)
+Completed 200 OK in 16ms (Views: 10.3ms | ActiveRecord: 0.3ms | Allocations: 10419)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:49 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 170)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 8360)
+Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 0.4ms | Allocations: 10370)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:49 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 170)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 8359)
+Completed 200 OK in 15ms (Views: 9.0ms | ActiveRecord: 0.4ms | Allocations: 10366)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:16:53 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 413)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 27.8ms | Allocations: 25293)
+Completed 200 OK in 46ms (Views: 29.8ms | ActiveRecord: 2.4ms | Allocations: 33308)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:17:07 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 410)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | Allocations: 25290)
+Completed 200 OK in 30ms (Views: 17.0ms | ActiveRecord: 3.0ms | Allocations: 33234)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:17:30 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 409)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 400)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | Allocations: 25298)
+Completed 200 OK in 32ms (Views: 21.3ms | ActiveRecord: 2.0ms | Allocations: 33243)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:17:33 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.8ms | Allocations: 166)
+  Rendered events/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 885)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 9111)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.6ms | Allocations: 10111)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:17:33 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 170)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 8360)
+Completed 200 OK in 16ms (Views: 9.9ms | ActiveRecord: 0.2ms | Allocations: 10371)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:20:12 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 418)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 25298)
+Completed 200 OK in 25ms (Views: 14.4ms | ActiveRecord: 2.0ms | Allocations: 33289)
+
+
+Started GET "/events/190150649" for 127.0.0.1 at 2023-12-20 15:20:17 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 412)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 396)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 25293)
+Completed 200 OK in 28ms (Views: 16.3ms | ActiveRecord: 2.3ms | Allocations: 33282)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:20:32 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.4ms | Allocations: 166)
+  Rendered events/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 885)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 9074)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 10074)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:22:14 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:2
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.6ms | Allocations: 197)
+  Rendered events/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 4746)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 400)
+  Rendered layout layouts/application.html.erb (Duration: 68.8ms | Allocations: 29660)
+Completed 200 OK in 73ms (Views: 68.0ms | ActiveRecord: 2.2ms | Allocations: 32146)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:22:32 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:2
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.5ms | Allocations: 197)
+  Rendered events/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 4705)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 34.6ms | Allocations: 34622)
+Completed 200 OK in 39ms (Views: 33.3ms | ActiveRecord: 2.4ms | Allocations: 37112)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:22:37 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:2
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.8ms | Allocations: 197)
+  Rendered events/index.html.erb within layouts/application (Duration: 9.3ms | Allocations: 4709)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 27.1ms | Allocations: 29597)
+Completed 200 OK in 31ms (Views: 25.5ms | ActiveRecord: 2.5ms | Allocations: 32083)
+
+
+Started GET "/events" for 127.0.0.1 at 2023-12-20 15:22:45 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:1
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.6ms | Allocations: 197)
+  Rendered events/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 4698)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 398)
+  Rendered layout layouts/application.html.erb (Duration: 22.1ms | Allocations: 29586)
+Completed 200 OK in 27ms (Views: 21.3ms | ActiveRecord: 2.0ms | Allocations: 32074)
+
+
