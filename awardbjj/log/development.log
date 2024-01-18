@@ -5658,3 +5658,634 @@ Completed 200 OK in 29ms (Views: 25.5ms | ActiveRecord: 2.4ms | Allocations: 329
 
 
 >>>>>>> d56400ca292021da273597c0fd30b32bf6dfc611
+Started GET "/events" for 127.0.0.1 at 2024-01-18 11:35:01 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:6
+  Rendered collection of events/_event.html.erb [2 times] (Duration: 1.1ms | Allocations: 567)
+  Rendered events/index.html.erb within layouts/application (Duration: 35.7ms | Allocations: 17669)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 433)
+  Rendered layout layouts/application.html.erb (Duration: 319.7ms | Allocations: 163388)
+Completed 200 OK in 352ms (Views: 319.5ms | ActiveRecord: 5.8ms | Allocations: 179275)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:02 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started GET "/events/190150649" for 127.0.0.1 at 2024-01-18 11:35:05 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 3172)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 9612)
+Completed 200 OK in 20ms (Views: 10.8ms | ActiveRecord: 1.3ms | Allocations: 14171)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:05 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started GET "/events/190150649/edit" for 127.0.0.1 at 2024-01-18 11:35:06 +0200
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 2471)
+
+
+  
+CanCan::AccessDenied (You are not authorized to access this page.):
+  
+cancancan (3.5.0) lib/cancan/ability.rb:180:in `authorize!'
+cancancan (3.5.0) lib/cancan/controller_additions.rb:339:in `authorize!'
+cancancan (3.5.0) lib/cancan/controller_resource.rb:40:in `authorize_resource'
+cancancan (3.5.0) lib/cancan/controller_resource.rb:34:in `load_and_authorize_resource'
+cancancan (3.5.0) lib/cancan/controller_resource.rb:17:in `block in add_before_action'
+activesupport (7.1.2) lib/active_support/callbacks.rb:470:in `instance_exec'
+activesupport (7.1.2) lib/active_support/callbacks.rb:470:in `block in make_lambda'
+activesupport (7.1.2) lib/active_support/callbacks.rb:202:in `block (2 levels) in halting'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:203:in `block in halting'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `block in invoke_before'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `each'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `invoke_before'
+activesupport (7.1.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+actiontext (7.1.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.0.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.8) lib/rack/etag.rb:29:in `call'
+rack (3.0.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.8) lib/rack/head.rb:15:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/method_override.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/events/190150649" for 127.0.0.1 at 2024-01-18 11:35:09 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 260)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 6700)
+Completed 200 OK in 20ms (Views: 14.4ms | ActiveRecord: 0.3ms | Allocations: 8765)
+
+
+Started GET "/events" for 127.0.0.1 at 2024-01-18 11:35:11 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:6
+  Rendered collection of events/_event.html.erb [2 times] (Duration: 0.5ms | Allocations: 139)
+  Rendered events/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 693)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 7110)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 0.7ms | Allocations: 8083)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:11 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started GET "/events/190150650" for 127.0.0.1 at 2024-01-18 11:35:12 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150650"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150650], ["LIMIT", 1]]
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150650], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/events/show.html.erb:11
+  Rendered events/show.html.erb within layouts/application (Duration: 21.7ms | Allocations: 20368)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 26.7ms | Allocations: 26808)
+Completed 200 OK in 35ms (Views: 25.9ms | ActiveRecord: 1.7ms | Allocations: 28846)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:12 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started GET "/events" for 127.0.0.1 at 2024-01-18 11:35:15 +0200
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:6
+  Rendered collection of events/_event.html.erb [2 times] (Duration: 1.1ms | Allocations: 139)
+  Rendered events/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 687)
+  Rendered layouts/_navbar.html.erb (Duration: 1.4ms | Allocations: 109)
+  Rendered layout layouts/application.html.erb (Duration: 19.5ms | Allocations: 7128)
+Completed 200 OK in 25ms (Views: 19.4ms | ActiveRecord: 1.3ms | Allocations: 8094)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:15 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-18 11:35:17 +0200
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.1ms | Allocations: 793)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 3769)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 151)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | Allocations: 10330)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.0ms | Allocations: 12310)
+
+
+Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-18 11:35:17 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
+  
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-18 11:35:23 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 262ms (ActiveRecord: 0.2ms | Allocations: 4855)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:23 +0200
+Processing by PagesController#home as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 82)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 3.4ms | Allocations: 911)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | Allocations: 7646)
+Completed 200 OK in 14ms (Views: 13.4ms | ActiveRecord: 0.2ms | Allocations: 8197)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:25 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.0ms | Allocations: 862)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | Allocations: 7437)
+Completed 200 OK in 15ms (Views: 14.8ms | ActiveRecord: 0.2ms | Allocations: 7679)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:26 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.5ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 7433)
+Completed 200 OK in 14ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 7675)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:26 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 3.0ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 18.2ms | Allocations: 7427)
+Completed 200 OK in 20ms (Views: 19.1ms | ActiveRecord: 0.2ms | Allocations: 7669)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:27 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 7436)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.2ms | Allocations: 7678)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:27 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | Allocations: 7436)
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 0.2ms | Allocations: 7679)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:35:27 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 6)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.4ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | Allocations: 7457)
+Completed 200 OK in 18ms (Views: 17.8ms | ActiveRecord: 0.1ms | Allocations: 7700)
+
+
+Started GET "/users/" for 127.0.0.1 at 2024-01-18 11:35:30 +0200
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:2
+  Rendered users/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 678)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 1.6ms | Allocations: 850)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 8105)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.7ms | Allocations: 8570)
+
+
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:35:33 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 185)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 1.7ms | Allocations: 859)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 7611)
+Completed 200 OK in 16ms (Views: 11.7ms | ActiveRecord: 0.7ms | Allocations: 8911)
+
+
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:41:49 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 309)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 4.5ms | Allocations: 1717)
+  Rendered layout layouts/application.html.erb (Duration: 98.1ms | Allocations: 61750)
+Completed 200 OK in 142ms (Views: 100.4ms | ActiveRecord: 6.6ms | Allocations: 93991)
+
+
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:41:52 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.3ms | Allocations: 882)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 7462)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.7ms | Allocations: 8151)
+
+
+Started GET "/events" for 127.0.0.1 at 2024-01-18 11:41:53 +0200
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:6
+  Rendered collection of events/_event.html.erb [2 times] (Duration: 0.7ms | Allocations: 427)
+  Rendered events/index.html.erb within layouts/application (Duration: 18.9ms | Allocations: 10385)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 1568)
+  Rendered layout layouts/application.html.erb (Duration: 25.2ms | Allocations: 18353)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 3.4ms | Allocations: 22114)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users"}, missing required keys: [:id]):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, user_path , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:41:56 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.5ms | Allocations: 882)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 7537)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.6ms | Allocations: 8223)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:41:56 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.5ms | Allocations: 80)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.0ms | Allocations: 1891)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 8523)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.2ms | Allocations: 8973)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users"}, missing required keys: [:id]):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, user_path , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:41:59 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.8ms | Allocations: 882)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 7536)
+Completed 200 OK in 17ms (Views: 14.9ms | ActiveRecord: 0.7ms | Allocations: 8206)
+
+
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:42:01 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.1ms | Allocations: 882)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 7453)
+Completed 200 OK in 14ms (Views: 11.3ms | ActiveRecord: 0.5ms | Allocations: 8125)
+
+
+Started GET "/users/893350012" for 127.0.0.1 at 2024-01-18 11:42:01 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"893350012"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 893350012], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.3ms | Allocations: 882)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 7456)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.5ms | Allocations: 8128)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:42:03 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.0ms | Allocations: 1871)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 8510)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.1ms | Allocations: 8736)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users"}, missing required keys: [:id]):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, user_path , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:43:38 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.4ms | Allocations: 167)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 35.9ms | Allocations: 30201)
+  Rendered layout layouts/application.html.erb (Duration: 96.9ms | Allocations: 83996)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 6.0ms | Allocations: 88273)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `user' for #<ActionView::Base:0x0000000000d818>):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, user_path(user) , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:43:39 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 13.4ms | Allocations: 15507)
+  Rendered layout layouts/application.html.erb (Duration: 51.2ms | Allocations: 82182)
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 5.4ms | Allocations: 84898)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `user' for #<ActionView::Base:0x0000000000d9f8>):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, user_path(user) , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:43:59 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 83)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 18.2ms | Allocations: 8738)
+  Rendered layout layouts/application.html.erb (Duration: 30.9ms | Allocations: 29197)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 4.4ms | Allocations: 30096)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user_path' for #<ActionView::Base:0x00000000012ea8>):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, current_user_path , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:44:00 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 6)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 2.6ms | Allocations: 1822)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 8466)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.2ms | Allocations: 8696)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user_path' for #<ActionView::Base:0x00000000013178>):
+     7:     <div class="flex items-center space-x-4">
+     8:       <%= link_to "Events", events_path, class: "text-white" %>
+     9:       <% if user_signed_in? %>
+    10:         <%= link_to current_user.full_name, current_user_path , class: "text-white"%>
+    11:         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+    12:       <% else %>
+    13:         <%= link_to "Login", new_user_session_path, class: "text-white" %>
+  
+app/views/layouts/_navbar.html.erb:10
+app/views/layouts/application.html.erb:15
+Started GET "/" for 127.0.0.1 at 2024-01-18 11:44:06 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.6ms | Allocations: 85)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 13.5ms | Allocations: 7718)
+  Rendered layout layouts/application.html.erb (Duration: 27.6ms | Allocations: 28218)
+Completed 200 OK in 30ms (Views: 25.6ms | ActiveRecord: 3.9ms | Allocations: 29180)
+
+
+Started GET "/users/172563265" for 127.0.0.1 at 2024-01-18 11:44:08 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"172563265"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 179)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (Duration: 1.8ms | Allocations: 878)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 7628)
+Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 0.6ms | Allocations: 9174)
+
+
