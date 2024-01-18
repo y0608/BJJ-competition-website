@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # use my custom registrations controller
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -7,6 +6,8 @@ Rails.application.routes.draw do
   }
 
   resources :events
+
+  resources :users
 
   root 'pages#home'
 end

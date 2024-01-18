@@ -1,0 +1,5 @@
+<% if @user.organizer? %>
+  <h1><%= @user.organization_name %></h1>
+<% elsif @user.competitor? %>
+  <h1><%= @user.first_name%> <%= @user.last_name%></h1>
+<% end %>
