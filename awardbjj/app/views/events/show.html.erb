@@ -8,7 +8,7 @@
     <h5> Starts at: <%= @event.start_at.to_formatted_s(:long) %> </h5>
     <h5> Ends at: <%= @event.end_at.to_formatted_s(:long) %> </h5>
   </div>
-  ` 
+  
   <% if @event.organizer == current_user %>
     <%= link_to "Edit", edit_event_path(@event), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" }, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
