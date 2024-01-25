@@ -1,16 +1,19 @@
-<main>
-  <%= link_to sanitize("&larr; Back to events"), events_path %>
+<main class="max-w-2xl mx-auto mt-10 p-6">
+  <%= link_to sanitize("&larr; Back to events"), events_path, class: "text-blue-500 hover:underline mb-4 inline-block" %>
 
-  <h1 class="text-4xl"> <%= @event.name %></h1>
+  <h1 class="text-4xl font-bold mb-6"> <%= @event.name %></h1>
+  
   <div>
-    <h5> Event location: <%= @event.location %> </h5>
-    <p> <%= @event.description %> </p>
-    <h5> Starts at: <%= @event.start_at.to_formatted_s(:long) %> </h5>
-    <h5> Ends at: <%= @event.end_at.to_formatted_s(:long) %> </h5>
+    <p class="mb-4"> <%= @event.description %> </p>
+    <h5 class="text-lg mb-2"> Event location: <%= @event.location %> </h5>
+    <h5 class="text-lg mb-2"> Event starts: <%= @event.start_at.to_formatted_s(:long) %> </h5>
+    <h5 class="text-lg mb-4"> Event ends: <%= @event.end_at.to_formatted_s(:long) %> </h5>
   </div>
   
   <% if @event.organizer == current_user %>
-    <%= link_to "Edit", edit_event_path(@event), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= button_to "Delete", event_path(@event), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="flex space-x-4">
+      <%= link_to "Edit", edit_event_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+      <%= button_to "Delete", event_path(@event), method: :delete, class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
+    </div>
   <% end %>
 </main>

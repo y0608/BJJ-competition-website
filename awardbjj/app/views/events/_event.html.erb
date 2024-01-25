@@ -1,12 +1,11 @@
-<a href="<%= event_path(event) %>" class="block bg-white rounded-xl shadow-lg hover:shadow-xl duration-300 hover:scale-105">
+<a href="<%= event_path(event) %>" class="block bg-white rounded-xl shadow-lg hover:shadow-xl duration-300 hover:scale-105 overflow-hidden">
   <div class="overflow-hidden p-8">
-    <img class="max-w-48 max-h-48 rounded-t-xl" src="/images/sofiaopenbjj.png" alt="Event Image">
+    <img class="w-full h-32 sm:h-48 object-cover" src="/images/sofiaopenbjj.png" alt="Event Image">
     <div class="m-8">
-      <h2 class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"><%= event.name %></h2>
-      <p class="mt-2 text-gray-500 line-clamp-3"><%= event.description %></p>
-      <p class="mt-2 text-gray-500 line-clamp-3">Location: <%= event.location %></p>
-      <p class="mt-2 text-gray-500">Starts at: <%= event.start_at.to_formatted_s(:long) %></p>
-      <p class="mt-2 text-gray-500">Ends at: <%= event.end_at.to_formatted_s(:long) %></p>
+      <h2 class="uppercase tracking-wide text-lg text-indigo-500 font-semibold"><%= event.name %></h2>
+      <p class="mt-2 text-gray-500 line-clamp-3"><%= event.location %></p>
+
+      <p class="mt-2 text-gray-500"><%= event.start_at.strftime('%e %B')%></p>
     </div>
   </div>
 </a>
