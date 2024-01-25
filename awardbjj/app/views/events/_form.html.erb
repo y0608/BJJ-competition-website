@@ -22,6 +22,12 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :game_type %>
+    <%= form.select :game_type, Event.game_types.keys.map { |key| [Event.game_types[key], key] }, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  
+  
+  <div class="my-5">
     <%= form.label :start_at %>
     <%= form.datetime_field :start_at, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
