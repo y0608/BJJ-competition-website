@@ -1,0 +1,5 @@
+<% 10.times do |i| %>
+registration<%= i %>:
+  competitor: competitor<%= i %>
+  bracket: bracket<%= i % 4 %>
+<% end %>

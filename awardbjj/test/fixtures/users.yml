@@ -1,12 +1,14 @@
-competitor1:
+<% 10.times do |i| %>
+competitor<%= i %>:
   first_name: Competitor
-  last_name: One
+  last_name: <%= i %>
   role: <%= User.roles[:competitor] %>
 
-  email: competitor@gmail.com
+  email: competitor<%= i %>@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
 
   confirmed_at: <%= Time.current %>
+<% end %>
 
 organizer1:
   organization_name: "Organization One"

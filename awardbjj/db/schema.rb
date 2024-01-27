@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_20_110951) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_132519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brackets", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "first_place_id"
+    t.bigint "second_place_id"
+    t.bigint "third_place_id"
+    t.index ["event_id"], name: "index_brackets_on_event_id"
+    t.index ["first_place_id"], name: "index_brackets_on_first_place_id"
+    t.index ["second_place_id"], name: "index_brackets_on_second_place_id"
+    t.index ["third_place_id"], name: "index_brackets_on_third_place_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
@@ -25,6 +38,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_20_110951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.bigint "competitor_id", null: false
+    t.bigint "bracket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bracket_id"], name: "index_registrations_on_bracket_id"
+    t.index ["competitor_id"], name: "index_registrations_on_competitor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,5 +70,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_20_110951) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weightclasses", force: :cascade do |t|
+    t.bigint "bracket_id", null: false
+    t.string "age", null: false
+    t.string "belt", null: false
+    t.string "sex", null: false
+    t.float "weight", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bracket_id"], name: "index_weightclasses_on_bracket_id"
+  end
+
+  add_foreign_key "brackets", "events"
+  add_foreign_key "brackets", "registrations", column: "first_place_id"
+  add_foreign_key "brackets", "registrations", column: "second_place_id"
+  add_foreign_key "brackets", "registrations", column: "third_place_id"
   add_foreign_key "events", "users", column: "organizer_id"
+  add_foreign_key "registrations", "brackets"
+  add_foreign_key "registrations", "users", column: "competitor_id"
+  add_foreign_key "weightclasses", "brackets"
 end
