@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_132519) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_132519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "bracket_id", null: false
+    t.bigint "competitor1_id", null: false
+    t.bigint "competitor2_id", null: false
+    t.bigint "winner_id"
+    t.string "win_type"
+    t.integer "points1", default: 0, null: false
+    t.integer "points2", default: 0, null: false
+    t.integer "advantages1", default: 0, null: false
+    t.integer "advantages2", default: 0, null: false
+    t.integer "penalties1", default: 0, null: false
+    t.integer "penalties2", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bracket_id"], name: "index_matches_on_bracket_id"
+    t.index ["competitor1_id"], name: "index_matches_on_competitor1_id"
+    t.index ["competitor2_id"], name: "index_matches_on_competitor2_id"
+    t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -86,6 +106,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_132519) do
   add_foreign_key "brackets", "registrations", column: "second_place_id"
   add_foreign_key "brackets", "registrations", column: "third_place_id"
   add_foreign_key "events", "users", column: "organizer_id"
+  add_foreign_key "matches", "brackets"
+  add_foreign_key "matches", "registrations", column: "competitor1_id"
+  add_foreign_key "matches", "registrations", column: "competitor2_id"
+  add_foreign_key "matches", "registrations", column: "winner_id"
   add_foreign_key "registrations", "brackets"
   add_foreign_key "registrations", "users", column: "competitor_id"
   add_foreign_key "weightclasses", "brackets"

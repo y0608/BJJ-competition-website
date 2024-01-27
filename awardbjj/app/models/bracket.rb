@@ -4,4 +4,5 @@ class Bracket < ApplicationRecord
   has_one :weightclass, dependent: :destroy
   
   has_many :registrations, dependent: :destroy
+  has_many :matches, dependent: :destroy  
 end
