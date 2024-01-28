@@ -15674,4 +15674,202 @@ $$;
   [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
   [1m[36mRegistration Load (0.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 11]]
+<<<<<<< HEAD
 >>>>>>> 3b9f1b3 (init brackets, registratins and weightclasses)
+=======
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.3ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mBracket Load (0.3ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for pp */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" INNER JOIN "brackets" ON "registrations"."bracket_id" = "brackets"."id" WHERE "brackets"."event_id" = $1 /* loading for pp */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" INNER JOIN "brackets" ON "registrations"."bracket_id" = "brackets"."id" WHERE "brackets"."event_id" = $1 ORDER BY "registrations"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."id" = $1 LIMIT $2[0m  [["id", 697806286], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mRegistration Load (0.6ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" INNER JOIN "brackets" ON "registrations"."bracket_id" = "brackets"."id" WHERE "brackets"."event_id" = $1 ORDER BY "registrations"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mBracket Load (0.3ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."id" = $1 LIMIT $2[0m  [["id", 697806286], ["LIMIT", 1]]
+  [1m[36mWeightclass Load (0.3ms)[0m  [1m[34mSELECT "weightclasses".* FROM "weightclasses" WHERE "weightclasses"."bracket_id" = $1 LIMIT $2[0m  [["bracket_id", 697806286], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateMatches (20240127201719)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "matches" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "competitor1_id" bigint NOT NULL, "competitor2_id" bigint NOT NULL, "winner_id" bigint, "win_type" character varying, "points1" integer DEFAULT 0 NOT NULL, "points2" integer DEFAULT 0 NOT NULL, "advantages1" integer DEFAULT 0 NOT NULL, "advantages2" integer DEFAULT 0 NOT NULL, "penalties1" integer DEFAULT 0 NOT NULL, "penalties2" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_f27c04348d"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+, CONSTRAINT "fk_rails_5f982e14c3"
+FOREIGN KEY ("competitor1_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_1e56b02c9d"
+FOREIGN KEY ("competitor2_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_9d0deeb219"
+FOREIGN KEY ("winner_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_matches_on_bracket_id" ON "matches" ("bracket_id")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor1_id" ON "matches" ("competitor1_id")[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor2_id" ON "matches" ("competitor2_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_matches_on_winner_id" ON "matches" ("winner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127201719') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 20:41:15.623899', '2024-01-27 20:41:15.623899', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 20:41:15.623899', '2024-01-27 20:41:15.623899', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 20:41:15.623899', '2024-01-27 20:41:15.623899', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 20:41:15.623899', '2024-01-27 20:41:15.623899', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 20:41:12', '2024-01-28 20:41:12', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 20:41:15.629831', '2024-01-27 20:41:15.629831');
+INSERT INTO "matches" ("id", "bracket_id", "competitor1_id", "competitor2_id", "created_at", "updated_at") VALUES (869024000, 512793945, 893350012, 741745088, '2024-01-27 20:41:15.632120', '2024-01-27 20:41:15.632120');
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, 37241071, 512793945, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (185364830, 893350012, 697806286, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (302325986, 741745088, 815725686, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (620892279, 456200535, 127519973, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (996574678, 89490680, 512793945, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (207729989, 844280933, 697806286, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (359195897, 727442905, 815725686, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (577754222, 475845968, 127519973, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (852544001, 216254689, 512793945, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504'), (98040172, 1004861514, 697806286, '2024-01-27 20:41:15.635504', '2024-01-27 20:41:15.635504');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$PcxVBudV.f1GOWtj6Gq6TOHLxeu0KvXIfrHUpcsB7REyHQVH0xE2u', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:13', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$L8.OvhBllmGstLQlBb2idOwWM7K/C7XCz2TMRhZpbMSDJOvQ1JcPq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:13', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$d/ecl9x24UPBo1dXVB0dD.hmx1AsIwAGFacvdY2O4ftDvlq0Rh3C.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:13', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$sWx8k1A2.hBzFPmF3Ur4JuekiorYTjAXHPwxB2v.rHuPrqLY/G8f.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:13', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$ZnVObID/aSDxdM8VP7MAA.7eY1sqTobtpYpOpzuDfeoNk9bKgldhi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:14', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$smxvszTjKVwqfAQZSL8bZeJc7MfzIR.JS//1DstW/TmB8U/HnUWMq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:14', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$mFpUs8CVDys.N3Wj7qvqKOAydBGaOS.JwRRG1VVcHg7VmPYulGE0G', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:14', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$pw8xJkpEe5vblq.x7GQqTONpDICVdkNuaLYi1mYTrKgaMAAZfs2RO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:14', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$JK6kqYJIFTiUw/swNozAX.4Qvvdm.KP4rEtBMqNPXadi8bxVDuWMu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:15', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$tmzZgdJfTeHLN2hlQNmA6eENE0ZKCAzIXjDbwshJ7X6ashSvIWyVS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:15', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$JrnER4xF0qh3nYwq4x0dBubK2KiGUTYVrQ4jaxuxMteNmRfyG0uCe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:15', DEFAULT, DEFAULT, '2024-01-27 20:41:15.636711', '2024-01-27 20:41:15.636711');
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, 512793945, 'adult', 'white', 'male', 66.0, '2024-01-27 20:41:15.638337', '2024-01-27 20:41:15.638337'), (288899030, 697806286, 'adult', 'white', 'male', 76.0, '2024-01-27 20:41:15.638337', '2024-01-27 20:41:15.638337'), (823660061, 815725686, 'adult', 'white', 'male', 88.0, '2024-01-27 20:41:15.638337', '2024-01-27 20:41:15.638337'), (302532991, 127519973, 'adult', 'blue', 'male', 76.0, '2024-01-27 20:41:15.638337', '2024-01-27 20:41:15.638337')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 20:42:00.287821', '2024-01-27 20:42:00.287821', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 20:42:00.287821', '2024-01-27 20:42:00.287821', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 20:42:00.287821', '2024-01-27 20:42:00.287821', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 20:42:00.287821', '2024-01-27 20:42:00.287821', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 20:41:57', '2024-01-28 20:41:57', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 20:42:00.293592', '2024-01-27 20:42:00.293592');
+INSERT INTO "matches" ("id", "bracket_id", "competitor1_id", "competitor2_id", "created_at", "updated_at") VALUES (869024000, 512793945, 1007370703, 185364830, '2024-01-27 20:42:00.295751', '2024-01-27 20:42:00.295751');
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, 37241071, 512793945, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (185364830, 893350012, 697806286, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (302325986, 741745088, 815725686, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (620892279, 456200535, 127519973, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (996574678, 89490680, 512793945, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (207729989, 844280933, 697806286, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (359195897, 727442905, 815725686, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (577754222, 475845968, 127519973, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (852544001, 216254689, 512793945, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069'), (98040172, 1004861514, 697806286, '2024-01-27 20:42:00.299069', '2024-01-27 20:42:00.299069');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$/QEK.Zx8p.fklZfEP2K2OuswY9CP5.yG.R.Fw3ck0GXrfEo5H6xu.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:57', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$F3aaz79jhNUpMx..moJO.uwX.lXB2VF9G2nVgCaLiwmpfgyJh/bVq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:58', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$waCYSvz6Zb4kFNH..CN/G.T.KxatTihGVwJn8gpQESXLdlZg4V37.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:58', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$D0pkj3tO2tJWtf/2ZYsYv.OAl40imFeo72gixDbVrEx.pwKoR7ryK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:58', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$vnsIrJL.u1/JVbzma8HjPO.yY2NXMAAUpTPFiUidW6hexccHNvms6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:58', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$wlVnHMJcO6eSpFgfNB87euUqcCVbu/SckFC9McDKLKSQBg/CK1UKK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:59', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$xwUqrPIIMfkDkCGApijsve5iBBqVFfdVNFpbLifTa8cQ/EfUd0SOi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:59', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$WaDdjHc2MU9wMprEnt0le.jdAoEMMzEPaMwyrR.e65CJJT5QkM63u', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:59', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$YBb3TL2RB/zGNY.7kJg.OuhjzmaIvei3HL5R6pM.EHjFk6gOtTobi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:41:59', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$LZG0pfrJX5AaBxztCjobQepssKtzdSM4r6AYvXgeZjlf5gKGnqtCq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:42:00', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$QMK7Ez/2hGwBGP.csI4FSep/MJOTtlCcMN3tWIh/z3brBbbNUFc8W', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:42:00', DEFAULT, DEFAULT, '2024-01-27 20:42:00.300212', '2024-01-27 20:42:00.300212');
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, 512793945, 'adult', 'white', 'male', 66.0, '2024-01-27 20:42:00.301791', '2024-01-27 20:42:00.301791'), (288899030, 697806286, 'adult', 'white', 'male', 76.0, '2024-01-27 20:42:00.301791', '2024-01-27 20:42:00.301791'), (823660061, 815725686, 'adult', 'white', 'male', 88.0, '2024-01-27 20:42:00.301791', '2024-01-27 20:42:00.301791'), (302532991, 127519973, 'adult', 'blue', 'male', 76.0, '2024-01-27 20:42:00.301791', '2024-01-27 20:42:00.301791')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for pp */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.3ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 190150649]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 512793945], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.3ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 190150649]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 512793945], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" DESC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 815725686], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 190150649]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for pp */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" DESC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 815725686], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 190150649]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 512793945], ["LIMIT", 11]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."last_name" = $1 LIMIT $2[0m  [["last_name", "0"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."last_name" = $1 LIMIT $2[0m  [["last_name", "0"], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."competitor_id" = $1 /* loading for pp */ LIMIT $2[0m  [["competitor_id", 37241071], ["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."last_name" = $1 LIMIT $2[0m  [["last_name", "0"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."last_name" = $1 LIMIT $2[0m  [["last_name", "0"], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."competitor_id" = $1 /* loading for pp */ LIMIT $2[0m  [["competitor_id", 37241071], ["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."last_name" = $1 LIMIT $2[0m  [["last_name", "0"], ["LIMIT", 1]]
+>>>>>>> 95114be (added matches)
