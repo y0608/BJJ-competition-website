@@ -10,3 +10,19 @@
 
 puts "\n== Seeding the database with fixtures =="
 system("bin/rails db:fixtures:load")
+
+
+# puts "\n== User fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=users")
+
+# puts "\n== Event fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=events")
+
+# puts "\n== Bracket fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=brackets")
+
+# puts "\n== Weightclass fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=weightclasses")
+
+# puts "\n== Registration fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=registrations")

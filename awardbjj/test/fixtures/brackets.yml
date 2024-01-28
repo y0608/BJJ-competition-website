@@ -1,0 +1,4 @@
+<% 4.times do |i| %>
+bracket<%= i %>:
+  event: event1
+<% end %>

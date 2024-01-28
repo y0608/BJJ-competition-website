@@ -1,0 +1,27 @@
+AdultWhite66:
+  age: "adult"
+  sex: "male"
+  belt: "white"
+  weight: 66
+  bracket: bracket0
+
+AdultWhite76:
+  age: "adult"
+  sex: "male"
+  belt: "white"
+  weight: 76
+  bracket: bracket1
+
+AdultWhite88:
+  age: "adult"
+  sex: "male"
+  belt: "white"
+  weight: 88
+  bracket: bracket2
+
+AdultBlue76:
+  age: "adult"
+  sex: "male"
+  belt: "blue"
+  weight: 76
+  bracket: bracket3

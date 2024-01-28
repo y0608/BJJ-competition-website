@@ -11447,6 +11447,7 @@ Completed 200 OK in 50ms (Views: 39.0ms | ActiveRecord: 1.2ms | Allocations: 131
   
 ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
   
+<<<<<<< HEAD
 Started GET "/" for 127.0.0.1 at 2024-01-25 13:30:04 +0200
   [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
 Processing by PagesController#home as HTML
@@ -12453,6 +12454,659 @@ INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name
   [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (6.5ms)[0m  [1m[35mdo $$
+=======
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "weightclass_id" bigint NOT NULL, "first_place_id" bigint NOT NULL, "second_place_id" bigint NOT NULL, "third_place_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_f6bb2ebff1"
+FOREIGN KEY ("weightclass_id")
+  REFERENCES "weightclasses" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "first_places" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "second_places" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "third_places" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateWeightclasses (20240127110314)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "age" integer, "belt" character varying, "sex" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110314') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "weightclass_id" bigint NOT NULL, "first_place_id" bigint NOT NULL, "second_place_id" bigint NOT NULL, "third_place_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_f6bb2ebff1"
+FOREIGN KEY ("weightclass_id")
+  REFERENCES "weightclasses" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "first_places" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "second_places" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "third_places" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY TRUE, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY TRUE, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY TRUE)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (24.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (28.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (128.3ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (99.8ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-01-27 13:18:00.665806', '2024-01-27 13:18:00.665812') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+ DEFERRABLE INITIALLY DEFFERABLE)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (31.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (27.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (90.5ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (100.1ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-01-27 13:20:25.121377', '2024-01-27 13:20:25.121383') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+, CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (27.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (29.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (94.4ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (94.2ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-01-27 13:20:57.522143', '2024-01-27 13:20:57.522151') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110324') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateWeightclasses (20240127110334)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110334') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRegistrations (20240127110340)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (26.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (29.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (98.6ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (96.8ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-01-27 13:21:19.361518', '2024-01-27 13:21:19.361523') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110324') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateWeightclasses (20240127110334)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110334') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRegistrations (20240127110340)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "registrations" ("id" bigserial primary key, "competitor_id" bigint NOT NULL, "bracket_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d2e08ed5f0"
+FOREIGN KEY ("competitor_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_5978403a63"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_competitor_id" ON "registrations" ("competitor_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_bracket_id" ON "registrations" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110340') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132138)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132138)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132138)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132138)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132138)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddPlacesToBrackets (20240127132519)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "first_place_id" bigint[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_first_place_id" ON "brackets" ("first_place_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "brackets" ADD "second_place_id" bigint[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_second_place_id" ON "brackets" ("second_place_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "third_place_id" bigint[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place_id" ON "brackets" ("third_place_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127132519') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One2', '2024-01-27 13:36:25', '2024-01-28 13:36:25', 'Event One Location', 'NoGi', 'Event One Description', NULL, '2024-01-27 13:36:25.717936', '2024-01-27 13:36:25.717936');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (893350012, 1, 'Competitor', 'One', DEFAULT, 'competitor@gmail.com', '$2a$12$Ads670JkZhVFK0BzEDUS9.UfhmNWLxqY2vNCUZ73JZvEPtD664chW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 13:36:25', DEFAULT, DEFAULT, '2024-01-27 13:36:25.722298', '2024-01-27 13:36:25.722298'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$VOPUTfvcWpJ1ybK3qLP/oe.VWV4o5hXgSpXr/IVIFj4iq07V2JL6S', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 13:36:25', DEFAULT, DEFAULT, '2024-01-27 13:36:25.722298', '2024-01-27 13:36:25.722298')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One2', '2024-01-27 13:36:45', '2024-01-28 13:36:45', 'Event One Location', 'NoGi', 'Event One Description', NULL, '2024-01-27 13:36:45.480862', '2024-01-27 13:36:45.480862');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (893350012, 1, 'Competitor', 'One', DEFAULT, 'competitor@gmail.com', '$2a$12$uSNnz2uimwLiiLqHYj.PVeQV8OKKuETJyhg5YHBJsCKwtGVSQQT2a', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 13:36:45', DEFAULT, DEFAULT, '2024-01-27 13:36:45.485085', '2024-01-27 13:36:45.485085'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$w9NN1opUH9OZoDJpv5jd2ODG9CfAMAXxKVhFzumfBu2RV2fssjGB.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 13:36:45', DEFAULT, DEFAULT, '2024-01-27 13:36:45.485085', '2024-01-27 13:36:45.485085')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5013.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (25.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (27.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (131.1ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (117.8ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-01-27 14:55:50.084465', '2024-01-27 14:55:50.084471') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110324') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateWeightclasses (20240127110334)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "weight" float NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110334') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRegistrations (20240127110340)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "registrations" ("id" bigserial primary key, "competitor_id" bigint NOT NULL, "bracket_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d2e08ed5f0"
+FOREIGN KEY ("competitor_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_5978403a63"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_competitor_id" ON "registrations" ("competitor_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_bracket_id" ON "registrations" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110340') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPlacesToBrackets (20240127132519)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "brackets" ADD "first_place_id" bigint[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_first_place_id" ON "brackets" ("first_place_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "second_place_id" bigint[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_second_place_id" ON "brackets" ("second_place_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "brackets" ADD "third_place_id" bigint[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place_id" ON "brackets" ("third_place_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127132519') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$jyPpvls83fwfrhF9jAmlx.a3FuS8dU6EEZ1EnU/2UK2/U5G9NZQZO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:40', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$ZG4bktJcstJpEC5J5mQDfOMlFMxI8sSEVCw9yV9b8FCxwiIBLdg6K', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:40', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$vBQbDiXrXmW/1fWINiZsbOIzrnYJTimUlwhxl1l.7kBcLtpOQrOzK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:41', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$ak0CHi/nPOF9vL4TKVvRle1GJD3xVA3lBbO1QgPQ2HxT3P9AOCXLK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:41', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$3BgcTgKM3te2dCFrVdSU6OYcm4UiQRZt6SYHEHGyVK/XJDiBw55/y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:42', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$S.tWAjtUdj4UgGRKJbGYseBY5GaD5bqe4myv8gLtclJVJg71Fbzm2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:43', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$8dYubARjptUZTW/7C5HUsuEtF6XYIBt1jCPGMnATqoBdwnyVhuCBW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:43', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$cFeC19iTJqlg0TSZgHefKOkXdLyNHT97kp5YzKWkNxxqstorKqPFW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:44', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$A6tsqAndG9WA/BBpAwDU5OvaqpFy7eqsVnj9.4do3zQyvg5hbVrym', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:44', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$eSCyE2xsPk0IyBkxckGwz.0ZfZsfSS6r.aGrwuoQOeJHwLaaz808q', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:45', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$MRDI7u8wAAg9xJbxImx0rO4m4dK5JtmrWfFs8VVbvI7fF7KIsxWl2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:03:46', DEFAULT, DEFAULT, '2024-01-27 15:03:46.166667', '2024-01-27 15:03:46.166667')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.2ms)[0m  [1m[35mdo $$
   declare r record;
 BEGIN
 FOR r IN (
@@ -12473,6 +13127,41 @@ END;
 $$;
 [0m
   [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$F39WfdL/3SLLFkaq3cDpYOobrOcgP1w6PH2YIi./fx6.bLRnNtJZi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:15', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$0JeyvRedHl2zjJSJqWRP8OWc9rah35X72WYL5dPNTi5IA1zSGYe3m', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:16', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$w6QIS1btudCuJHKN40RpFuNmbSoNFs/FSIElELmVlo7j2zxtWdwBq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:16', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$IZ86XhysF8LBRqjfdGNHvee8MUagLyhNKv0YxUDeVBOav49f5FvM6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:17', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$waxQWSgC0SQCYLDbNSaZg.ERRubbFPSRH.tBEeR2mG8PHmmkETI56', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:17', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$kn5QPSxehh3nI515iSsHbe.D37iYO8l/Mwe3h9srQSl1x5xBPwODi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:18', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$8I5jEB0LlFBRFx1hkziC/.mD.U9pUK8PNbQiTxQbZYRR.baCya3gG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:19', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$a23pjJK1zjJPMhn29DH1re2D2HQu3bUZEeqZWNXOIZg/JuQUIkmpe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:19', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$brM9BwlhSJ0hRIhqytjLBug/hMUFoTvYAIhPqkkzV72T11Lx9iSFm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:20', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$BqZRe7pn/kNINTjYgCgwoOJLo8/NnzMG9v9ywEbPuAYV7Rnm8D7Q6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:20', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$lpui4AeoDUkKV5/iGp.0MOPUW7M/tZLGIB7voeYFZ9Rpu08TJOWlm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:05:21', DEFAULT, DEFAULT, '2024-01-27 15:05:21.519559', '2024-01-27 15:05:21.519559')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.4ms)[0m  [1m[35mdo $$
+>>>>>>> 3b9f1b3 (init brackets, registratins and weightclasses)
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+<<<<<<< HEAD
 Started GET "/events" for 127.0.0.1 at 2024-01-25 13:59:20 +0200
 Processing by EventsController#index as HTML
   Rendering layout layouts/application.html.erb
@@ -12515,6 +13204,110 @@ INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name
   [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (6.8ms)[0m  [1m[35mdo $$
+=======
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.9ms)[0m  [1m[31mDELETE FROM "events";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One2', '2024-01-27 15:05:23', '2024-01-28 15:05:23', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 15:05:23.353427', '2024-01-27 15:05:23.353427')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.9ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, NULL, '2024-01-27 15:05:25.114021', '2024-01-27 15:05:25.114021', DEFAULT, DEFAULT, DEFAULT), (697806286, NULL, '2024-01-27 15:05:25.114021', '2024-01-27 15:05:25.114021', DEFAULT, DEFAULT, DEFAULT), (815725686, NULL, '2024-01-27 15:05:25.114021', '2024-01-27 15:05:25.114021', DEFAULT, DEFAULT, DEFAULT), (127519973, NULL, '2024-01-27 15:05:25.114021', '2024-01-27 15:05:25.114021', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.7ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, NULL, 'adult', 'white', 'male', 66.0, '2024-01-27 15:05:26.921572', '2024-01-27 15:05:26.921572'), (288899030, NULL, 'adult', 'white', 'male', 76.0, '2024-01-27 15:05:26.921572', '2024-01-27 15:05:26.921572'), (823660061, NULL, 'adult', 'white', 'male', 88.0, '2024-01-27 15:05:26.921572', '2024-01-27 15:05:26.921572'), (302532991, NULL, 'adult', 'blue', 'male', 76.0, '2024-01-27 15:05:26.921572', '2024-01-27 15:05:26.921572')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, NULL, '2024-01-27 15:06:22.619910', '2024-01-27 15:06:22.619910', DEFAULT, DEFAULT, DEFAULT), (697806286, NULL, '2024-01-27 15:06:22.619910', '2024-01-27 15:06:22.619910', DEFAULT, DEFAULT, DEFAULT), (815725686, NULL, '2024-01-27 15:06:22.619910', '2024-01-27 15:06:22.619910', DEFAULT, DEFAULT, DEFAULT), (127519973, NULL, '2024-01-27 15:06:22.619910', '2024-01-27 15:06:22.619910', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$NNHsRMtv7QxdefDbf01DEOGRUboaK09swcXgIySkmdfc1sRgijQWe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:08', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$6ISCrR4ygg5WrV7JIDye5enF2XcpYffhfyEhGC.P3sIb7/J9dbpmW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:08', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$1OMmEEO5smtjfd7MTDSnzOZDKnhW45e4Mlgznnsmkw0M2RclnJXA2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:09', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$SuA9pNoyhiHQ41DyNE0uYeGSfoUyc4bb7Vb1wc7Hzn9W.y506RHT2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:10', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$dkahcLS1KIoiQQiQgXQsBuXUPY6QYU.xpombWuTYmDiFOO2/tGaaa', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:10', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$yVDQHMJd9NkULaM/czEq2.UiQKIOVKOQrCFeDqj1UEG8o/TPdp6I.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:11', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$SKUhbK/8Ca34ydWQJ8Fnt.yj/Ln1G4PnIbSo4xr9dIr2eE3T9YB5W', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:11', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$Notp73hddHAP10WXbj.9uutBTC.BrSf/d.yZirQNTIUkVVwBaVkHi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:12', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$hojjk0KWeDEVY2CyIo1FWOlOXewI3w2krpIvsiP.ejJwwopnR3p8y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:13', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$HEQN6V8pI9Ja45fUIj/2T.guWt7TrjlzO1989snwnFoH9vWwUVJAi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:13', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$t6kOu.ni20FSrV71j5O3eOkZ7MiKZ26i38aTGVfztvPXbPcPQdQ6G', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 15:07:14', DEFAULT, DEFAULT, '2024-01-27 15:07:14.326874', '2024-01-27 15:07:14.326874')[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.4ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.8ms)[0m  [1m[31mDELETE FROM "events";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One2', '2024-01-27 15:07:16', '2024-01-28 15:07:16', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 15:07:16.158369', '2024-01-27 15:07:16.158369')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.3ms)[0m  [1m[35mdo $$
+>>>>>>> 3b9f1b3 (init brackets, registratins and weightclasses)
   declare r record;
 BEGIN
 FOR r IN (
@@ -12535,6 +13328,7 @@ END;
 $$;
 [0m
   [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+<<<<<<< HEAD
 Started GET "/events" for 127.0.0.1 at 2024-01-25 13:59:40 +0200
 Processing by EventsController#index as HTML
   Rendering layout layouts/application.html.erb
@@ -14387,3 +15181,497 @@ Started GET "/images/sofiaopenbjj.png" for 127.0.0.1 at 2024-01-25 21:25:40 +020
   
 ActionController::RoutingError (No route matches [GET] "/images/sofiaopenbjj.png"):
   
+=======
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, NULL, 'adult', 'white', 'male', 66.0, '2024-01-27 15:07:19.711367', '2024-01-27 15:07:19.711367'), (288899030, NULL, 'adult', 'white', 'male', 76.0, '2024-01-27 15:07:19.711367', '2024-01-27 15:07:19.711367'), (823660061, NULL, 'adult', 'white', 'male', 88.0, '2024-01-27 15:07:19.711367', '2024-01-27 15:07:19.711367'), (302532991, NULL, 'adult', 'blue', 'male', 76.0, '2024-01-27 15:07:19.711367', '2024-01-27 15:07:19.711367')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[31mDELETE FROM "registrations";
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (185364830, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (302325986, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (620892279, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (996574678, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (207729989, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (359195897, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (577754222, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (852544001, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982'), (98040172, NULL, NULL, '2024-01-27 15:07:21.467982', '2024-01-27 15:07:21.467982')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, NULL, '2024-01-27 18:53:34.517259', '2024-01-27 18:53:34.517259', DEFAULT, DEFAULT, DEFAULT), (697806286, NULL, '2024-01-27 18:53:34.517259', '2024-01-27 18:53:34.517259', DEFAULT, DEFAULT, DEFAULT), (815725686, NULL, '2024-01-27 18:53:34.517259', '2024-01-27 18:53:34.517259', DEFAULT, DEFAULT, DEFAULT), (127519973, NULL, '2024-01-27 18:53:34.517259', '2024-01-27 18:53:34.517259', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One2"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "events";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 18:54:30', '2024-01-28 18:54:30', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 18:54:30.387466', '2024-01-27 18:54:30.387466')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One2"], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 18:54:51.734253', '2024-01-27 18:54:51.734253', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 18:54:51.734253', '2024-01-27 18:54:51.734253', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 18:54:51.734253', '2024-01-27 18:54:51.734253', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 18:54:51.734253', '2024-01-27 18:54:51.734253', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$RIAqydfHWohtrilGGkxlGuRpwF2Y6btNJodkIG2tPn0TaxRbwIPH.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:58', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$okNNFwSkweVAR7cJb/ySIeCI9EsbINExvOKCWXTBc4Ypyyr6lxLwq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:58', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$UYXJR5CfvUAcmxChQtvvp.QSAHBURD7v4FASzqsEZdL1c5QyXU8z.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:59', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$mkoidRN2tlfLlFh22t.6.eUa5oQPtA3eGhNzoE9MAvBzZdKRHsvbq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:59', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$vXli5/8ERhzZdg899rb9LOnv2noFQIq/QhnPP/1K4dYI9gTgVOtVe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:59', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$ENfqT05ryVuDG9X0hKaI1OqgUjm2NQwq0oEc2iCTCqa2woFF.Jmca', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:55:59', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$hounhnDGvpsKfVGRCUKVvuDHQ11RTYEg0Ozw5T/EU93R1AEEemfBS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:56:00', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$TQ1NnywdluK0YbucuyW4U.fg/HQEtcxYdpXuYlDgk8uiO8Cvfw8zy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:56:00', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$5aESKWVnbFxq3.phMJ769.V4vE/dcQmTvnV6.c8cGe8DGTQOHDsZ2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:56:00', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$M25YkJLijju3uLOt18mhau9xO8/M6IgvrU5b7THqVNTCmqb9A9kty', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:56:00', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$1/KL2xrGj8jWFXMiepkLnOGSkZ26QKoiVrZ7belox2A11qlraozXW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 18:56:01', DEFAULT, DEFAULT, '2024-01-27 18:56:01.088875', '2024-01-27 18:56:01.088875')[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."organization_name" = $1 LIMIT $2[0m  [["organization_name", "Organization One"], ["LIMIT", 1]]
+  ↳ test/fixtures/events.yml:8:in `get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "events";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 18:56:01', '2024-01-28 18:56:01', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 18:56:01.910397', '2024-01-27 18:56:01.910397')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."name" = $1 LIMIT $2[0m  [["name", "Event One"], ["LIMIT", 1]]
+  ↳ test/fixtures/brackets.yml:3:in `block in get_binding'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 18:56:02.716850', '2024-01-27 18:56:02.716850', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 18:56:02.716850', '2024-01-27 18:56:02.716850', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 18:56:02.716850', '2024-01-27 18:56:02.716850', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 18:56:02.716850', '2024-01-27 18:56:02.716850', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, NULL, 'adult', 'white', 'male', 66.0, '2024-01-27 18:56:03.542418', '2024-01-27 18:56:03.542418'), (288899030, NULL, 'adult', 'white', 'male', 76.0, '2024-01-27 18:56:03.542418', '2024-01-27 18:56:03.542418'), (823660061, NULL, 'adult', 'white', 'male', 88.0, '2024-01-27 18:56:03.542418', '2024-01-27 18:56:03.542418'), (302532991, NULL, 'adult', 'blue', 'male', 76.0, '2024-01-27 18:56:03.542418', '2024-01-27 18:56:03.542418')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "registrations";
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (185364830, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (302325986, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (620892279, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (996574678, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (207729989, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (359195897, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (577754222, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (852544001, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313'), (98040172, NULL, NULL, '2024-01-27 18:56:04.331313', '2024-01-27 18:56:04.331313')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, NULL, 'adult', 'white', 'male', 66.0, '2024-01-27 18:56:47.995110', '2024-01-27 18:56:47.995110'), (288899030, NULL, 'adult', 'white', 'male', 76.0, '2024-01-27 18:56:47.995110', '2024-01-27 18:56:47.995110'), (823660061, NULL, 'adult', 'white', 'male', 88.0, '2024-01-27 18:56:47.995110', '2024-01-27 18:56:47.995110'), (302532991, NULL, 'adult', 'blue', 'male', 76.0, '2024-01-27 18:56:47.995110', '2024-01-27 18:56:47.995110')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, 512793945, 'adult', 'white', 'male', 66.0, '2024-01-27 19:58:00.145964', '2024-01-27 19:58:00.145964'), (288899030, 697806286, 'adult', 'white', 'male', 76.0, '2024-01-27 19:58:00.145964', '2024-01-27 19:58:00.145964'), (823660061, 815725686, 'adult', 'white', 'male', 88.0, '2024-01-27 19:58:00.145964', '2024-01-27 19:58:00.145964'), (302532991, 127519973, 'adult', 'blue', 'male', 76.0, '2024-01-27 19:58:00.145964', '2024-01-27 19:58:00.145964')[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mWeightclass Load (0.5ms)[0m  [1m[34mSELECT "weightclasses".* FROM "weightclasses" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$rKlW9Cg51Cy8CoqTi.W17OAh73Fh5fb1cDmekRGvYzTmYYswuuHBu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:37', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$.PCC/QRssykxFwmXVchCWe8ExwOuyE2ukpDshsq.UpJ177zx5CSvy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:38', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$OofmRGtcoEyE/H/dX29YMuDVgpQs/3unFhxDl0fh4TrvH3nuRGej6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:38', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$FHU639wt54ZqDDUaScEsieYh3dapPqZEZDM4vDpuOveDD92nAsPiS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:38', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$DZyVbUhx/lvubi7Im2QLTOYu25PNgocAsVbGaavQhd940Ey.vo.ka', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:38', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$uq3xhzY5MYGQ4ljTTEYieeS9i9x6uSxRndDbC1xW.Kv4kOBCl1GHm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:38', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$niy.rNyDDlekbskrTU9xbuWSs0aGviHxfvqU/IgV4PnuPNVw04Vh.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:39', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$pUtQHw/2huOvmh/q.G7ohOCC3QAJkpgkwlA/WzOGNi0Pfira9PHqO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:39', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$SNUkgLL692iWJM9n9GCiHujcfCA.vjq3uErRvOsqMYgdeWY3BLizi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:39', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$ivdmxkrBrarc5roFyz7zOOCflTYrWp/BY6DP84UWzcr8DY49Uni0i', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:39', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$YpUsJftBcSutDfbfD2gXS.TiiAhwJeVuoGDJryTfeS233X4A/DhAG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:00:40', DEFAULT, DEFAULT, '2024-01-27 20:00:40.159340', '2024-01-27 20:00:40.159340')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "events";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 20:00:40', '2024-01-28 20:00:40', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 20:00:40.907719', '2024-01-27 20:00:40.907719')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.0ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "brackets";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 20:00:41.666030', '2024-01-27 20:00:41.666030', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 20:00:41.666030', '2024-01-27 20:00:41.666030', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 20:00:41.666030', '2024-01-27 20:00:41.666030', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 20:00:41.666030', '2024-01-27 20:00:41.666030', DEFAULT, DEFAULT, DEFAULT)[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "weightclasses";
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, 512793945, 'adult', 'white', 'male', 66.0, '2024-01-27 20:00:42.462994', '2024-01-27 20:00:42.462994'), (288899030, 697806286, 'adult', 'white', 'male', 76.0, '2024-01-27 20:00:42.462994', '2024-01-27 20:00:42.462994'), (823660061, 815725686, 'adult', 'white', 'male', 88.0, '2024-01-27 20:00:42.462994', '2024-01-27 20:00:42.462994'), (302532991, 127519973, 'adult', 'blue', 'male', 76.0, '2024-01-27 20:00:42.462994', '2024-01-27 20:00:42.462994')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "registrations";
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, 37241071, 512793945, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (185364830, 893350012, 697806286, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (302325986, 741745088, 815725686, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (620892279, 456200535, 127519973, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (996574678, 89490680, 512793945, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (207729989, 844280933, 697806286, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (359195897, 727442905, 815725686, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (577754222, 475845968, 127519973, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (852544001, 216254689, 512793945, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962'), (98040172, 1004861514, 697806286, '2024-01-27 20:00:43.209962', '2024-01-27 20:00:43.209962')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.8ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "brackets" ("id", "event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES (512793945, 190150649, '2024-01-27 20:01:47.069964', '2024-01-27 20:01:47.069964', DEFAULT, DEFAULT, DEFAULT), (697806286, 190150649, '2024-01-27 20:01:47.069964', '2024-01-27 20:01:47.069964', DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, '2024-01-27 20:01:47.069964', '2024-01-27 20:01:47.069964', DEFAULT, DEFAULT, DEFAULT), (127519973, 190150649, '2024-01-27 20:01:47.069964', '2024-01-27 20:01:47.069964', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-27 20:01:44', '2024-01-28 20:01:44', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-27 20:01:47.075643', '2024-01-27 20:01:47.075643');
+INSERT INTO "registrations" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (1007370703, 37241071, 512793945, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (185364830, 893350012, 697806286, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (302325986, 741745088, 815725686, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (620892279, 456200535, 127519973, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (996574678, 89490680, 512793945, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (207729989, 844280933, 697806286, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (359195897, 727442905, 815725686, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (577754222, 475845968, 127519973, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (852544001, 216254689, 512793945, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848'), (98040172, 1004861514, 697806286, '2024-01-27 20:01:47.077848', '2024-01-27 20:01:47.077848');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$s.UlhjYz8rXQC9ldncSrh.NS09qsVRDy6Y74BHndr0nJJ13k9YWy6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:44', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$KbM0fg9n1GiGmk34w8p8cuiJ.JYldd1TEMYbERq6ZhrVRbU.b58I.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:44', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$StlsBRVgVpb07.W87OL5f.A3nPfQWO.rL.Ao21hlWoaQ5MYy17VYy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:45', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$9dWLK10aKbWF3v.p8ryaa.JaFGalnGhdCOjtGEFk/aHHqf9NwObY6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:45', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$HPu1nWXSnKX5YRUvVAs5Je86w9rX3jcNanUNd3OEm5PiTXTWnu2by', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:45', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$WV969ItmOhqo2oQfv/FSYeV8.opaHNQTpinQSamoGvsb7A.OReTUO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:45', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$JZhlyLtRj184xcK3SGwbueMsVpNaamv9qwIwE0D2CowSYFBSy0w02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:46', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$zi7zw4hVPXgIBysFoZ6mPukB/DJbTghl9aCGG6mUW7oBu6VNsW5M2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:46', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$bu9fuHxc7lPN1inoqTNMNeUzfq8/vWkgOqVf.Eb.jcLwlulRRwj9O', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:46', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$7DEtjTCrqeJ2cOLoglxwqOZ10KNBlC7QjFMCajbS8y6H.PLyaVIJi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:46', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$38ohZbZPkOQ7T2DAfOX0eeH0DvDxSRdhTZp6cu7Qu8/hSIAq3/0B6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-27 20:01:47', DEFAULT, DEFAULT, '2024-01-27 20:01:47.080410', '2024-01-27 20:01:47.080410');
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (136515221, 512793945, 'adult', 'white', 'male', 66.0, '2024-01-27 20:01:47.081949', '2024-01-27 20:01:47.081949'), (288899030, 697806286, 'adult', 'white', 'male', 76.0, '2024-01-27 20:01:47.081949', '2024-01-27 20:01:47.081949'), (823660061, 815725686, 'adult', 'white', 'male', 88.0, '2024-01-27 20:01:47.081949', '2024-01-27 20:01:47.081949'), (302532991, 127519973, 'adult', 'blue', 'male', 76.0, '2024-01-27 20:01:47.081949', '2024-01-27 20:01:47.081949')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 /* loading for pp */ LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 11]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.4ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mWeightclass Load (0.4ms)[0m  [1m[34mSELECT "weightclasses".* FROM "weightclasses" WHERE "weightclasses"."bracket_id" = $1 LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBracket Load (0.5ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 190150649], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."bracket_id" = $1 /* loading for pp */ LIMIT $2[0m  [["bracket_id", 127519973], ["LIMIT", 11]]
+>>>>>>> 3b9f1b3 (init brackets, registratins and weightclasses)
