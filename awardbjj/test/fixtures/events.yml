@@ -6,3 +6,12 @@ event1:
   end_at: <%= Time.current + 1.day %>
   location: "Event One Location"
   organizer: organizer1
+
+event2:
+  name: "Event Two"
+  game_type: <%= Event.game_types[:gi] %>
+  description: "Event Two Description"
+  start_at: <%= Time.current + 2.days %>
+  end_at: <%= Time.current + 3.days %>
+  location: "Event Two Location"
+  organizer: organizer1

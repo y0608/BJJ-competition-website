@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :events
+  resources :events do
+    resources :brackets
+  end
 
   resources :users
 

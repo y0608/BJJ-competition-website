@@ -16,4 +16,7 @@
       <%= button_to "Delete", event_path(@event), method: :delete, class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
     </div>
   <% end %>
+
+  <!-- TODO: turbo rails for sections: information,  -->
+  <%= link_to "Brackets", event_brackets_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
 </main>
