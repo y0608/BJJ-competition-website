@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  validates_presence_of :name, :location, :start_at, :end_at
+  validates_presence_of :name, :start_at, :location, :game_type, :organizer_id
   
   enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
   
