@@ -1,20 +1,17 @@
 event1:
-  name: "Event One2"
+  name: "Event One"
   game_type: <%= Event.game_types[:no_gi] %>
   description: "Event One Description"
   start_at: <%= Time.current %>
   end_at: <%= Time.current + 1.day %>
   location: "Event One Location"
-  organizer_id: <%= User.find_by(organization_name: "Organization One").id %>
+  organizer: organizer1
 
-# generate 8 more events
-<% 2.upto(7) do |i| %>
-event<%= i %>:
-  name: "Event <%= i %>"
-  game_type: <%= Event.game_types[:no_gi] %>
-  description: "Event <%= i %> Description"
-  start_at: <%= Time.current %>
-  end_at: <%= Time.current + 1.day %>
-  location: "Event <%= i %> Location"
-  organizer_id: <%= User.find_by(organization_name: "Organization One").id %>
-<% end %>
+event2:
+  name: "Event Two"
+  game_type: <%= Event.game_types[:gi] %>
+  description: "Event Two Description"
+  start_at: <%= Time.current + 2.days %>
+  end_at: <%= Time.current + 3.days %>
+  location: "Event Two Location"
+  organizer: organizer1

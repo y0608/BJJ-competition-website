@@ -1,0 +1,24 @@
+<% ages = ["adult"] %>
+<% sexes = ["male", "female"] %>
+<% belts = ["white", "blue", "purple", "brown", "black"] %>
+<% weights = [66, 76] %>
+<% i = 0 %>
+
+<% ages.each do |age| %>
+  <% sexes.each do |sex| %>
+    <% belts.each do |belt| %>
+      <% weights.each do |weight| %>
+        <% if i > 7 %>
+          <% break %>
+        <% end %>
+        <%= "#{age.capitalize}#{belt.capitalize}#{weight}:" %>
+          age: <%= age %>
+          sex: <%= sex %>
+          belt: <%= belt %>
+          weight: <%= weight %>
+          bracket: bracket<%= i %>
+        <% i += 1 %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="mt-5 bg-white rounded-lg overflow-hidden shadow-lg">
+    <div class="p-6">
+        <div class="text-xl font-semibold mb-4">
+            <%= render "weightclasses/weightclass", weightclass: bracket.weightclass %>
+        </div>
+        <div class="mb-4">
+            <%= link_to "See Bracket", event_bracket_path(bracket.event, bracket), class: "text-blue-500 hover:underline" %>
+        </div>
+
+        <div class="">
+            <% bracket.registrations.each do |registration| %>
+                <div class="mb-4">
+                    <%= link_to(user_path(registration.competitor)) do %>
+                        <%= render "registrations/registration", registration: registration %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
