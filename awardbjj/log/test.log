@@ -1257,3 +1257,756 @@ EventTest: test_everyone_should_be_able_to_read_an_event
 --------------------------------------------------------
   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (30.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (132.9ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "brackets" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint)[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_first_place_id" ON "brackets" ("first_place_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_second_place_id" ON "brackets" ("second_place_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place_id" ON "brackets" ("third_place_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (19.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "matches" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "matches" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "competitor1_id" bigint NOT NULL, "competitor2_id" bigint NOT NULL, "winner_id" bigint, "win_type" character varying, "points1" integer DEFAULT 0 NOT NULL, "points2" integer DEFAULT 0 NOT NULL, "advantages1" integer DEFAULT 0 NOT NULL, "advantages2" integer DEFAULT 0 NOT NULL, "penalties1" integer DEFAULT 0 NOT NULL, "penalties2" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_matches_on_bracket_id" ON "matches" ("bracket_id")[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor1_id" ON "matches" ("competitor1_id")[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor2_id" ON "matches" ("competitor2_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_matches_on_winner_id" ON "matches" ("winner_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "registrations" CASCADE[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "registrations" ("id" bigserial primary key, "competitor_id" bigint NOT NULL, "bracket_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_bracket_id" ON "registrations" ("bracket_id")[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_competitor_id" ON "registrations" ("competitor_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "weightclasses" CASCADE[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "weight" float NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_f27c04348d"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_5f982e14c3"
+FOREIGN KEY ("competitor1_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_1e56b02c9d"
+FOREIGN KEY ("competitor2_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_9d0deeb219"
+FOREIGN KEY ("winner_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "registrations" ADD CONSTRAINT "fk_rails_5978403a63"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "registrations" ADD CONSTRAINT "fk_rails_d2e08ed5f0"
+FOREIGN KEY ("competitor_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "weightclasses" ADD CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240127201719)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240127132519),
+(20240127110340),
+(20240127110334),
+(20240127110324),
+(20231220110951),
+(20231216064840);[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-01-29 14:39:28.679920', '2024-01-29 14:39:28.679926') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '6da892bffc1a906fa699682afb96ad50577411ee', '2024-01-29 14:39:28.684600', '2024-01-29 14:39:28.684605') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:39:28', '2024-01-30 14:39:28', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:39:28.764070', '2024-01-29 14:39:28.764070'), (308029005, 'Event Two', '2024-01-31 14:39:28', '2024-02-01 14:39:28', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:39:28.764070', '2024-01-29 14:39:28.764070');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$VPIEeFzt8kESlU3d6rfGIOitvzMLK05Auwh7Bb1ZTT5Er1uycXe2G', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$xAiepAl8blSYxHajTCVJCOa8q.9DvO5ZpY8B4Sb/TeVTQ9YtYKMLy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$vW5Davo7DAEAYbSiJxu9leW81tTQ55EIkVmh.1nosli3daYTjZHOq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$w9PR3QFRb4FNJc/f0NY81.HszmA7sTH/mqGcRaVw6ZDSUV722NArm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$nFQOhrn0Tgzj1niQaghhcuK7cmPJZDlwbgw1PCwydvLqiYlKZhU9m', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$F7oUtfDBDTnhxfKvXDGe7u/zmbcfpB3oNAuwPijDO0J5a4aqnyWZe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$MyKuVswcLB8xMqWGbWLEcOJ1svKdtlKq1JfL6I6OeJJPTq219lCQa', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$RoJHpKQpkOXzc/OCh67tXugXEbOISeLJLfAdpS30K1CC/1ReLWEma', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$8Or9QCWNuqakw5zHr4NAguk5GuKntinJoJ1wZE9UB7vQB6V9QcmIy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$nTjYWk1CDgZ7BnrrQ512S.ptDCBeDPf4o9Ed0G4DUx5EvqFBv/7DG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$O3p7YPfPMCIERRhGTYxhd.obKVs6PhDIktGOXTIdkopgG00A835mS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:28', DEFAULT, DEFAULT, '2024-01-29 14:39:28.776529', '2024-01-29 14:39:28.776529')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:39:55', '2024-01-30 14:39:55', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:39:55.605571', '2024-01-29 14:39:55.605571'), (308029005, 'Event Two', '2024-01-31 14:39:55', '2024-02-01 14:39:55', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:39:55.605571', '2024-01-29 14:39:55.605571');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$7s2v/.FhYI/7B4O2cmJIretFO606SnJ3pnIMa2wO16rML/EchMDAm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$Ui.HJDDN0QbBR5zUR/Wrj.5K0rDaajMc.sdrWHVV4jMXH6uhWUIUK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$0/gozapBUaMbj4mBsVExLONGN7ZQ6qk7SOXpc41Ynuo4zKqeD9L5O', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$z.KF1wz47Q3KvWpKyJ3d1OK7WBiuqL97nxSHgoey9cnzJIyPesB9a', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$KLNgsBwYJ7QIeNqJ8MntouwCYGhYoQ2CbkZgryzt0zbG/10CvK66.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$XoEkDodOJIgfIbMDT7t6yOLIUhgB9.g8bef5Sn.ByzZPTmP8krOzO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$jqP1SQ.256eb/PlmDjxDNOIg2oimKRlaEA0zl7tvLt9vZDLuSyeFC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$6iOh3/94e/Mf59hK2fKpeea3V91p2TSSbGaQTenBPbW.hc5WY99TS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$SNHSiuH535V/2Fwm33.61OdpwVtAB86EI1s.KNrc02ciuvKT8K1b.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$YChTNidclZ0UM43yikLGgOWYe.37bRRQ/OuR0HhXNKRGYNYJFNmb2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$rTyTimPiMuO6iSfM10ACSOt8GkU1EjKUjFR8BG1/7TCkTvmNdQSmi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:39:55', DEFAULT, DEFAULT, '2024-01-29 14:39:55.612993', '2024-01-29 14:39:55.612993')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:41:27', '2024-01-30 14:41:27', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:41:27.938283', '2024-01-29 14:41:27.938283'), (308029005, 'Event Two', '2024-01-31 14:41:27', '2024-02-01 14:41:27', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:41:27.938283', '2024-01-29 14:41:27.938283');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$CjZY2pxwMroGS5KRZxnKOe3hGJ6msB1J6AMysYKtobe2c4hQgDK76', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$B8pysiKnQW3fLRfo7JKHCudTnLfUbFRtZAsOWOHfN5j5yHOd3FmzO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$dinuZ0dLKo1rBYkDizN7Du7O7G0HIIiBq0uHFRD4L1BxSFWDFic.S', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$E/vcb02fK0.Y4TzB54IYUOJ.PQGsfx00MrRvKf.hF5fuPt5QzL8vO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$3QdBaH2Pz2zbLXbzPfsU0uYSmPW0xAdJ6zaG.MeAWV412ImvP2Xm6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$8ampYqRhWFOgHB.HVemUi.gn3RcljeJfam7.gNr2lTLw3G4jMpM9q', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$2wYZQQdsVD0R09BnB2G1e.h4Hoezlfxenoq2RimX72F9NncQZ3mK6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$EJTl0Q0lBWIa56C3VP0TueEkkLVCI2lOkELaIYqqwFjtZx4jqWbNa', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$SoAn2p3k.TnUjdIsyMaZouOqPBOwy27UX63TQxMIXIN46akMdXoKu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$OJuyxOfhGz13aInhRo8m..XcxPnsRjtGVOpO/lTkGfxgQhvfBfmsq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$lR9NuGwltZVGu7dY3ok8JejjStT5osk5nP7wUvYL44dEOpcNTMzJy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:27', DEFAULT, DEFAULT, '2024-01-29 14:41:27.944339', '2024-01-29 14:41:27.944339')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:41:27.977806"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:41:28.009728"], ["updated_at", "2024-01-29 14:41:28.009728"]]
+  [1m[36mBracket Create (0.7ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:41:28.028970"], ["updated_at", "2024-01-29 14:41:28.028970"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:41:45', '2024-01-30 14:41:45', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:41:45.062334', '2024-01-29 14:41:45.062334'), (308029005, 'Event Two', '2024-01-31 14:41:45', '2024-02-01 14:41:45', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:41:45.062334', '2024-01-29 14:41:45.062334');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$HQ/xCPyNfUz/T.wwF9nehuy.GzRl3IAEMCKPMYgQzHTL.st9Bxume', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$YSpVKQpSKyhwBNxy/Y3qdO7x0CZelT7kYcrqhN81yW.ReKmvls1.y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$AMYjIsgbIKzfBlDvAxWnduYyJcasEodVbb4O.OQTavhLTVNYbNw/W', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$wi3AVlsRwcL5KBKWvxB1Lu1jdbu/dwJD.5cqS3YDdALRQuTdda0Fm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$T60zumlkJm1V5F7AVx.tx.OgSsHGRX3Yg7v/9MbbVRNWgGYrcpszC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$jfmivpCvfyEjdyRRHc/XBOygDPARK7F8CqF2gne0iacVjIdAiBVre', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$U1qCFBfZYMBMsxJN5UDQhOuFyS4v99AnjUkX89AFmG8QBPs13a4mi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$LpYS8DaqKF4QLqE91TT59.fCkfXSgscIA2/M1mgtA8XNerd.FXXyK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$3iEurCQJoH2h1zN5VxFsLOiuzpgqkRX/J1l4OB/hDEbQwXI4Mwsiq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$xlkilZlvGTevQZwzAPsSmOGDweLTKqYotU8RubrMHrCuiT7cmP/US', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$x5iINV.QFtTn1.sxf2VlP.qC9YcBfl95WfMr7QwAYg9OUCgJxa8cq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:41:45', DEFAULT, DEFAULT, '2024-01-29 14:41:45.068487', '2024-01-29 14:41:45.068487')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:41:45.101417"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:41:45.129882"], ["updated_at", "2024-01-29 14:41:45.129882"]]
+  [1m[36mBracket Create (0.4ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:41:45.147686"], ["updated_at", "2024-01-29 14:41:45.147686"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:42:19', '2024-01-30 14:42:19', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:42:19.271789', '2024-01-29 14:42:19.271789'), (308029005, 'Event Two', '2024-01-31 14:42:19', '2024-02-01 14:42:19', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:42:19.271789', '2024-01-29 14:42:19.271789');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$JIuEA8/BdAS6gh/Ap749rOZT5BUw8ZvFL7NTWQ1tjECKftIbRbSFO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$ROkSozTRbwWzi9TxesclvOcl47.UgoS8nl9POZmG0LufS7BprJjb6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$5Gge4unmAsz7e.xJz0EjSO4bKE/cNx6qOS/Tj2AKnvfzLoDskFWR.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$BgE4/RnMg3qzm7N80gIk2OatMPLGqso7gD062tkzdIDQRZz8qA.Mm', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$.CmcbyF6z3wdH1cIuP0DreUNi3eyHYUtvEOkgmiP0PIi1.zBTEfQC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$9/JQYUXVNnUQoPsrP5aJWeZ9Be4b4cuRzCi.O9goHl.KPqKgRZrxi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$o3SNjJljU6XEStEi171FJuWW80WdrvbFc.6hODGjdF2btejFUzO5.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$H5I8NddfeXO3VLMMESY8mek5CYL/JNRnpw97eboEvR0dsQM24jQM.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$ozXaKdYrua/DAJZgzhr/neEhyXpT3RNa07f1sBhasUgFhl2MJ6LDu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$S0ThCns5MfaRUAvvG/9o4u/9pCrxz9pRtIU04xg6/MsSqWtYUP7IG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$EdUqxyWV1UnwrPt5ri.UF.VKrC9.oRg0aoPS//Ith3VoGfxAM1opK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:19', DEFAULT, DEFAULT, '2024-01-29 14:42:19.276801', '2024-01-29 14:42:19.276801')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:42:19.306749"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:42:19.335878"], ["updated_at", "2024-01-29 14:42:19.335878"]]
+  [1m[36mBracket Create (0.4ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:42:19.353934"], ["updated_at", "2024-01-29 14:42:19.353934"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:42:33', '2024-01-30 14:42:33', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:42:33.037739', '2024-01-29 14:42:33.037739'), (308029005, 'Event Two', '2024-01-31 14:42:33', '2024-02-01 14:42:33', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:42:33.037739', '2024-01-29 14:42:33.037739');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$XBjrNNDN0Wb9SKjSxyL3xOj14G3sT9ZQlnSyywjB9QyBH4jgmGpo2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$2fwgdmkW7EK54QhCbn30uORh01b7za2u8MYi/I.bCaMKmevp3vLzy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$JtG1G8spNehnxP24K2sVaeYVKnvK/bvTPz3bor/EsZKdqWee/6p0K', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$5geEaWbtw5Y3m5T3Xqk.SOrRwQ/ImADzMx3rBDVMu6pXpVpKBwcou', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$JHh4817FQMFnT5wAj5fCQuGBieFzoHuOeidofhTTJYbJ0Jj40c41G', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$X5X/Sy5C4EgFeJtjw2fka.0F.Pxd099shMR7WvQOaHdbcaq6atCP2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$n8BrqrIcDT.CsvVskS/0yeCBNjJCS/WMHELvtQoasy5N6mBUI0vjC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$irSk2i1iFik8mOvu6i17p.YVThOuiir4ZLJSbi.wH8jRvZgGcsMCq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$yOt26ZZtfliBcWOqARyfMuoi3N9QdeTU3/PqTDJBj/94d3OmI0EBi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$WVlTG6Prxe.reZWq9cK6n./zL5ZZ5.vJict9jQPyTwrIQJ3wm.Zfq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$hRnXiEWOu7JUpnKaNtC4R.ASU0oo.6I/YNRVxH1x0hKavlGoPRA1a', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:42:33', DEFAULT, DEFAULT, '2024-01-29 14:42:33.042549', '2024-01-29 14:42:33.042549')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.9ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:42:33.074439"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:42:33.110665"], ["updated_at", "2024-01-29 14:42:33.110665"]]
+  [1m[36mBracket Create (0.5ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:42:33.129417"], ["updated_at", "2024-01-29 14:42:33.129417"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mWeightclass Create (0.6ms)[0m  [1m[32mINSERT INTO "weightclasses" ("bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["bracket_id", 1], ["age", "adult"], ["belt", "white"], ["sex", "male"], ["weight", 77.0], ["created_at", "2024-01-29 14:42:33.145221"], ["updated_at", "2024-01-29 14:42:33.145221"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:43:41', '2024-01-30 14:43:41', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:43:41.949505', '2024-01-29 14:43:41.949505'), (308029005, 'Event Two', '2024-01-31 14:43:41', '2024-02-01 14:43:41', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:43:41.949505', '2024-01-29 14:43:41.949505');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$xMREKh17oEfq7O8qPh/9KuxtkbvihAuwrYd1AjgnHP1.8Eaf4pRsO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$TD2E.rpU1KPGGq86W7.8ZOeskSri7x0zrqARx.3UvYyVREfsXqX2.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$PHsLOkEL9Y4oYBH/gTWdLu5FEIFLE0LnxoS6dyN9.u/VkZfdSzQRa', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$Uc3EV1b6pt9GD3KFePEYq.R0A866zRtTPBovDpwmRv5aU97U5CraC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$zkIHteQR1wThWsyqhgq80.3lg5XD4DAQ6n2EONKX4/Btp2XvG9yye', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$M.1JJACzh7oUKfcLTXFbVeUseiTLN333ptSJkWMxUIJfMhpg1.fL6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$WLEC8CIICYUeFZ7v0CdKDe5pX3FNZcR8RE2uZ4vMqHHH8Qxj9SPVu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$P9ZjYeuRXYySODkp0hf1BukmWk1DHDIoJcbUK5sXR3Gjwke6QIEOy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$go5HmbSQ8B3bmquTiQvMLe8iQFN5XUKvGPk/9.oqWWEX3SFA2p5ey', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$lMb4Z9KBK1euWO1Xzo08rO9iyQPVobKUnPBrr56jLfrIKhXjQGViC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$7/pSf1gYTDmFxBSVfPGmWuaBrtnJicR2cB5ov0aLsSOMB.NfUkAX.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:41', DEFAULT, DEFAULT, '2024-01-29 14:43:41.955542', '2024-01-29 14:43:41.955542')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.8ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:43:41.987390"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:43:42.016261"], ["updated_at", "2024-01-29 14:43:42.016261"]]
+  [1m[36mBracket Create (0.5ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:43:42.032815"], ["updated_at", "2024-01-29 14:43:42.032815"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:43:53', '2024-01-30 14:43:53', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:43:54.000474', '2024-01-29 14:43:54.000474'), (308029005, 'Event Two', '2024-01-31 14:43:53', '2024-02-01 14:43:53', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:43:54.000474', '2024-01-29 14:43:54.000474');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$/gKgnzNU27aWpXgBzJ9r.u2O56Wpp8UoKWlv2.YKifaWxWrcIJaRq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$mzhO5zJWeA2kUJTp3Mtc1uW5ZmOP.m3uaE68x9R.kRVmxk1aq6.G.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$hmOzpg/n84XlR0J7gNCvyez2v8Hn9VNRDHN/RHMl6Y0IEfmsGOAuW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$KwJQ.7x/NBPaAkMfnZEhwe4GbszuhPTvorsG9t9k1IRkMMmhuLOJW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$RkOcwMZzPq4XDZAfwQdT4efBow0GubQNqCWZy0lhNbjvVO9uzBbuO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$WQxA8Yq8MMtQ72ZM2y.78.RqnFJ74Olt0isEBXHmXZ5y2ZjS0xUj.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$1OKPEyxpRXUATrY6nsTYUOMRrrHuku3r9hc/1aCVXLfQVsa1/CAJu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$nK7MRaakW5gf9meL/CtmiuxxmR48aev7UkK2jOvTGerX.HGU6Ua/m', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$j7iG8DQdJ7vJIlM3iLDzL.1MeFLNMZXPFkBQp3YAQY5yeKibwjdA6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$A8QtyBTkHdEfS7FaO8TBg.E7TeAdmxX4Vs8YNZlwXnOCHF1sIZSm2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$hhX6Vd652Ndasj.z.Ebb3.YR6t8JpFoHSpfY20sIY1r8l94dWOri2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:43:53', DEFAULT, DEFAULT, '2024-01-29 14:43:54.006140', '2024-01-29 14:43:54.006140')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.5ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:43:54.038729"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:43:54.072929"], ["updated_at", "2024-01-29 14:43:54.072929"]]
+  [1m[36mBracket Create (0.4ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:43:54.090990"], ["updated_at", "2024-01-29 14:43:54.090990"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mWeightclass Create (0.4ms)[0m  [1m[32mINSERT INTO "weightclasses" ("bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["bracket_id", 1], ["age", "adult"], ["belt", "white"], ["sex", "male"], ["weight", 77.0], ["created_at", "2024-01-29 14:43:54.102666"], ["updated_at", "2024-01-29 14:43:54.102666"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:44:05', '2024-01-30 14:44:05', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:44:05.147010', '2024-01-29 14:44:05.147010'), (308029005, 'Event Two', '2024-01-31 14:44:05', '2024-02-01 14:44:05', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:44:05.147010', '2024-01-29 14:44:05.147010');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$WNui6ckzcy/6d6ATGXkG2euFSUUSBMgF15I1o91RpA56csTmekzbq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$PyTPSIDTEs2/PouJnpIdBOhiYZePvCdRMRRXjD6SAfyNAUT/YFpve', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$r30skLWbE9EFn48j7rUWX.2ld50Dj.c33z1q7UKWbNk3W9rr8uY5y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$z6TCRXbxEcMXMr.I.28/buRwu1lB4bN1CGf4fxtVVIAq08ujjPmES', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$7uHeK41Df2HS2D65IbmcteXyGYoWrnrkZKEPESjWRRiwCefmO5e/.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$.U54hnpuRHJOVvGKQZf1Ue32dNfn44rIlOy3bF/OURZzIQSIqsfA2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$Dx7j9vaDcJI9fHE//3jTeOX9qOz3/RZ1AZLn66jxM9rEx5FP4QSk2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$vw0YY/bFv40xtS7iVyUsWeRCb8r0k7AWjr/ji90iwa1bzAmeppju.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$t7uzeH2G7cAgA4b/W4gGoOk6.z1LhKwIn050Ijjk0EcTI4bgkRMRa', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$BqtwQoveWqEXK3IJgb0wlOBN2Khm4YlQOyM6JvBtNavKFg/uH0tzi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$RPmNGZcDSODL75W2KEAkH.3uy6GapfvmBqTEXNVjvYK6kh3MkTvsG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:44:05', DEFAULT, DEFAULT, '2024-01-29 14:44:05.152418', '2024-01-29 14:44:05.152418')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:44:05.185773"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:44:05.216213"], ["updated_at", "2024-01-29 14:44:05.216213"]]
+  [1m[36mBracket Create (0.5ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:44:05.233472"], ["updated_at", "2024-01-29 14:44:05.233472"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mWeightclass Create (0.5ms)[0m  [1m[32mINSERT INTO "weightclasses" ("bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["bracket_id", 1], ["age", "adult"], ["belt", "white"], ["sex", "male"], ["weight", 77.0], ["created_at", "2024-01-29 14:44:05.245444"], ["updated_at", "2024-01-29 14:44:05.245444"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 14:45:38', '2024-01-30 14:45:38', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 14:45:38.638854', '2024-01-29 14:45:38.638854'), (308029005, 'Event Two', '2024-01-31 14:45:38', '2024-02-01 14:45:38', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 14:45:38.638854', '2024-01-29 14:45:38.638854');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$j4RFNdvFgdd/g8PsJrS0mOyxlqc5MV8ibXAb3LjNHsum34QKdXS9y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$QC2ay5u1BCmPO0xSspP9wOCcAyJ9xJEDgQ0gaj/HmVfrGkTS7tPN6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$lvUcFhp9tsHnag9GcZkNwuZGeoU9xO7eQCGHsOs7dUvwZ9FSKsilO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$JDILjCWAcoOyTHlw4z44wuG85qtLT4U0W5Gr8IdEeDAV1ZB3CHo/u', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$tYiKHWWi1HiYDjKoL4uNCeE9xQ1PV4tXwqPTccp6/copSGNUmowx.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$Io26C8n9rScZFKoTjDx5pOkKy4KrGc/el4EjTJRstMU1pF1ES1O/G', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$UeZ5ITkTmTtb46ltJrCMMuEJwNRqoep3W9SjW4W0klRFAYHM5iHE6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$qflYE8zCvBbs0MrTUpVn5Or1s0apJKWyVy5hmeyLEnmxBGXdqOVwe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$DovggK6avozuwSbdh2gWTuD6AkQBT.Dvclmlody8zufNn2BHSkHQK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$kJwylJavxSM1Xg9LKh4DO..8/Ln7/TYYz2tV2TKmR8.Brqsa33Wva', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$Vh3gT.mMRTUgfAG1zTooRumeRrFeGJTDFI01l4nOGpGxbXmzIT7PO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 14:45:38', DEFAULT, DEFAULT, '2024-01-29 14:45:38.644614', '2024-01-29 14:45:38.644614')[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 14:45:38.677022"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 14:45:38.713139"], ["updated_at", "2024-01-29 14:45:38.713139"]]
+  [1m[36mBracket Create (0.5ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 14:45:38.731104"], ["updated_at", "2024-01-29 14:45:38.731104"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mWeightclass Create (0.5ms)[0m  [1m[32mINSERT INTO "weightclasses" ("bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["bracket_id", 1], ["age", "adult"], ["belt", "white"], ["sex", "male"], ["weight", 77.0], ["created_at", "2024-01-29 14:45:38.743270"], ["updated_at", "2024-01-29 14:45:38.743270"]]
+  [1m[36mWeightclass Load (0.1ms)[0m  [1m[34mSELECT "weightclasses".* FROM "weightclasses" WHERE "weightclasses"."bracket_id" = $1 LIMIT $2[0m  [["bracket_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.1ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (45.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (96.2ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "brackets" CASCADE[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "first_place_id" bigint, "second_place_id" bigint, "third_place_id" bigint)[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_first_place_id" ON "brackets" ("first_place_id")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_second_place_id" ON "brackets" ("second_place_id")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place_id" ON "brackets" ("third_place_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "matches" CASCADE[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "matches" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "competitor1_id" bigint NOT NULL, "competitor2_id" bigint NOT NULL, "winner_id" bigint, "win_type" character varying, "points1" integer DEFAULT 0 NOT NULL, "points2" integer DEFAULT 0 NOT NULL, "advantages1" integer DEFAULT 0 NOT NULL, "advantages2" integer DEFAULT 0 NOT NULL, "penalties1" integer DEFAULT 0 NOT NULL, "penalties2" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_matches_on_bracket_id" ON "matches" ("bracket_id")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor1_id" ON "matches" ("competitor1_id")[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor2_id" ON "matches" ("competitor2_id")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_matches_on_winner_id" ON "matches" ("winner_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "registrations" CASCADE[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "registrations" ("id" bigserial primary key, "competitor_id" bigint NOT NULL, "bracket_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_bracket_id" ON "registrations" ("bracket_id")[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE INDEX "index_registrations_on_competitor_id" ON "registrations" ("competitor_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "weightclasses" CASCADE[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "weight" float NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_f27c04348d"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_5f982e14c3"
+FOREIGN KEY ("competitor1_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_1e56b02c9d"
+FOREIGN KEY ("competitor2_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_9d0deeb219"
+FOREIGN KEY ("winner_id")
+  REFERENCES "registrations" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "registrations" ADD CONSTRAINT "fk_rails_5978403a63"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "registrations" ADD CONSTRAINT "fk_rails_d2e08ed5f0"
+FOREIGN KEY ("competitor_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "weightclasses" ADD CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240127201719)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240127132519),
+(20240127110340),
+(20240127110334),
+(20240127110324),
+(20231220110951),
+(20231216064840);[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-01-29 15:05:26.749476', '2024-01-29 15:05:26.749484') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '6da892bffc1a906fa699682afb96ad50577411ee', '2024-01-29 15:05:26.754356', '2024-01-29 15:05:26.754360') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "registrations" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "registrations";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-01-29 15:05:26', '2024-01-30 15:05:26', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-01-29 15:05:26.832695', '2024-01-29 15:05:26.832695'), (308029005, 'Event Two', '2024-01-31 15:05:26', '2024-02-01 15:05:26', 'Event Two Location', 'Gi', 'Event Two Description', 172563265, '2024-01-29 15:05:26.832695', '2024-01-29 15:05:26.832695');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$04$e7jKjeTwi3KhvcIXODdYX.FGzasXvTmcCapC/uS2hKWiSUmcISYaq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$04$Ua48pyNptVIMMqZJpvlh9elmyadWfBUzt2QW7ZS5Tj4GbDwSvg9RK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$04$tDeJK9pyFvyWfyNguBGx/uR6e4mrZjjW3/nEM7hhZygj8r/IBbfoC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$04$nRU9lYxKvrC8TLklxbQ3HeVLutI8Mo8jEJCg52rtirxmk.NcWsfs6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$04$3u6Fo3Js2IgG0GUgk3Gv3.MKUvq/.BbXRXv3FcKBq8pFXVJfBZ/SO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$04$wG9hO7GjjmS2WkHVCjK7xe/8Qa78SOYmVQpux0E0n1OocogUl77zK', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$04$xMoCjexH6GWg6UIqeSucE.rFx1sKW.IIkCbcMCer2kGJcE1aG9Dt2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$04$e7b.AzydQKUyKZNEaF8mwuFbbcUZSPWMby7VWT1va5fyBS7C3NF0C', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$04$B8H/1diLitwYm379nLUwz.t9ac6z2nlaoxVi92CJkD5iEySsF259O', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$04$zxAEpKns3anES1vZw6KGZ.5Va7XU/pF1jyKNQ9p/ns07zhAfmEouu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$04$CEB.dEXkZXVfinU5T94Pv.Rsx/Rcmfb2arb8.mVk2KViQGfFTZU7y', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-01-29 15:05:26', DEFAULT, DEFAULT, '2024-01-29 15:05:26.851925', '2024-01-29 15:05:26.851925')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "registrations" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+EventTest: test_should_create_bracket_and_weightclass_after_creating_event
+--------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.5ms)[0m  [1m[32mINSERT INTO "events" ("name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Test Event"], ["start_at", "2024-01-29 15:05:26.887374"], ["end_at", nil], ["location", "Test Location"], ["game_type", "NoGi"], ["description", "This is a test event."], ["organizer_id", 172563265], ["created_at", "2024-01-29 15:05:26.928330"], ["updated_at", "2024-01-29 15:05:26.928330"]]
+  [1m[36mBracket Create (0.6ms)[0m  [1m[32mINSERT INTO "brackets" ("event_id", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event_id", 308029006], ["created_at", "2024-01-29 15:05:26.948076"], ["updated_at", "2024-01-29 15:05:26.948076"], ["first_place_id", nil], ["second_place_id", nil], ["third_place_id", nil]]
+  [1m[36mWeightclass Create (0.5ms)[0m  [1m[32mINSERT INTO "weightclasses" ("bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["bracket_id", 1], ["age", "adult"], ["belt", "white"], ["sex", "male"], ["weight", 77.0], ["created_at", "2024-01-29 15:05:26.959105"], ["updated_at", "2024-01-29 15:05:26.959105"]]
+  [1m[36mWeightclass Load (0.2ms)[0m  [1m[34mSELECT "weightclasses".* FROM "weightclasses" WHERE "weightclasses"."bracket_id" = $1 LIMIT $2[0m  [["bracket_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mBracket Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "brackets" WHERE "brackets"."event_id" = $1[0m  [["event_id", 308029006]]
+  [1m[36mBracket Load (0.2ms)[0m  [1m[34mSELECT "brackets".* FROM "brackets" WHERE "brackets"."event_id" = $1 ORDER BY "brackets"."id" ASC LIMIT $2[0m  [["event_id", 308029006], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m

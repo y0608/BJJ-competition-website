@@ -1,17 +1,42 @@
 class BracketsController < ApplicationController
-    
+    load_and_authorize_resource :event
+    load_and_authorize_resource :bracket, through: :event
+
     def index
-        @event = Event.find(params[:event_id])
-        @brackets = @event.brackets.all
     end
 
     def show
-        @event = Event.find(params[:event_id])
-        @bracket = @event.brackets.find(params[:id])
+    end
+
+    def new
+    end
+
+    def edit
+    end
+
+    def create
+        if @bracket.save
+            redirect_to event_bracket_url(@bracket), notice: 'Bracket was successfully created.'
+        else
+            render :new, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        if @bracket.update(bracket_params)
+          redirect_to event_bracket_url(@bracket), notice: 'Bracket was successfully updated.'
+        else
+          render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @bracket.destroy
+        redirect_to events_url, notice: 'Bracket was successfully destroyed.'
     end
 
     private
-        def event_params
-            params.require(:event).permit()
+        def bracket_params
+            params.require(:event).permit(:event_id)
         end
 end

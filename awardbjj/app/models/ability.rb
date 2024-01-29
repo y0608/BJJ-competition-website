@@ -5,6 +5,8 @@ class Ability
 
   def initialize(user)
     can :read, Event
+    can :read, Bracket
+
     return unless user.present? # if we don't return here, the next line will throw an error if user is nil
 
     return unless user.organizer?
