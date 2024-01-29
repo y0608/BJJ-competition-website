@@ -1,0 +1,13 @@
+<main class="m-20 justify-center">
+    <%= link_to sanitize("&larr; Back to event"), event_path(@event), class: "text-blue-500 hover:underline mb-4 inline-block" %>
+    
+    <section class="mb-10">
+        serach by age,weight,..
+    </section>
+    
+    <section>
+        <h1>Brackets</h1>
+    
+        <%= render @brackets %>
+    </section>
+</main>
