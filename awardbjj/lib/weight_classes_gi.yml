@@ -1,0 +1,79 @@
+Rooster:
+  Male:
+    'Adult':    57.5
+    'Juvenile': 53.5
+  Female:
+    'Adult':    48.5
+    'Juvenile': 44.3
+
+Super Feather:
+  Male:
+    'Adult':    64
+    'Juvenile': 58.5
+  Female:
+    'Adult':    53.5
+    'Juvenile': 48.3
+
+Feather:
+  Male:
+    'Adult':    70
+    'Juvenile': 64
+  Female:
+    'Adult':    58.5
+    'Juvenile': 52.5
+
+Light:
+  Male:
+    'Adult':    76
+    'Juvenile': 69
+  Female:
+    'Adult':    64
+    'Juvenile': 56.5
+
+Middle:
+  Male:
+    'Adult':    82.3
+    'Juvenile': 74
+  Female:
+    'Adult':    69
+    'Juvenile': 60.5
+
+Medium Heavy:
+  Male:
+    'Adult':    88.3
+    'Juvenile': 79.3
+  Female:
+    'Adult':    74
+    'Juvenile': 65
+
+Heavy:
+  Male:
+    'Adult':    94.3
+    'Juvenile': 84.3
+  Female:
+    'Adult':    79.3
+    'Juvenile': 69
+
+Super Heavy:
+  Male:
+    'Adult':    100.5
+    'Juvenile': 89.3
+  Female:
+    'Adult':    1000  # No weight limit
+    'Juvenile': 1000
+
+Ultra Heavy:
+  Male:
+    'Adult':    1000
+    'Juvenile': 1000
+  # Female:
+  #   'Adult':    'n/a'
+  #   'Juvenile': 'n/a'
+
+Open Class:
+  Male:
+    'Adult':    1000
+    'Juvenile': 1000
+  Female:
+    'Adult':    1000
+    'Juvenile': 1000

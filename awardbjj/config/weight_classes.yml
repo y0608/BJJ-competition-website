@@ -1,0 +1,2 @@
+gi_weights_path: 'lib/weight_classes_gi.yml'
+nogi_weights_path: 'lib/weight_classes_nogi.yml'
