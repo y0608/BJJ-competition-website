@@ -23,10 +23,10 @@ class Event < ApplicationRecord
     def create_brackets_and_weightclasses
       weight_classes_data = (self.game_type == 'gi') ? WEIGHT_CLASSES_DATA_GI : WEIGHT_CLASSES_DATA_NOGI
 
-      BELTS.each do |belt|
-        weight_classes_data.each do |weight_class, genders|
-          genders.each do |gender, age_groups|
-            age_groups.each do |age_group, weight|
+      weight_classes_data.each do |age_group, genders|
+        genders.each do |gender, weight_classes|
+          BELTS.each do |belt|
+            weight_classes.each do |weight_class, weight|
               next if age_group == 'Juvenile' && (belt == 'Brown' || belt == 'Black')
 
               bracket = brackets.create() # automatically creates bracket ties it to an event
