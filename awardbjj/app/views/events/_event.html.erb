@@ -1,6 +1,6 @@
-<%= link_to(event_path(event), class: "block bg-white rounded-xl shadow-lg hover:shadow-xl duration-300 hover:scale-105 overflow-hidden") do %>
+<%= link_to(event_path(event), data: {turbo_frame: "_top"}, class: "block bg-white rounded-xl shadow-lg hover:shadow-xl duration-300 hover:scale-105 overflow-hidden") do %>
   <div class="overflow-hidden p-8">
-    <img class="w-full h-32 sm:h-48 object-cover" src="/images/sofiaopenbjj.png" alt="Event Image">
+    <!-- <img class="w-full h-32 sm:h-48 object-cover" src="/images/sofiaopenbjj.png" alt="Event Image"> -->
     <div class="m-8">
       <h2 class="uppercase tracking-wide text-lg text-indigo-500 font-semibold"><%= event.name %></h2>
       <p class="mt-2 text-gray-500 line-clamp-3"><%= event.location %></p>

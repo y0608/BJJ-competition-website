@@ -1,7 +1,12 @@
 <section>
-  future search bar...
+  <%= form_with url: '/events', method: :get, data: { turbo_frame: "events", 
+    turbo_action: "advance", controller: "form", action: "input->form#submit" } do %>
+    <%= text_field_tag :filter, nil, placeholder: 'Filter' %>
+  <% end %>
 </section>
 
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-  <%= render @events %>
-</section>
+<%= turbo_frame_tag "events" do %>
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <%= render @events %>
+  </section>
+<% end %>
