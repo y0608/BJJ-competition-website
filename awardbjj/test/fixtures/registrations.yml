@@ -3,3 +3,7 @@
 #   competitor: competitor<%= i %>
 #   bracket: bracket<%= i % 4 %>
 # <% end %>
+
+# registration1:
+#   competitor: competitor1
+#   bracket: bracket1

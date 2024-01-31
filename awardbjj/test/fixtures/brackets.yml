@@ -7,3 +7,6 @@
 # bracket<%= i %>:
 #   event: event2
 # <% end %>
+
+# bracket1:
+#   event: event1

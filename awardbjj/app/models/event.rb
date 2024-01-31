@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   
   belongs_to :organizer, class_name: "User"
   has_many :brackets, dependent: :destroy
+  has_many :weightclasses, through: :brackets
   has_many :registrations, through: :brackets
   # has_many :matches, through: :brackets
 
