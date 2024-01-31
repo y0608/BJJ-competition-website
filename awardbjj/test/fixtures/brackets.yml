@@ -8,5 +8,5 @@
 #   event: event2
 # <% end %>
 
-# bracket1:
-#   event: event1
+bracket1:
+  event: event1

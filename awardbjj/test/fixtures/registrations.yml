@@ -1,8 +1,8 @@
-# <% 10.times do |i| %>
-# registration<%= i %>:
-#   competitor: competitor<%= i %>
-#   bracket: bracket<%= i % 4 %>
-# <% end %>
+<% 100.times do |i| %>
+registration<%= i %>:
+  competitor: competitor<%= i %>
+  bracket: bracket1
+<% end %>
 
 # registration1:
 #   competitor: competitor1

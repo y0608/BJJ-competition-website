@@ -1,0 +1,11 @@
+<main class="p-5">
+    <%= turbo_frame_tag "registrations" do%>
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <%= render @registrations %>
+        </section>
+
+        <section class="mt-4">
+            <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+        </section>
+    <% end %>
+</main>

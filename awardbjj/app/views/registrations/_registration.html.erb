@@ -1,2 +1,6 @@
-<%= registration.competitor.first_name %>
-<%= registration.competitor.last_name %>
+<%= link_to(user_path(registration.competitor)) do %>
+    <div>
+        <%= registration.competitor.first_name %>
+        <%= registration.competitor.last_name %>
+    </div>
+<% end %>

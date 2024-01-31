@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   }
 
   resources :events do
-    resources :brackets
+    resources :brackets do
+      resources :registrations
+    end
   end
 
   resources :users
