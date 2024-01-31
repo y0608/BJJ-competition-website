@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @events = Event.where("name LIKE ?", "%#{params[:filter]}%").all
+    filtered = Event.where("name LIKE ?", "%#{params[:filter]}%").all
+    @pagy, @events = pagy(filtered.all, items: 10)
   end
 
   def show
