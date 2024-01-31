@@ -3,7 +3,7 @@ class BracketsController < ApplicationController
     load_and_authorize_resource :bracket, through: :event
 
     def index
-        @brackets = @brackets.has_registrations
+        # @brackets = @brackets.has_registrations
     end
 
     def show

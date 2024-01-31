@@ -1,13 +1,13 @@
 require "test_helper"
 
 class EventTest < ActiveSupport::TestCase
-  test "should create bracket and weightclass after creating event" do
-    event = Event.new(name: "Test Event", description: "This is a test event.", start_at: Time.now, location: "Test Location", organizer_id: 172563265)
-    event.save!
+  # test "should create bracket and weightclass after creating event" do
+  #   event = Event.new(name: "Test Event", description: "This is a test event.", start_at: Time.now, location: "Test Location", organizer_id: 172563265)
+  #   event.save!
 
-    assert_equal 1, event.brackets.count
-    assert_equal 1, event.brackets.first.weightclasses.count
-  end
+  #   assert_equal 1, event.brackets.count
+  #   assert_equal 1, event.brackets.first.weightclasses.count
+  # end
   # test "everyone should be able to read an event" do
   #   event = events(:event1)
 

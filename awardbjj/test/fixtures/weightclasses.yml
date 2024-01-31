@@ -8,16 +8,12 @@
 #   <% sexes.each do |sex| %>
 #     <% belts.each do |belt| %>
 #       <% weights.each do |weight| %>
-#         <% if i > 7 %>
-#           <% break %>
-#         <% end %>
 #         <%= "#{age.capitalize}#{belt.capitalize}#{weight}:" %>
 #           age: <%= age %>
 #           sex: <%= sex %>
 #           belt: <%= belt %>
 #           weight: <%= weight %>
 #           bracket: bracket<%= i %>
-#         <% i += 1 %>
 #       <% end %>
 #     <% end %>
 #   <% end %>
