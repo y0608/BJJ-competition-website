@@ -1,7 +1,9 @@
 <main class="mt-10 p-6">
   <h1 class="text-3xl font-bold mb-6"> <%= @user.full_name %></h1>
   <% if @user.organizer? %>
-    <section>
+    <%= link_to "Create Event", new_event_path, class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+    
+    <section class="my-5">
       <%= render collection: @user.events, partial: "events/user_event" %>
     </section>
   <% elsif @user.competitor? %>

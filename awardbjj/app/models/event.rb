@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   after_create :create_brackets_and_weightclasses
 
   validates_presence_of :name, :start_at, :location, :game_type, :organizer_id
+  validate :end_date_after_start_date
+  validate :start_date_after_today
 
   enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
   
@@ -21,7 +23,17 @@ class Event < ApplicationRecord
   BELTS = ['White', 'Blue', 'Purple', 'Brown', 'Black'].freeze
 
   private
-    
+    def end_date_after_start_date
+      if end_at.present? && start_at.present? && end_at < start_at
+        errors.add(:end_at, "must be after the start date") 
+      end
+    end
+
+    def start_date_after_today
+      if start_at.present? && start_at < Date.today
+        errors.add(:start_at, "must be after today") 
+      end
+    end
 
     def create_brackets_and_weightclasses
       weight_classes_data = (self.game_type == 'gi') ? WEIGHT_CLASSES_DATA_GI : WEIGHT_CLASSES_DATA_NOGI
