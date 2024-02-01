@@ -1,4 +1,4 @@
-<% 100.times do |i| %>
+<% 10.times do |i| %>
 competitor<%= i %>:
   first_name: Competitor
   last_name: <%= i %>

@@ -1,3 +1,5 @@
+bracket1:
+  event: event1
 # <% (0..3).each do |i| %>
 # bracket<%= i %>:
 #   event: event1
@@ -7,6 +9,3 @@
 # bracket<%= i %>:
 #   event: event2
 # <% end %>
-
-bracket1:
-  event: event1
