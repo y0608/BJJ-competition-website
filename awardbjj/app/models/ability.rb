@@ -14,9 +14,14 @@ class Ability
     return unless user.present? # if we don't return here, the next line will throw an error if user is nil
     
     # TODO: can :mange, User, id: user.id (not sure how devise handles this)
-    can :read, User, id: user.id
+    # can :read, User, id: user.id
     
-    return unless user.organizer?
-    can [:create, :update, :destroy], Event, organizer_id: user.id
+    
+    if user.organizer?
+      can [:create, :update, :destroy], Event, organizer_id: user.id
+    elsif user.competitor?
+      can [:create, :new, :update, :destroy], Registration, competitor_id: user.id
+    end
+    
   end
 end

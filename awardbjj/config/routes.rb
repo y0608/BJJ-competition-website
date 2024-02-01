@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   }
 
   resources :events do
-    resources :brackets do
-      resources :registrations
-    end
+    resources :brackets, only: [:show, :index]
+    resources :registrations, only: [:update, :edit, :destroy, :create, :new]
   end
 
+  post "/brackets_index_for_dropdown", to: "registrations#brackets_index_for_dropdown"
+  
+  resources :registrations, only: [:index, :show]
   resources :users
 
   root 'pages#home'

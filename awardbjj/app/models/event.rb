@@ -2,13 +2,13 @@ class Event < ApplicationRecord
   after_create :create_brackets_and_weightclasses
 
   validates_presence_of :name, :start_at, :location, :game_type, :organizer_id
-  
+
   enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
   
   belongs_to :organizer, class_name: "User"
   has_many :brackets, dependent: :destroy
   has_many :weightclasses, through: :brackets
-  has_many :registrations, through: :brackets
+  has_many :registrations, through: :brackets # only one registration per competitor per bracket(can have multiple for event(e.g AdultWhiteMale88 and AdultWhiteMaleOpen))
   # has_many :matches, through: :brackets
 
   # gi_weights_path = Rails.root.join('lib', 'weight_classes_gi.yml')
@@ -21,6 +21,8 @@ class Event < ApplicationRecord
   BELTS = ['White', 'Blue', 'Purple', 'Brown', 'Black'].freeze
 
   private
+    
+
     def create_brackets_and_weightclasses
       weight_classes_data = (self.game_type == 'gi') ? WEIGHT_CLASSES_DATA_GI : WEIGHT_CLASSES_DATA_NOGI
 

@@ -1,0 +1,23 @@
+
+<%= form_with(model: [event, registration], data: {controller: "dropdown", action: "change->dropdown#submit"}, class: "contents") do |form| %>
+    <% if registration.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+        <ul>
+            <% registration.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <!-- # DOING: get the event weightclasses(age,belt,weight) 
+    # and display them as options. Make dependent dropdowns
+    # all fields must exist  -->
+    <br>
+    <%= form.select :age, options_for_select(@ages), prompt: "Select Age", required: true %>
+    <%= form.select :sex, options_for_select(@sexes), prompt: "Select Sex", required: true %>
+    <%= form.select :belt, options_for_select(@belts), prompt: "Select Belt", required: true %>
+    <%= form.select :weight, options_for_select(@weights), prompt: "Select Weight", required: true %>
+	<%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+<% end %>
