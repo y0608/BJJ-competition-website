@@ -4,6 +4,7 @@ class BracketsController < ApplicationController
 
     def index
         # @brackets = @brackets.has_registrations
+        @pagy, @brackets = pagy(@brackets, items: 10)
     end
 
     def show
