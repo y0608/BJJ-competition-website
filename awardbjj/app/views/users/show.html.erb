@@ -1,5 +1,12 @@
-<% if @user.organizer? %>
-  <h1><%= @user.organization_name %></h1>
-<% elsif @user.competitor? %>
-  <h1><%= @user.first_name%> <%= @user.last_name%></h1>
-<% end %>
+<main class="mt-10 p-6">
+  <h1 class="text-3xl font-bold mb-6"> <%= @user.full_name %></h1>
+  <% if @user.organizer? %>
+    <section>
+      <%= render collection: @user.events, partial: "events/user_event" %>
+    </section>
+  <% elsif @user.competitor? %>
+    <section>
+        <%= render collection: @user.registrations, partial: "registrations/user_registration" %>
+    </section>
+  <% end %>
+</main>

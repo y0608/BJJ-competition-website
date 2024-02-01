@@ -1,0 +1,8 @@
+<div>
+    <%= link_to(event_path(user_registration.bracket.event)) do %>
+        <%= user_registration.bracket.event.name %> - 
+    <% end %>
+    <%= link_to(event_bracket_path(user_registration.bracket.event, user_registration.bracket)) do %>
+        <%= render user_registration.bracket.weightclass %>
+    <% end %>
+</div>

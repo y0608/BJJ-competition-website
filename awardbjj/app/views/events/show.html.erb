@@ -16,9 +16,10 @@
       <%= link_to "Edit", edit_event_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
       <%= button_to "Delete", event_path(@event), method: :delete, class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
     </div>
+  <% elsif current_user && current_user.competitor? %>
+    <%= link_to "Register", new_event_registration_path(@event), class: "py-3 px-5 bg-blue-700 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
   <% end %>
 
   <!-- TODO: turbo rails for sections: information, brackets -->
   <%= link_to "Brackets", event_brackets_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
-  <%= link_to "Register", new_event_registration_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
 </main>
