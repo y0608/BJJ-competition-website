@@ -1,9 +1,10 @@
 class BracketsAndMatchesController < ApplicationController
-    def create
-        # this implements the most simple way to generate the matches
-        # for the future: single elimination brackets, three person comeback, ...
-        @bracket = Bracket.find(params[:bracket_id])
-        @bracket.create_matches
-        redirect_to event_bracket_path(@bracket.event, @bracket)
-    end
+	load_and_authorize_resource :event
+
+	def create
+		# this implements the most simple way to generate the matches for all brackets of an event
+		# for the future: single elimination brackets, three person comeback, ...
+		@event.create_matches
+		redirect_to event_brackets_path(@event)
+	end
 end

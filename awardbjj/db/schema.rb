@@ -42,10 +42,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
 
   create_table "matches", force: :cascade do |t|
     t.bigint "bracket_id", null: false
-    t.bigint "competitor1_id", null: false
+    t.bigint "competitor1_id"
     t.bigint "competitor2_id"
     t.bigint "winner_id"
-    t.string "win_type"
     t.integer "points1", default: 0, null: false
     t.integer "points2", default: 0, null: false
     t.integer "advantages1", default: 0, null: false
@@ -107,9 +106,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
   add_foreign_key "brackets", "registrations", column: "third_place_id"
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "matches", "brackets"
-  add_foreign_key "matches", "registrations", column: "competitor1_id"
-  add_foreign_key "matches", "registrations", column: "competitor2_id"
-  add_foreign_key "matches", "registrations", column: "winner_id"
+  add_foreign_key "matches", "users", column: "competitor1_id"
+  add_foreign_key "matches", "users", column: "competitor2_id"
+  add_foreign_key "matches", "users", column: "winner_id"
   add_foreign_key "registrations", "brackets"
   add_foreign_key "registrations", "users", column: "competitor_id"
   add_foreign_key "weightclasses", "brackets"
