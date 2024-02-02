@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :brackets, only: [:show, :index]
     resources :brackets_and_matches, only: [:create]
+    delete 'brackets_and_matches', to: 'brackets_and_matches#destroy'
+
     resources :matches , only: [:show, :index] # I can't do brackets/:bracket_id/matches/:id :( HOW?
     resources :registrations, only: [:create, :new] # TODO: edit, update, destroy
   end
