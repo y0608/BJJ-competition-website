@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
   create_table "matches", force: :cascade do |t|
     t.bigint "bracket_id", null: false
     t.bigint "competitor1_id", null: false
-    t.bigint "competitor2_id", null: false
+    t.bigint "competitor2_id"
     t.bigint "winner_id"
     t.string "win_type"
     t.integer "points1", default: 0, null: false

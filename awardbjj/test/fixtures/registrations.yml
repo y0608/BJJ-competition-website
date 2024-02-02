@@ -1,13 +1,11 @@
-registration1:
-  competitor: competitor1
+<% (1..7).each do |i| %>
+registration<%= i %>:
+  competitor: competitor<%= i %>
   bracket: bracket1
+<% end %>
 
-registration2:
-  competitor: competitor2
-  bracket: bracket1
-
-# <% 100.times do |i| %>
-# registration<%= i %>:
-#   competitor: competitor<%= i %>
-#   bracket: bracket1
-# <% end %>
+<% (11..20).each do |i| %>
+registration<%= i %>:
+  competitor: competitor<%= i %>
+  bracket: bracket2
+<% end %>

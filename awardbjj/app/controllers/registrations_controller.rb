@@ -10,14 +10,10 @@ class RegistrationsController < ApplicationController
 	# TODO: register directly from event and choose weightclass correspondingly
 
 	def index
-			@pagy, @registrations = pagy(@registrations, items: 10)
+		@pagy, @registrations = pagy(@registrations, items: 10)
 	end
 
 	def show
-	end
-
-	def brackets_index_for_dropdown 
-
 	end
 	
 	def new
@@ -36,8 +32,8 @@ class RegistrationsController < ApplicationController
 		# @weights = all_weights.pluck(:weight).uniq
 	end
 
-	def edit
-	end
+	# def edit
+	# end
 
 	def create
 		chosen_weightclass = @event.weightclasses
@@ -54,13 +50,13 @@ class RegistrationsController < ApplicationController
 		end
 	end
 
-	def update
-		if @event.update(event_params)
-			redirect_to event_bracket_path(@bracket), notice: 'Registration was successfully updated.'
-		else
-			render :edit, status: :unprocessable_entity
-		end
-	end
+	# def update
+	# 	if @event.update(event_params)
+	# 		redirect_to event_bracket_path(@bracket), notice: 'Registration was successfully updated.'
+	# 	else
+	# 		render :edit, status: :unprocessable_entity
+	# 	end
+	# end
 
 	def destroy
 		@event.destroy

@@ -10,6 +10,7 @@ class Ability
     can :read, Bracket
     can :read, Registration
     can :read, User
+    can :read, Match
 
     return unless user.present? # if we don't return here, the next line will throw an error if user is nil
     
@@ -19,6 +20,10 @@ class Ability
     
     if user.organizer?
       can [:create, :update, :destroy], Event, organizer_id: user.id
+      # TODO: can create custom brackets, matches, and registrations
+      # can [:create, :update, :destroy], Bracket, event: { organizer_id: user.id }
+      # can [:create, :update, :destroy], Match, bracket: { event: { organizer_id: user.id } }
+      # can [:destroy], Registration, event: { organizer_id: user.id }
     elsif user.competitor?
       can [:create, :new, :update, :destroy], Registration, competitor_id: user.id
     end

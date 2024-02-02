@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :brackets, only: [:show, :index]
-    resources :matches, only: [:show, :index] # I can't do brackets/:bracket_id/matches/:id :( HOW?
-    resources :registrations, only: [:update, :edit, :destroy, :create, :new]
+    resources :matches , only: [:show, :index] # I can't do brackets/:bracket_id/matches/:id :( HOW?
+    resources :registrations, only: [:create, :new] # TODO: edit, update, destroy
   end
   # Should look like /registrations/?event_id=1 HOW?
   # post "/brackets_index_for_dropdown", to: "registrations#brackets_index_for_dropdown"

@@ -1,5 +1,8 @@
 bracket1:
   event: event1
+
+bracket2:
+  event: event1
 # <% (0..3).each do |i| %>
 # bracket<%= i %>:
 #   event: event1

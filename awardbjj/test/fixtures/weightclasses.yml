@@ -5,6 +5,12 @@ AdultMaleWhite77:
   belt: "White"
   weight: 77
 
+AdultMaleWhite99:
+  bracket: bracket2
+  age: "Adult"
+  sex: "Male"
+  belt: "White"
+  weight: 99
 # <% ages = ["adult"] %>
 # <% sexes = ["male", "female"] %>
 # <% belts = ["white", "blue", "purple", "brown", "black"] %>

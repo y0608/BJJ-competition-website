@@ -18,4 +18,16 @@ class Bracket < ApplicationRecord
       .merge( options[:sex].present?    ? Weightclass.where(sex: options[:sex])   : Weightclass.all)
       .distinct
   }
+
+  # private
+  def create_matches
+    (0..registrations.count-1).step(2).each do |i|
+      matches.create!(
+        competitor1: registrations[i], 
+        # competitor2: registrations[i+1].nil? ? nil : registrations[i+1]
+        competitor2: nil
+      )
+    end
+  end
+
 end
