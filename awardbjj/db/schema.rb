@@ -45,6 +45,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.bigint "competitor1_id"
     t.bigint "competitor2_id"
     t.bigint "winner_id"
+    t.bigint "next_match_id"
+    t.integer "round", default: 0, null: false
     t.integer "points1", default: 0, null: false
     t.integer "points2", default: 0, null: false
     t.integer "advantages1", default: 0, null: false
@@ -56,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.index ["bracket_id"], name: "index_matches_on_bracket_id"
     t.index ["competitor1_id"], name: "index_matches_on_competitor1_id"
     t.index ["competitor2_id"], name: "index_matches_on_competitor2_id"
+    t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
 
@@ -106,6 +109,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
   add_foreign_key "brackets", "registrations", column: "third_place_id"
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "matches", "brackets"
+  add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "users", column: "competitor1_id"
   add_foreign_key "matches", "users", column: "competitor2_id"
   add_foreign_key "matches", "users", column: "winner_id"

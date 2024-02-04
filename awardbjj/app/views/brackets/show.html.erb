@@ -8,8 +8,9 @@
     <section>
         info
     </section>
-
-    <section class="">
+    
+    <section class="grid grid-cols-<%= Math.log2(@bracket.registrations.count).ceil %> gap-4">
+    <!-- <section class="grid grid-cols-1 gap-4"> -->
         <%= render @bracket.matches, event:@bracket.event %>
     </section>
 </main>

@@ -7,6 +7,12 @@ class CreateMatches < ActiveRecord::Migration[7.1]
       t.references :competitor2, foreign_key: { to_table: :users }
       
       t.references :winner, foreign_key: { to_table: :users }
+
+      t.references :next_match, foreign_key: { to_table: :matches }
+      t.integer :round, null: false, default: 0 # 0 = final, 1 = semi-final, ...
+      # t.references :prev_match1, foreign_key: { to_table: :matches }
+      # t.references :prev_match2, foreign_key: { to_table: :matches }
+
       # t.string :status
       # t.string :win_type
       

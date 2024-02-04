@@ -8,17 +8,18 @@ class Match < ApplicationRecord
   belongs_to :competitor1, class_name: 'User', optional: true
   belongs_to :competitor2, class_name: 'User', optional: true
   belongs_to :winner, class_name: 'User', optional: true
+  belongs_to :next_match, class_name: 'Match', optional: true
 
   private
-    def competitors_must_be_different
-      if competitor1 == competitor2
-        errors.add(:base, "Competitors must be different")
-      end
+  def competitors_must_be_different
+    if competitor1 == competitor2 && competitor1
+      errors.add(:base, "Competitors must be different")
     end
+  end
 
-    def winner_must_be_competitor
-      if winner && (winner != competitor1 && winner != competitor2)
-        errors.add(:winner, "must be one of the competitors or nil")
-      end
+  def winner_must_be_competitor
+    if winner && (winner != competitor1 && winner != competitor2)
+      errors.add(:winner, "must be one of the competitors or nil")
     end
+  end
 end

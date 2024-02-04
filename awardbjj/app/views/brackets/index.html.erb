@@ -2,6 +2,7 @@
     <%= link_to sanitize("&larr; Back to event"), event_path(@event), class: "text-blue-500 hover:underline mb-4 inline-block" %>
     
     <% if @event.organizer == current_user %>
+    <!-- TODO: make button passive, it reloads the full page -->
         <%= button_to "Generate Matches", event_brackets_and_matches_path, method: :post , class: "text-blue-500 hover:underline" %>
         <%= button_to "Delete All Matches", event_brackets_and_matches_path, method: :delete , class: "text-red-500 hover:underline" %>
     <% end %>
