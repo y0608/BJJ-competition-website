@@ -8,7 +8,8 @@ class Match < ApplicationRecord
   belongs_to :competitor1, class_name: 'User', optional: true
   belongs_to :competitor2, class_name: 'User', optional: true
   belongs_to :winner, class_name: 'User', optional: true
-  belongs_to :next_match, class_name: 'Match', optional: true
+  
+  has_one :next_match, class_name: 'Match', foreign_key: 'next_match_id', dependent: :nullify
 
   private
   def competitors_must_be_different

@@ -3,16 +3,15 @@ class BracketsAndMatchesController < ApplicationController
 
 	# TODO: do only once. If done twice, override the matches
 	def create
-		# this implements the most simple way to generate the matches for all brackets of an event
-		# for the future: single elimination brackets, three person comeback, ...
+		# for the future: add three person comeback, single elimination with bronze, ...
+		# add an if else to check what create_matches returns
 		@event.create_matches
 		redirect_to event_brackets_path(@event), notice: 'Matches were successfully created.'
 	end
 
 	def destroy
 		@event.brackets.each do |bracket|
-			bracket.matches.destroy_all
-			puts "Matches destroyed for bracket #{bracket.id}"
+			bracket.matches.delete_all # using delete_all, because it does not trigger callbacks
 		end
     
 		redirect_to event_brackets_path(@event), notice: 'Matches were successfully destroyed.'

@@ -22,13 +22,12 @@ class Bracket < ApplicationRecord
   def create_matches
     players_count = registrations.size
     rounds_count = Math.log2(players_count).ceil
-    
-    number_of_rounds = Math.log2(players_count).ceil
-	  byes_count = 2 ** number_of_rounds - players_count
+	  byes_count = 2 ** rounds_count - players_count
 
+    registrations_with_byes = registrations.to_a
     # insert byes
     if byes_count > 0
-    	registrations_with_byes = insert_byes(registrations.to_a, byes_count)
+    	registrations_with_byes = insert_byes(registrations_with_byes, byes_count)
     end
 
     # make rounds
@@ -46,7 +45,7 @@ class Bracket < ApplicationRecord
             next_match: previous_matches[match_index / 2] # nil if match_index == 0
           )
         else
-          new_match = matches.create!(
+          new_match = matches.create(
             competitor1: nil,
             competitor2: nil,
             round: round_number,
@@ -57,6 +56,8 @@ class Bracket < ApplicationRecord
       end
       previous_matches = current_matches
     end
+
+    # should return false if there are is an error
   end
 
   private

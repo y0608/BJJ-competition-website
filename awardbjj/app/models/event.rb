@@ -15,8 +15,14 @@ class Event < ApplicationRecord
 
   def create_matches
     brackets.each do |bracket|
-      bracket.create_matches
+      if bracket.registrations.count > 0
+        bracket.create_matches
+      end
     end
+    # I can make this, so I can catch errors if create_matches return false:
+    # brackets.map do |bracket|
+    #   bracket.create_matches
+    # end.all?
   end
 
   private
