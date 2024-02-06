@@ -95,7 +95,7 @@
                     <div class="text-sm">Advantage</div>
                     <div class="text-lg font-bold">
                         <%= turbo_frame_tag "advantages1" do %>
-                            <%= render "matches/advantages", advantages: @match.advantages1 %>
+                            <%= render "matches/points", points: @match.advantages1 %>
                         <% end %>
                     </div>
 
@@ -104,7 +104,7 @@
                     <div class="text-sm">Penalty</div>
                     <div class="text-lg font-bold">
                         <%= turbo_frame_tag "penalties1" do %>
-                            <%= render "matches/penalties", penalties: @match.penalties1 %>
+                            <%= render "matches/points", points: @match.penalties1 %>
                         <% end %>
                     </div>
                     </div>

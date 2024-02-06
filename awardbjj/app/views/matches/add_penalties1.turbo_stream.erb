@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "penalties1" do %>
+    <%= turbo_frame_tag "penalties1" do %>
+        <%= render "points", points: @match.penalties1 %>
+    <% end %>
+<% end %>

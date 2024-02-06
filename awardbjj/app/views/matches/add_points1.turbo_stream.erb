@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "points1" do %>
+    <%= turbo_frame_tag "points1" do %>
+        <%= render "points", points: @match.points1 %>
+    <% end %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "advantages1" do %>
+    <%= turbo_frame_tag "advantages1" do %>
+        <%= render "points", points: @match.advantages1 %>
+    <% end %>
+<% end %>

@@ -20,10 +20,11 @@ class MatchesController < ApplicationController
     @match.points1 += params[:number_to_add].to_i
     @match.save!
     
-    render turbo_stream: turbo_stream.replace(
-      # TODO: ask why should i pass this partial? It only contains <%= points %>
-      "points1", partial: "matches/points", locals: { points: @match.points1 }
-    )
+    # TODO: ask why should i pass this partial? It only contains <%= points %>
+    respond_to do |format|
+      format.turbo_stream {}
+      format.html { redirect_to rooth_path }
+    end
   end
 
   def add_advantages1
@@ -31,9 +32,10 @@ class MatchesController < ApplicationController
     @match.advantages1 += params[:number_to_add].to_i
     @match.save!
     
-    render turbo_stream: turbo_stream.replace(
-      "advantages1", partial: "matches/advantages", locals: { advantages: @match.advantages1 }
-    )
+    respond_to do |format|
+      format.turbo_stream {}
+      format.html { redirect_to rooth_path }
+    end
   end
 
   def add_penalties1
@@ -41,9 +43,10 @@ class MatchesController < ApplicationController
     @match.penalties1 += params[:number_to_add].to_i
     @match.save!
     
-    render turbo_stream: turbo_stream.replace(
-      "penalties1", partial: "matches/penalties", locals: { penalties: @match.penalties1 }
-    )
+    respond_to do |format|
+      format.turbo_stream {}
+      format.html { redirect_to rooth_path }
+    end
   end
 
 
