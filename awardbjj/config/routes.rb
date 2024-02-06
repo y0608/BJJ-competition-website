@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :scoreboards, only: [:show]
     
     resources :registrations, only: [:create, :new] # TODO: edit, update, destroy
+
+    post "/add_points1", to: "matches#add_points1"
+    post "/add_advantages1", to: "matches#add_advantages1"
+    post "/add_penalties1", to: "matches#add_penalties1"
   end
   
   # Should look like /registrations/?event_id=1 HOW?
