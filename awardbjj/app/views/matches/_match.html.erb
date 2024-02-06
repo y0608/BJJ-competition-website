@@ -1,5 +1,5 @@
 <div class="">
     <%= link_to(event_match_path(event, match), data: {turbo_frame: "_top"}) do %>
-        <%= match.competitor1.nil? ? "BYE" : match.competitor1.full_name %> vs <%= match.competitor2.nil? ? "BYE" : match.competitor2.full_name %>
+        <%= match.competitor1_name %> vs <%= match.competitor2_name %>
     <% end %>
 </div>

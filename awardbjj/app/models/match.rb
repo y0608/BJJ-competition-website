@@ -11,6 +11,14 @@ class Match < ApplicationRecord
   
   has_one :next_match, class_name: 'Match', foreign_key: 'next_match_id', dependent: :nullify
 
+  def competitor1_name
+    competitor1.nil? ? "BYE" : competitor1.full_name
+  end
+
+  def competitor2_name
+    competitor2.nil? ? "BYE" : competitor2.full_name
+  end
+
   private
   def competitors_must_be_different
     if competitor1 == competitor2 && competitor1

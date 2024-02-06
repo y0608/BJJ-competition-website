@@ -5,6 +5,7 @@ class MatchesController < ApplicationController
     end
 
     def show
+      @event = @match.bracket.event
     end
 
     def new

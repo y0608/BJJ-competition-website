@@ -11,7 +11,6 @@ class Ability
     can :read, Registration
     can :read, User
     can :read, Match
-
     return unless user.present? # if we don't return here, the next line will throw an error if user is nil
     
     # TODO: can :mange, User, id: user.id (not sure how devise handles this)

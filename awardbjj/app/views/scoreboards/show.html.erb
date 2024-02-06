@@ -1,0 +1,95 @@
+<!-- this is scoreboard for match <%= @match.id %> -->
+<% competitor1 = @match.competitor1.nil? ? "BYE" : @match.competitor1.full_name %>
+<% competitor2 = @match.competitor2.nil? ? "BYE" : @match.competitor2.full_name %>
+
+<main>
+    <section>
+        <!-- Competitor 1 -->
+        <section class="m-4 flex-row justify-between rounded-lg bg-gray-200 p-6 sm:flex">
+            <div class="flex flex-col">
+                <h2 class="mb-4 text-xl font-semibold"><%= competitor1 %></h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+1</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+2</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+3</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+4</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+A</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+P</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-1</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-2</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-3</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-4</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-A</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-P</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="md:flex md:items-center">
+                <div class="md:mr-5">
+                    <div class="mb-4 flex flex-col items-center">
+                    <div class="text-sm">Advantage</div>
+                    <div class="text-lg font-bold"><%= @match.advantages1 %></div>
+                    </div>
+                    <div class="mb-4 flex flex-col items-center">
+                    <div class="text-sm">Penalty</div>
+                    <div class="text-lg font-bold"><%= @match.penalties1 %></div>
+                    </div>
+                </div>
+                <div class="rounded-lg bg-red-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
+                    <%= @match.points1 %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitor 2 -->
+        <section class="m-4 flex-row justify-between rounded-lg bg-gray-200 p-6 sm:flex">
+            <div class="flex flex-col">
+                <h2 class="mb-4 text-xl font-semibold"><%= competitor2 %></h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+1</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+2</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+3</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+4</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+A</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">+P</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-1</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-2</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-3</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-4</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-A</button></td>
+                            <td><button class="m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400">-P</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="md:flex md:items-center">
+                <div class="md:mr-5">
+                    <div class="mb-4 flex flex-col items-center">
+                    <div class="text-sm">Advantage</div>
+                    <div class="text-lg font-bold"><%= @match.advantages2 %></div>
+                    </div>
+                    <div class="mb-4 flex flex-col items-center">
+                    <div class="text-sm">Penalty</div>
+                    <div class="text-lg font-bold"><%= @match.penalties2 %></div>
+                    </div>
+                </div>
+                <div class="rounded-lg bg-blue-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
+                    <%= @match.points2 %>
+                </div>
+            </div>
+        </section>
+    </section>
+    
+    <section>
+    
+    </section>
+</main>
