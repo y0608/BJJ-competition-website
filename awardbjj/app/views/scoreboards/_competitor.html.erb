@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-xl rounded-lg bg-red-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
+        <div class="text-xl rounded-lg bg-<%= competitor_index == 1 ? 'red' : 'blue' %>-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
             <%= turbo_frame_tag "points#{competitor_index}" do %>
                 <%= @match.send("points#{competitor_index}") %>
             <% end %>

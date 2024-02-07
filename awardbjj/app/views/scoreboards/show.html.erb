@@ -6,6 +6,12 @@
     </section>
     
     <section>
-    
+        <div data-controller="timer" data-timer-time-value=300>
+            <button data-action="click->timer#start">Start</button>
+            <p data-timer-target="time">00:00</p>
+
+            <!-- <button data-action="click->timer#stop">Stop</button> -->
+            <!-- <button data-action="timer#reset">Reset</button> -->
+        </div>
     </section>
 </main>
