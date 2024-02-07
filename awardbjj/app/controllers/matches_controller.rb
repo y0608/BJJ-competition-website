@@ -17,35 +17,39 @@ class MatchesController < ApplicationController
   def add_points1
     # TODO: check to which to add: points1 or 2
     @match = Match.find(params[:match_id])
-    @match.points1 += params[:number_to_add].to_i
-    @match.save!
+    new_points = @match.points1 + params[:number_to_add].to_i
+    if new_points >= 0
+      @match.points1 += params[:number_to_add].to_i
+      @match.save!
+    end
     
     # TODO: ask why should i pass this partial? It only contains <%= points %>
-    respond_to do |format|
-      format.turbo_stream {}
-      format.html { redirect_to rooth_path }
-    end
+    # respond_to do |format|
+    #   format.turbo_stream {}
+    #   format.html { redirect_to rooth_path }
+    # end
   end
 
   def add_advantages1
     @match = Match.find(params[:match_id])
-    @match.advantages1 += params[:number_to_add].to_i
-    @match.save!
-    
-    respond_to do |format|
-      format.turbo_stream {}
-      format.html { redirect_to rooth_path }
+    new_advantages = @match.advantages1 + params[:number_to_add].to_i
+    if new_advantages >= 0
+      @match.advantages1 = new_advantages
+      @match.save!
+      # WHY does it work without resond_to?
+      # respond_to do |format|
+      #   format.turbo_stream {}
+      #   format.html { redirect_to rooth_path }
+      # end
     end
   end
 
   def add_penalties1
     @match = Match.find(params[:match_id])
-    @match.penalties1 += params[:number_to_add].to_i
-    @match.save!
-    
-    respond_to do |format|
-      format.turbo_stream {}
-      format.html { redirect_to rooth_path }
+    new_penalties = @match.penalties1 + params[:number_to_add].to_i
+    if new_penalties >= 0
+      @match.penalties1 = new_penalties
+      @match.save!
     end
   end
 

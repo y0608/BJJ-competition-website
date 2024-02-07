@@ -92,21 +92,21 @@
             <div class="md:flex md:items-center">
                 <div class="md:mr-5">
                     <div class="mb-4 flex flex-col items-center">
-                    <div class="text-sm">Advantage</div>
-                    <div class="text-lg font-bold">
-                        <%= turbo_frame_tag "advantages1" do %>
-                            <%= render "matches/points", points: @match.advantages1 %>
-                        <% end %>
+                        <div class="text-sm">Advantage</div>
+                        <div class="text-lg font-bold">
+                            <%= turbo_frame_tag "advantages1" do %>
+                                <%= render "matches/points", points: @match.advantages1 %>
+                            <% end %>
                     </div>
 
                     </div>
-                    <div class="mb-4 flex flex-col items-center">
-                    <div class="text-sm">Penalty</div>
-                    <div class="text-lg font-bold">
-                        <%= turbo_frame_tag "penalties1" do %>
-                            <%= render "matches/points", points: @match.penalties1 %>
-                        <% end %>
-                    </div>
+                        <div class="mb-4 flex flex-col items-center">
+                        <div class="text-sm">Penalty</div>
+                        <div class="text-lg font-bold">
+                            <%= turbo_frame_tag "penalties1" do %>
+                                <%= render "matches/points", points: @match.penalties1 %>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
                 <div class="text-xl rounded-lg bg-red-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
