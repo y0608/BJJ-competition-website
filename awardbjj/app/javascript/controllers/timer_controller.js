@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="timer"
 export default class extends Controller {
   static values = {
-    time: Number // in seconds
+    time: Number, // in seconds
+    started: Boolean
   }
   static targets = ["time"]
 
@@ -11,6 +12,9 @@ export default class extends Controller {
     // check if already started. This means the page was refreshed and the timer was already running
     // maybe update match.timer_minutes and match.timer_seconds every 10 seconds if the match is not finished
     this.updateTarget(this.timeValue, this.timeTarget);
+    if (this.startedValue) {
+      this.start();
+    }
   }
 
 
@@ -34,7 +38,13 @@ export default class extends Controller {
   start() {
     // update match.state to "playing" if it's "waiting" (first time starting this timer for this match)
     // update match.timer_state to "running"
-
+    // from stackoverflow:
+    // var t = window.setInterval(function() {
+    //   if(!isPaused) {
+    //     time++;
+    //     output.text("Seconds: " + time);
+    //   }
+    // }, 1000);
     var my_interval = setInterval(this.updateTimer, 1000, this);
   }
 

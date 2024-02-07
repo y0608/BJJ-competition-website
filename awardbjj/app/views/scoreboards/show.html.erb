@@ -1,12 +1,12 @@
 <!-- this is scoreboard for match <%= @match.id %> -->
-<main>
+<main ----- >
     <section>
         <%= render "scoreboards/competitor", match: @match, competitor_index: 1 %>
         <%= render "scoreboards/competitor", match: @match, competitor_index: 2 %>
     </section>
     
     <section>
-        <div data-controller="timer" data-timer-time-value=300>
+        <div data-controller="timer" data-timer-time-value=<%= @match.time_remaining %> data-timer-started-value="<%= @match.paused? %>">
             <button data-action="click->timer#start">Start</button>
             <p data-timer-target="time">00:00</p>
 

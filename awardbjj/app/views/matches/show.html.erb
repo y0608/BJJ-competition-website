@@ -1,9 +1,11 @@
+<%= turbo_stream_from "match" %>
+
 <main class="max-w-2xl mx-auto mt-10 p-6">
     <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(@event, @match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>
   
     <h1 class="text-4xl font-bold mb-6"> <%= @match.competitor1_name %> vs <%= @match.competitor2_name %></h1>
-  
-
+    
+    <%= render "matches/ongoing_match", match: @match %>
 
     <% if @event.organizer == current_user %>
         <%= link_to "Scoreboard", event_scoreboard_path(@event, match_id: @match.id), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>

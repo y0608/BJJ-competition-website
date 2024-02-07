@@ -1,6 +1,11 @@
 class Match < ApplicationRecord
   # enum status: { pending: 'Pending', ongoing: 'Ongoing', completed: 'Completed' }
   # enum win_type: { submission: 'Submission', points: 'Points', advantages: 'Advantages', penalties: 'Penalties' }
+  after_commit -> { 
+    broadcast_replace_to "match",
+    partial: "matches/ongoing_match", locals: { match: self }, target: "match" 
+  }
+
   validate :competitors_must_be_different
   validate :winner_must_be_competitor
   
@@ -17,6 +22,14 @@ class Match < ApplicationRecord
 
   def competitor2_name
     competitor2.nil? ? "BYE" : competitor2.full_name
+  end
+
+  def time_remaining
+    30
+  end
+
+  def paused?
+    id == 240
   end
 
   private

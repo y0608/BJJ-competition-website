@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     delete 'brackets_and_matches', to: 'brackets_and_matches#destroy'
 
     resources :matches , only: [:show, :index]
-    resources :scoreboards, only: [:show]
+    # resources :scoreboards, only: [:show]
+    get 'scoreboard/:match_id', to: 'scoreboards#show', as: 'scoreboard'
     
     resources :registrations, only: [:create, :new] # TODO: edit, update, destroy
 
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
     # post "/add_advantages", to: "matches#add_advantages"
     # post "/add_penalties", to: "matches#add_penalties"
   end
+
+
   
   # Should look like /registrations/?event_id=1 HOW?
   # post "/brackets_index_for_dropdown", to: "registrations#brackets_index_for_dropdown"  

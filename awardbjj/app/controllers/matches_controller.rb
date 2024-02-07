@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_match, only: %i[ add_scoreboard_values ]
-
+  before_action :set_match, only: %i[add_scoreboard_values ]
+  
   def index
   end
 
@@ -33,7 +33,8 @@ class MatchesController < ApplicationController
           turbo_tag: attribute
         }
       }
-      format.html { redirect_to rooth_path } # catch browsers that don't support turbo_stream
+      # test without javascript
+      format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
     end
   end
 
