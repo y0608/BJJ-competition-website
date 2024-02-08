@@ -6,6 +6,13 @@ class Match < ApplicationRecord
     partial: "matches/ongoing_match", locals: { match: self }, target: "match" 
   }
 
+  enum match_status: { 
+    not_started: 0,
+    in_bull_pen: 1,
+    playing: 2,
+    finished: 3 
+  }
+  
   validate :competitors_must_be_different
   validate :winner_must_be_competitor
   
@@ -24,14 +31,39 @@ class Match < ApplicationRecord
     competitor2.nil? ? "BYE" : competitor2.full_name
   end
 
-  def time_remaining
-    30
-  end
+  def timer_time
+    time_remaining = self.time_remaining
+    if !self.started_timer_at.nil?
+      if self.timer_running
+        time_remaining = (time_remaining - (Time.now - self.started_timer_at)).round(2)
+        if self.time_remaining <= 0
+          # self.time_remaining = 0
+          self.timer_running = false
+          self.match_status = "finished"
+          self.save!
+        end
+      end
+    end
 
-  def paused?
-    id == 240
-  end
+    return time_remaining
 
+    # if self.started_timer_at.nil? || !self.timer_running
+    #   return self.time_remaining
+    # elsif !self.started_timer_at.nil? && !self.timer_running
+    #   return self.time_remaining
+    # elsif !self.started_timer_at.nil? && self.timer_running
+    #   self.time_remaining = (self.time_remaining - (Time.now - self.started_timer_at)).round(2)
+    # end
+    
+    # if self.time_remaining <= 0
+    #   self.timer_running = false
+    #   self.time_remaining = 0
+    #   self.match_status = "finished"
+    # end
+    
+    # return self.time_remaining
+  end
+  
   private
   def competitors_must_be_different
     if competitor1 == competitor2 && competitor1

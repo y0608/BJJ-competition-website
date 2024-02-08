@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_match, only: %i[add_scoreboard_values ]
+  before_action :set_match, only: %i[add_scoreboard_values start_timer pause_timer]
   
   def index
   end
@@ -13,6 +13,28 @@ class MatchesController < ApplicationController
   end
 
   def edit
+  end
+
+  def start_timer
+    if !@match.timer_running
+      if @match.match_status != "playing"
+        @match.match_status = "playing"
+      end
+      @match.started_timer_at = Time.now
+      @match.timer_running = true
+      @match.save!
+    end
+
+    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
+  end
+
+  def pause_timer
+    if @match.timer_running
+      @match.time_remaining = @match.timer_time
+      @match.timer_running = false
+      @match.save!
+    end
+    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
   def add_scoreboard_values

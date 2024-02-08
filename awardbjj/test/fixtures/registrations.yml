@@ -1,4 +1,4 @@
-<% (1..20).each do |i| %>
+<% (1..5).each do |i| %>
 registration<%= i %>:
   competitor: competitor<%= i %>
   bracket: bracket1

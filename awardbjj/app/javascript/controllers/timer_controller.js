@@ -17,11 +17,19 @@ export default class extends Controller {
     }
   }
 
-
+  disconnect() {
+    this.stop();
+  }
+  
   updateTarget(time, display) {
     var minutes = parseInt(time / 60, 10);
     var seconds = parseInt(time % 60, 10);
+    var miliseconds = parseInt((time * 100) % 100, 10);
+    // if(miliseconds > 49){
+    //   seconds++;
+    // }
 
+    console.log("minutes: " + minutes + " seconds: " + seconds + " miliseconds: " + miliseconds);    
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
@@ -36,25 +44,14 @@ export default class extends Controller {
   }
 
   start() {
-    // update match.state to "playing" if it's "waiting" (first time starting this timer for this match)
-    // update match.timer_state to "running"
-    // from stackoverflow:
-    // var t = window.setInterval(function() {
-    //   if(!isPaused) {
-    //     time++;
-    //     output.text("Seconds: " + time);
-    //   }
-    // }, 1000);
-    var my_interval = setInterval(this.updateTimer, 1000, this);
+    var my_interval = setInterval(this.updateTarget, 1000, this.timeValue, this.timeTarget);
+    // var my_interval = setInterval(this.updateTimer, 1000, this);
   }
-
   
   stop() {
-    // stop timer    
-    // update match.timer_state to "running"
+    clearInterval(this.my_interval);
   }
 
-  disconnect() {
-    // clearInterval(my_interval);
-  }
+
+ 
 }

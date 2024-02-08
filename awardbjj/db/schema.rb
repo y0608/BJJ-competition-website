@@ -47,6 +47,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.bigint "winner_id"
     t.bigint "next_match_id"
     t.integer "round", default: 0, null: false
+    t.float "time_remaining", default: 300.0, null: false
+    t.datetime "started_timer_at"
+    t.boolean "timer_running", default: false, null: false
+    t.integer "match_status", default: 0, null: false
     t.integer "points1", default: 0, null: false
     t.integer "points2", default: 0, null: false
     t.integer "advantages1", default: 0, null: false

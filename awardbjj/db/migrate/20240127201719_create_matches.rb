@@ -18,8 +18,12 @@ class CreateMatches < ActiveRecord::Migration[7.1]
       
       # t.datetime :win_time
 
+      t.float :time_remaining, null: false, default: 300 # in seconds
+      t.datetime :started_timer_at
+      t.boolean :timer_running, null: false, default: 0
+      t.integer :match_status, null: false, default: 0 # 0 = not started, 1 = in bull pen (aka just before playing), 2 = playing, 3 = finished
+
       # t.float :play_time
-      # t.datetime :start_time
       # t.datetime :paused_at
       # t.float :duration
       # t.datetime :resumed_at
