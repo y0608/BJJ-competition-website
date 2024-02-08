@@ -1,0 +1,12 @@
+<main class="h-screen">
+    <section class="flex h- flex-col justify-center p-12 text-center text-black">
+        <h1 class="mb-5 text-3xl font-bold">Welcome to AwardBJJ</h1>
+        <p>AwardBJJ is a Brazilian Jiu-Jitsu competition software designed to help you organize and participate in events. Whether you're a tournament organizer or a competitor, AwardBJJ provides a platform for seamless event management and registration. Join events, track your progress, and compete with fellow practitioners in the exciting world of Brazilian Jiu-Jitsu!</p>
+    </section>
+    <section class="m-12">
+        <h2 class="text-xl mb-8 text-left">Most Recent Events:</h2>
+        <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <%= render @events %>
+        </div>  
+    </section>
+</main>
