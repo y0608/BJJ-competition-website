@@ -1,11 +1,11 @@
 <% (1..5).each do |i| %>
-registration<%= i %>:
+entry<%= i %>:
   competitor: competitor<%= i %>
   bracket: bracket1
 <% end %>
 
 # <% (11..12).each do |i| %>
-# registration<%= i %>:
+# entry<%= i %>:
 #   competitor: competitor<%= i %>
 #   bracket: bracket2
 # <% end %>

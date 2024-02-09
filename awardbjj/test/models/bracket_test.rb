@@ -1,22 +1,22 @@
 require "test_helper"
 
 class BracketTest < ActiveSupport::TestCase
-  test "bracket scope has_registrations" do
+  test "bracket scope has_entries" do
     event1 = Event.find_by(name: "Event 1")    
     b1 = Bracket.create(event: event1)
-    r1 = Registration.create(competitor: User.last, bracket: b1)
-    r2 = Registration.create(competitor: User.first, bracket: b1)
+    r1 = Entry.create(competitor: User.last, bracket: b1)
+    r2 = Entry.create(competitor: User.first, bracket: b1)
 
     event2 = Event.find_by(name: "Event 2")
     b2 = Bracket.create(event: event2)
-    r3 = Registration.create(competitor: User.second, bracket: b2)
+    r3 = Entry.create(competitor: User.second, bracket: b2)
     
     event3 = Event.find_by(name: "Event 3")
     b3 = Bracket.create(event: event3)
 
-    assert_equal 2, event1.brackets.has_registrations.count
-    assert_equal 1, event2.brackets.has_registrations.count
-    assert_equal 0, event3.brackets.has_registrations.count
+    assert_equal 2, event1.brackets.has_entries.count
+    assert_equal 1, event2.brackets.has_entries.count
+    assert_equal 0, event3.brackets.has_entries.count
   end
 
   test "bracket scope weightclasses" do

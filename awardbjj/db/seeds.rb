@@ -24,5 +24,5 @@ system("bin/rails db:fixtures:load")
 # puts "\n== Weightclass fixtures =="
 # system("bin/rails db:fixtures:load FIXTURES=weightclasses")
 
-# puts "\n== Registration fixtures =="
-# system("bin/rails db:fixtures:load FIXTURES=registrations")
+# puts "\n== Entry fixtures =="
+# system("bin/rails db:fixtures:load FIXTURES=entries")

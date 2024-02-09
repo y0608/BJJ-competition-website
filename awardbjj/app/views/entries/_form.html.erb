@@ -1,10 +1,10 @@
 
-<%= form_with(model: [event, registration], data: {controller: "dropdown", action: "change->dropdown#submit"}, class: "contents") do |form| %>
-    <% if registration.errors.any? %>
+<%= form_with(model: [event, entry], data: {controller: "dropdown", action: "change->dropdown#submit"}, class: "contents") do |form| %>
+    <% if entry.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-        <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+        <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
         <ul>
-            <% registration.errors.each do |error| %>
+            <% entry.errors.each do |error| %>
             <li><%= error.full_message %></li>
             <% end %>
         </ul>

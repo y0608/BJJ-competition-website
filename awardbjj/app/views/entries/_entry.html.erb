@@ -1,0 +1,6 @@
+<%= link_to(user_path(entry.competitor), data: {turbo_frame: "_top"}) do %>
+    <div>
+        <%= entry.competitor.first_name %>
+        <%= entry.competitor.last_name %>
+    </div>
+<% end %>

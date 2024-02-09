@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :organization_name, if: :organizer?
   
   has_many :events, inverse_of: :organizer, dependent: :destroy
-  has_many :registrations, inverse_of: :competitor, dependent: :destroy
+  has_many :entries, inverse_of: :competitor, dependent: :destroy
 
   enum role: { 
     organizer: 0, 

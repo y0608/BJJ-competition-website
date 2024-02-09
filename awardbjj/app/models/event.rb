@@ -11,7 +11,7 @@ class Event < ApplicationRecord
   has_many :brackets, dependent: :destroy
   has_many :weightclasses, through: :brackets
   has_many :matches, through: :brackets
-  has_many :registrations, through: :brackets # only one registration per competitor per bracket(can have multiple for event(e.g AdultWhiteMale88 and AdultWhiteMaleOpen))
+  has_many :entries, through: :brackets # only one entry per competitor per bracket(can have multiple for event(e.g AdultWhiteMale88 and AdultWhiteMaleOpen))
 
   def create_matches
     brackets.map do |bracket|

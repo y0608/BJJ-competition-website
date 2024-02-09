@@ -8,7 +8,7 @@
     </section>
   <% elsif @user.competitor? %>
     <section>
-        <%= render collection: @user.registrations, partial: "registrations/user_registration" %>
+        <%= render collection: @user.entries, partial: "entries/user_entry" %>
     </section>
   <% end %>
 </main>

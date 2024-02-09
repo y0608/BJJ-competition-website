@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
 
+  # TODO: IMPORTANT - I need to fix the clash between the registrations controller and the devise registrations controller
+  # renaming to entries
+  
   resources :events do
     resources :brackets, only: [:show, :index]
     resources :brackets_and_matches, only: [:create]
@@ -17,20 +20,16 @@ Rails.application.routes.draw do
     post "scoreboard/:match_id/pause_timer", to: "matches#pause_timer", as: "pause_timer"
     post "scoreboard/:match_id/start_timer", to: "matches#start_timer", as: "start_timer"
 
-    resources :registrations, only: [:create, :new]
+    resources :entries, only: [:create, :new]
 
     post "/add_scoreboard_values", to: "matches#add_scoreboard_values"
-    # post "/add_points", to: "matches#add_points"
-    # post "/add_advantages", to: "matches#add_advantages"
-    # post "/add_penalties", to: "matches#add_penalties"
   end
 
 
-  
-  # Should look like /registrations/?event_id=1 HOW?
-  # post "/brackets_index_for_dropdown", to: "registrations#brackets_index_for_dropdown"  
+  # Should look like /entries/?event_id=1 HOW?
+  # post "/brackets_index_for_dropdown", to: "entries#brackets_index_for_dropdown"  
 
-  resources :registrations, only: [:index, :show]
+  resources :entries, only: [:index, :show]
   resources :users
 
   root "pages#home"
