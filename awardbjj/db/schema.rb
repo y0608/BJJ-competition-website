@@ -27,6 +27,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.index ["third_place_id"], name: "index_brackets_on_third_place_id"
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.bigint "competitor_id", null: false
+    t.bigint "bracket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bracket_id"], name: "index_entries_on_bracket_id"
+    t.index ["competitor_id"], name: "index_entries_on_competitor_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "start_at", null: false
@@ -66,15 +75,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
 
-  create_table "registrations", force: :cascade do |t|
-    t.bigint "competitor_id", null: false
-    t.bigint "bracket_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bracket_id"], name: "index_registrations_on_bracket_id"
-    t.index ["competitor_id"], name: "index_registrations_on_competitor_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.integer "role", null: false
     t.string "first_name"
@@ -107,17 +107,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.index ["bracket_id"], name: "index_weightclasses_on_bracket_id"
   end
 
+  add_foreign_key "brackets", "entries", column: "first_place_id"
+  add_foreign_key "brackets", "entries", column: "second_place_id"
+  add_foreign_key "brackets", "entries", column: "third_place_id"
   add_foreign_key "brackets", "events"
-  add_foreign_key "brackets", "registrations", column: "first_place_id"
-  add_foreign_key "brackets", "registrations", column: "second_place_id"
-  add_foreign_key "brackets", "registrations", column: "third_place_id"
+  add_foreign_key "entries", "brackets"
+  add_foreign_key "entries", "users", column: "competitor_id"
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "matches", "brackets"
   add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "users", column: "competitor1_id"
   add_foreign_key "matches", "users", column: "competitor2_id"
   add_foreign_key "matches", "users", column: "winner_id"
-  add_foreign_key "registrations", "brackets"
-  add_foreign_key "registrations", "users", column: "competitor_id"
   add_foreign_key "weightclasses", "brackets"
 end
