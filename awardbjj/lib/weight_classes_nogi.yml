@@ -8,8 +8,8 @@ Juvenile:
     Medium Heavy: 76.5
     Heavy: 81.5
     Super Heavy: 86.5
-    Ultra Heavy: 1000
-    Open Class: 1001
+    # Ultra Heavy: 1000
+    # Open Class: 1001
   Female:
     Rooster: 42.5
     Super Feather: 46.5
@@ -18,8 +18,8 @@ Juvenile:
     Middle: 58.5
     Medium Heavy: 62.5
     Heavy: 66.5
-    Super Heavy: 1000
-    Open Class: 1001
+    # Super Heavy: 1000
+    # Open Class: 1001
 
 Adult:
   Male:
@@ -31,8 +31,8 @@ Adult:
     Medium Heavy: 85.5
     Heavy: 91.5
     Super Heavy: 97.5
-    Ultra Heavy: 1000
-    Open Class: 1001
+    # Ultra Heavy: 1000
+    # Open Class: 1001
   Female: 
     Rooster: 46.5
     Super Feather: 51.5
@@ -41,5 +41,5 @@ Adult:
     Middle: 66.5
     Medium Heavy: 71.5
     Heavy: 76.5
-    Super Heavy: 1000
-    Open Class: 1001
+    # Super Heavy: 1000
+    # Open Class: 1001
