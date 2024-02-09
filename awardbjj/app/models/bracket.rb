@@ -20,7 +20,13 @@ class Bracket < ApplicationRecord
   }
 
   def create_matches
+    #TODO: should return false if there are is an error
     players_count = registrations.size
+
+    if players_count <= 0
+      return true
+    end
+
     rounds_count = Math.log2(players_count).ceil
 	  byes_count = 2 ** rounds_count - players_count
 
@@ -56,8 +62,6 @@ class Bracket < ApplicationRecord
       end
       previous_matches = current_matches
     end
-
-    # should return false if there are is an error
   end
 
   private

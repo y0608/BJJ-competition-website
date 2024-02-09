@@ -14,15 +14,9 @@ class Event < ApplicationRecord
   has_many :registrations, through: :brackets # only one registration per competitor per bracket(can have multiple for event(e.g AdultWhiteMale88 and AdultWhiteMaleOpen))
 
   def create_matches
-    brackets.each do |bracket|
-      if bracket.registrations.count > 0
-        bracket.create_matches
-      end
-    end
-    # I can make this, so I can catch errors if create_matches return false:
-    # brackets.map do |bracket|
-    #   bracket.create_matches
-    # end.all?
+    brackets.map do |bracket|
+      bracket.create_matches
+    end.all?
   end
 
   private

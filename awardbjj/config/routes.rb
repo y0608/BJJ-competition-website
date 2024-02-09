@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     post "scoreboard/:match_id/pause_timer", to: "matches#pause_timer", as: "pause_timer"
     post "scoreboard/:match_id/start_timer", to: "matches#start_timer", as: "start_timer"
 
-    resources :registrations, only: [:create, :new] # TODO: edit, update, destroy
+    resources :registrations, only: [:create, :new]
 
     post "/add_scoreboard_values", to: "matches#add_scoreboard_values"
     # post "/add_points", to: "matches#add_points"
