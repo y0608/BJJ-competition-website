@@ -19,7 +19,7 @@ class Ability
     
     if user.organizer?
       can [:create, :update, :destroy], Event, organizer_id: user.id
-      can [:add_scoreboard_values, :start_timer, :pause_timer], Match, bracket: { event: { organizer_id: user.id } }
+      can [:add_scoreboard_values, :start_timer, :pause_timer, :end_match, :end_match_submit], Match, bracket: { event: { organizer_id: user.id } }
       # TODO: edit, update, destroy entry
       # TODO: can create custom brackets, matches, and entries
       # can [:create, :update, :destroy], Bracket, event: { organizer_id: user.id }

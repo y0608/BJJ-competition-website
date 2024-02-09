@@ -4,16 +4,24 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions"
   }
-
-  # TODO: IMPORTANT - I need to fix the clash between the registrations controller and the devise registrations controller
-  # renaming to entries
+  # TODO: check ability.rb for permissions!
+  #   e.g scoreboard/:match_id/pause_timer only organizer!
   
   resources :events do
     resources :brackets, only: [:show, :index]
     resources :brackets_and_matches, only: [:create]
     delete "brackets_and_matches", to: "brackets_and_matches#destroy"
 
-    resources :matches , only: [:show, :index]
+    resources :matches, only: [:show, :index] do
+      member do
+        patch :end_match_submit
+        get :end_match
+      end
+    end
+
+    # post "matches/:id/end", to: "matches#end_match", as: "end_match"
+    # get "matches/:id/end", to: "matches#end_match", as: "end_match"
+
 
     # resources :scoreboards, only: [:show]
     get "scoreboard/:match_id", to: "scoreboards#show", as: "scoreboard"

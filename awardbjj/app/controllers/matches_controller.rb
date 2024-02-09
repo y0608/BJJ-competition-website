@@ -1,6 +1,8 @@
 class MatchesController < ApplicationController
   load_and_authorize_resource
+  # TODO: fix the loading so you can remove set_match
   before_action :set_match, only: %i[add_scoreboard_values start_timer pause_timer]
+  before_action :end_match_params, only: [:end_match_submit]
   
   def index
   end
@@ -12,8 +14,49 @@ class MatchesController < ApplicationController
   def new
   end
 
-  # def edit
+  # def create
+  #   if @match.save
+  #     redirect_to match_url(@match), notice: 'Match was successfully created.'
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
   # end
+
+  # def edit 
+  # end
+
+  # def update
+  #   if @event.update(event_params)
+  #     redirect_to event_url(@event), notice: 'Event was successfully updated.'
+  #   else
+  #     render :edit, status: :unprocessable_entity
+  #   end
+  # end
+
+  
+  def destroy
+    @match.destroy
+    redirect_to event_matches_url, notice: 'Match was successfully destroyed.'
+  end
+
+
+  def end_match
+    @match = Match.find(params[:id]) # i don't know why it is id and not match_id. I should use set_match
+    @event = @match.bracket.event
+  end 
+
+  def end_match_submit
+    @match = Match.find(params[:id])
+    @event = @match.bracket.event
+    
+    if @match.update(end_match_params)
+    # if @match.update(status: "finished", end_match_params)
+      redirect_to event_match_path(@match.bracket.event, @match.id), notice: 'Match was successfully ended.'
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+  
 
   def start_timer
     @match.start_timer
@@ -48,30 +91,13 @@ class MatchesController < ApplicationController
     end
   end
 
-  # def create
-  #   if @match.save
-  #     redirect_to match_url(@match), notice: 'Match was successfully created.'
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
-
-  # def update
-  #   if @event.update(event_params)
-  #     redirect_to event_url(@event), notice: 'Event was successfully updated.'
-  #   else
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
-
-  def destroy
-    @match.destroy
-    redirect_to event_matches_url, notice: 'Match was successfully destroyed.'
-  end
 
   private 
   def set_match
     @match = Match.find(params[:match_id])
   end
 
+  def end_match_params
+    params.require(:match).permit(:winner, :win_type)
+  end
 end

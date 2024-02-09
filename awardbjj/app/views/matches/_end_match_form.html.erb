@@ -1,0 +1,30 @@
+<%= form_with(model: [event, match], url: end_match_submit_event_match_path(event, match), method: :patch, class: "contents") do |form| %>
+  <% if match.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+        <% match.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.select :winner, options_for_select(
+      <!-- DOING: [[match.competitor1.full_name, match.competitor1.id], 
+      [match.competitor2.full_name, match.competitor2.id]],  -->
+      match.winner_id),
+
+      prompt: "Select Winner", required: true, class: "form-select" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.select :win_type, Match.win_types.keys, prompt: "Select Win Type", required: true %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

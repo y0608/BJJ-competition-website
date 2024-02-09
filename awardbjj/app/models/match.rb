@@ -1,13 +1,20 @@
 class Match < ApplicationRecord
-  # enum win_type: { submission: 'Submission', points: 'Points', advantages: 'Advantages', penalties: 'Penalties' }
+
   after_commit -> { 
     broadcast_replace_later_to self,
     partial: "matches/ongoing_match", target: self
   }
 
-  before_save 
+  enum win_type: {
+    points: 0,
+    submission: 1,
+    disqualification: 2,
+    walkover: 3,
+    no_show: 4,
+    decision: 5,
+  }
 
-  enum match_status: {
+  enum status: {
     not_started: 0,
     in_bull_pen: 1,
     playing: 2,
@@ -32,7 +39,6 @@ class Match < ApplicationRecord
     competitor2.nil? ? "BYE" : competitor2.full_name
   end
 
-  # return 00:00
   def time_remaining_minutes_and_seconds
     time = time_remaining # in seconds
     minutes = (time / 60).to_i
@@ -58,7 +64,7 @@ class Match < ApplicationRecord
     if !timer_running
       self.update(
         timer_running: true, 
-        match_status: "playing", 
+        status: "playing", 
         timer_last_started_at: Time.now
       )
     end
