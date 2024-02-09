@@ -1,4 +1,4 @@
-<%= turbo_stream_from "match" %>
+<%= turbo_stream_from @match %>
 
 <main class="max-w-2xl mx-auto mt-10 p-6">
     <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(@event, @match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>

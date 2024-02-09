@@ -2,15 +2,17 @@ class Match < ApplicationRecord
   # enum status: { pending: 'Pending', ongoing: 'Ongoing', completed: 'Completed' }
   # enum win_type: { submission: 'Submission', points: 'Points', advantages: 'Advantages', penalties: 'Penalties' }
   after_commit -> { 
-    broadcast_replace_to "match",
-    partial: "matches/ongoing_match", locals: { match: self }, target: "match" 
+    broadcast_replace_later_to self,
+    partial: "matches/ongoing_match", target: self
   }
 
-  enum match_status: { 
+  before_save 
+
+  enum match_status: {
     not_started: 0,
     in_bull_pen: 1,
     playing: 2,
-    finished: 3 
+    finished: 3
   }
   
   validate :competitors_must_be_different
@@ -31,38 +33,40 @@ class Match < ApplicationRecord
     competitor2.nil? ? "BYE" : competitor2.full_name
   end
 
-  def timer_time
+
+  def time_remaining_2
     time_remaining = self.time_remaining
+
     if !self.started_timer_at.nil?
       if self.timer_running
         time_remaining = (time_remaining - (Time.now - self.started_timer_at)).round(2)
-        if self.time_remaining <= 0
-          # self.time_remaining = 0
-          self.timer_running = false
-          self.match_status = "finished"
-          self.save!
+        if time_remaining <= 0
+          time_remaining = 0
         end
       end
     end
-
-    return time_remaining
-
-    # if self.started_timer_at.nil? || !self.timer_running
-    #   return self.time_remaining
-    # elsif !self.started_timer_at.nil? && !self.timer_running
-    #   return self.time_remaining
-    # elsif !self.started_timer_at.nil? && self.timer_running
-    #   self.time_remaining = (self.time_remaining - (Time.now - self.started_timer_at)).round(2)
-    # end
-    
-    # if self.time_remaining <= 0
-    #   self.timer_running = false
-    #   self.time_remaining = 0
-    #   self.match_status = "finished"
-    # end
-    
-    # return self.time_remaining
+    time_remaining
   end
+
+  # def timer_time
+  #   time_remaining = self.time_remaining
+
+  #   if !self.started_timer_at?
+  #     if self.timer_running
+  #       time_remaining = (time_remaining - (Time.now - self.started_timer_at)).round(2)
+  #       if time_remaining <= 0
+  #         # this needs to be called in order to update the match status if the time runs out
+  #         time_remaining = 0
+  #         self.time_remaining = 0
+  #         self.timer_running = false
+  #         # self.match_status = "finished"
+  #         # self.save!
+  #       end
+  #     end
+  #   end
+
+  #   time_remaining
+  # end
   
   private
   def competitors_must_be_different

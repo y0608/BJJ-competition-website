@@ -16,10 +16,10 @@ class MatchesController < ApplicationController
   end
 
   def start_timer
-    if !@match.timer_running
-      if @match.match_status != "playing"
-        @match.match_status = "playing"
-      end
+    @match.start_timer
+
+    if !@match.timer_running_2?
+      @match.match_status = "playing"
       @match.started_timer_at = Time.now
       @match.timer_running = true
       @match.save!
@@ -29,8 +29,9 @@ class MatchesController < ApplicationController
   end
 
   def pause_timer
+    @match.pause_timer
     if @match.timer_running
-      @match.time_remaining = @match.timer_time
+      @match.time_remaining = @match.time_remaining_2
       @match.timer_running = false
       @match.save!
     end
