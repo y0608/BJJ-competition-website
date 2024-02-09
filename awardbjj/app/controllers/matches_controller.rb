@@ -12,29 +12,16 @@ class MatchesController < ApplicationController
   def new
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def start_timer
     @match.start_timer
-
-    if !@match.timer_running_2?
-      @match.match_status = "playing"
-      @match.started_timer_at = Time.now
-      @match.timer_running = true
-      @match.save!
-    end
-
     redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
   def pause_timer
     @match.pause_timer
-    if @match.timer_running
-      @match.time_remaining = @match.time_remaining_2
-      @match.timer_running = false
-      @match.save!
-    end
     redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
