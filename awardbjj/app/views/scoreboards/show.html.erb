@@ -1,15 +1,21 @@
 <!-- this is scoreboard for match <%= @match.id %> -->
-<main>
+<main class="m-4">
     <section>
         <%= render "scoreboards/competitor", match: @match, competitor_index: 1 %>
         <%= render "scoreboards/competitor", match: @match, competitor_index: 2 %>
     </section>
-    
-    <section>
-        <div data-controller="timer" data-timer-time-value=<%= @match.time_remaining %> data-timer-started-value="<%= @match.timer_running %>">
-            <p data-timer-target="time"><%= @match.time_remaining_minutes_and_seconds %></p>
+
+    <section class="my-10">
+        <div class="flex flex-col items-start">
+            <div class="bg-gray-200 rounded-lg p-4 text-4xl font-bold mb-4 w-40 text-center"
+                data-controller="timer" data-timer-time-value=<%= @match.time_remaining %> data-timer-started-value="<%= @match.timer_running %>">
+                <p data-timer-target="time"><%= @match.time_remaining_minutes_and_seconds %></p>
+            </div>
+            <div class="flex space-x-4">
+                <%= button_to "Start", event_start_timer_path(@match), method: :post, class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
+                <%= button_to "Stop", event_pause_timer_path(@match), method: :post, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
+            </div>
         </div>
-        <%= button_to "Start", event_start_timer_path(@match), method: :post %>
-        <%= button_to "Stop", event_pause_timer_path(@match), method: :post %>
     </section>
+    
 </main>
