@@ -6,14 +6,10 @@
     </section>
     
     <section>
-        <!-- <div data-controller="timer" data-timer-time-value=<%=  %> data-timer-started-value="<%= @match.timer_running %>"> -->
-            <!-- <p data-timer-target="time"></p> -->
-            <p data-timer-target="time"><%= @match.time_remaining %></p>
-        <!-- </div> -->
-            <%= button_to "Start", event_start_timer_path(@match), method: :post %>
-            <%= button_to "Stop", event_pause_timer_path(@match), method: :post %>
-            <!-- <button>Start</button> -->
-            <!-- <button data-action="click->timer#stop">Stop</button> -->
-            <!-- <button data-action="timer#reset">Reset</button> -->
+        <div data-controller="timer" data-timer-time-value=<%= @match.time_remaining %> data-timer-started-value="<%= @match.timer_running %>">
+            <p data-timer-target="time"><%= @match.time_remaining_minutes_and_seconds %></p>
+        </div>
+        <%= button_to "Start", event_start_timer_path(@match), method: :post %>
+        <%= button_to "Stop", event_pause_timer_path(@match), method: :post %>
     </section>
 </main>

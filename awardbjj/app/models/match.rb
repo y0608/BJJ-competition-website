@@ -32,30 +32,20 @@ class Match < ApplicationRecord
     competitor2.nil? ? "BYE" : competitor2.full_name
   end
 
-  
-  def start_timer
-    if !self.timer_running
-      self.timer_running = true
-      self.match_status = "playing"
-      self.timer_last_started_at = Time.now
-      self.save
-    end
-  end
-
-  def pause_timer
-    if self.timer_running
-      self.timer_value = self.time_remaining
-      self.timer_running = false
-      self.save
-    end
+  # return 00:00
+  def time_remaining_minutes_and_seconds
+    time = time_remaining # in seconds
+    minutes = (time / 60).to_i
+    seconds = (time % 60).to_i
+    "#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
   end
 
   def time_remaining
-    time_remaining = self.timer_value
+    time_remaining = timer_value
 
-    if !self.timer_last_started_at.nil?
-      if self.timer_running
-        time_remaining = (time_remaining - (Time.now - self.timer_last_started_at)).round(2)
+    if !timer_last_started_at.nil?
+      if timer_running
+        time_remaining = (time_remaining - (Time.now - timer_last_started_at)).round(2)
         if time_remaining <= 0
           time_remaining = 0
         end
@@ -63,7 +53,26 @@ class Match < ApplicationRecord
     end
     time_remaining
   end
-  
+
+  def start_timer
+    if !timer_running
+      self.update(
+        timer_running: true, 
+        match_status: "playing", 
+        timer_last_started_at: Time.now
+      )
+    end
+  end
+
+  def pause_timer
+    if timer_running
+      self.update(
+        timer_running: false, 
+        timer_value: time_remaining
+      )
+    end
+  end  
+
 
   private
   def competitors_must_be_different
