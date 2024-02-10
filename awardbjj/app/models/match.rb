@@ -5,6 +5,11 @@ class Match < ApplicationRecord
     partial: "matches/ongoing_match", target: self
   }
 
+  ROUND_LABELS = [
+    "Final", "Semi-final", "Quarter-final", "Round of 16", "Round of 32", 
+    "Round of 64", "Round of 128", "Round of 256", "Round of 512", "Round of 1024"
+  ]
+
   enum win_type: {
     points: 0,
     submission: 1,

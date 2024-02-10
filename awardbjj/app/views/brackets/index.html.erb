@@ -3,12 +3,12 @@
     
     <% if @event.organizer == current_user %>
         <%= button_to "Generate All Matches", event_brackets_and_matches_path, method: :post , class: "text-blue-500 hover:underline" %>
-        <%= button_to "Delete All Matches", event_brackets_and_matches_path, method: :delete , class: "text-red-500 hover:underline" %>
+        <%= button_to "Delete All Matches", event_brackets_and_matches_path, method: :delete , class: "text-red-500 hover:underline", form: { data: { 'turbo-confirm': 'Are you sure?' } }%>
     <% end %>
 
-    <section class="mb-10">
-        serach by age,weight,..
-    </section>
+    <!-- <section class="mb-10">
+        TODO: serach by age,weight,..
+    </section> -->
     
     <section>
         <%= render @brackets %>

@@ -4,8 +4,8 @@ entry<%= i %>:
   bracket: bracket1
 <% end %>
 
-# <% (11..12).each do |i| %>
-# entry<%= i %>:
-#   competitor: competitor<%= i %>
-#   bracket: bracket2
-# <% end %>
+<% (6..20).each do |i| %>
+entry<%= i %>:
+  competitor: competitor<%= i %>
+  bracket: bracket2
+<% end %>
