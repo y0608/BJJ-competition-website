@@ -1,24 +1,45 @@
-<main class="max-w-2xl mx-auto mt-10 p-6">
+<main class="m-20 justify-center">
+
   <%= link_to sanitize("&larr; Back to events"), events_path, class: "text-blue-500 hover:underline mb-4 inline-block" %>
 
-  <h1 class="text-4xl font-bold mb-6"> <%= @event.name %></h1>
-  
-  <div>
-    <p class="mb-4"> <%= @event.description %> </p>
-    <h5 class="text-lg mb-2"> Event type: <%= Event.game_types[@event.game_type] %> </h5>
-    <h5 class="text-lg mb-2"> Event location: <%= @event.location %> </h5>
-    <h5 class="text-lg mb-2"> Event starts: <%= @event.start_at.to_formatted_s(:long) %> </h5>
-    <h5 class="text-lg mb-4"> Event ends: <%= @event.end_at&.to_formatted_s(:long) %> </h5>
-  </div>
-  
-  <% if @event.organizer == current_user %>
-    <div class="flex space-x-4">
-      <%= link_to "Edit", edit_event_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
-      <%= button_to "Delete", event_path(@event), method: :delete, class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
+  <div class="flex items-center mb-6">
+    <h1 class="text-4xl font-bold mr-6"> <%= @event.name %></h1>
+    <%= link_to "Brackets", event_brackets_path(@event), class: "mr-6 py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+    <% if @event.organizer == current_user %>
+    <div class="flex">
+      <%= link_to "Edit", edit_event_path(@event), class: "mr-3 py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+      <%= button_to "Delete", event_path(@event), method: :delete, form: { data: { 'turbo-confirm': 'Are you sure?' } },
+        class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
     </div>
-  <% elsif current_user && current_user.competitor? %>
-    <%= link_to "Register", new_event_entry_path(@event), class: "py-3 px-5 bg-blue-700 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
-  <% end %>
+    <% elsif current_user && current_user.competitor? %>
+      <%= link_to "Register", new_event_entry_path(@event), class: "py-3 px-5 bg-blue-700 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+    <% end %>
+  </div>
 
-  <%= link_to "Brackets", event_brackets_path(@event), class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+  <div>
+
+    <h5 class="text-lg font-medium mb-2 flex items-center">
+      <%= image_tag 'kimono.png', alt: "Event Type: ", title: "Event Type", class: "w-8 h-8 mr-2" %>
+      <%= Event.game_types[@event.game_type] %>
+    </h5>
+    
+    <h5 class="text-lg font-medium mb-2 flex items-center">
+      <%= image_tag 'location.png', alt: "Location: ", title: "Location", class: "w-8 h-8 mr-2" %>
+      <%= @event.location %> 
+    </h5>
+
+    <h5 class="text-lg font-medium mb-2 flex items-center">
+      <%= image_tag 'clock_start.png', alt: "Event starts: ", title: "Event Starts", class: "w-8 h-8 mr-2" %>
+      <%= @event.start_at.to_formatted_s(:long) %> 
+    </h5>
+
+    <% if @event.end_at %>
+      <h5 class="text-lg font-medium mb-2 flex items-center">
+        <%= image_tag 'clock_end.png', alt: "Event ends: ", title: "Event Ends", class: "w-8 h-8 mr-2" %>
+        <%= @event.end_at.to_formatted_s(:long) %> 
+      </h5>
+    <% end %>
+
+    <p class="m-8"> <%= @event.description %> </p>
+  </div>
 </main>
