@@ -14,7 +14,7 @@ export default class extends Controller {
   connect() {
     this.updateTarget(this.timeValue, this.timeTarget);
     if (this.startedValue) {
-      my_interval = setInterval(this.updateTimer, 300, this);
+      my_interval = setInterval(this.updateTimer, 200, this);
     }
   }
 
@@ -34,7 +34,7 @@ export default class extends Controller {
 
   updateTimer(that) {
     console.log("updateTimer")
-    that.timeValue -= 0.3;
+    that.timeValue -= 0.2;
     if (that.timeValue < 0) {
       that.timeValue = 0;
     }

@@ -43,14 +43,13 @@ class MatchesController < ApplicationController
   def end_match
     @match = Match.find(params[:id]) # i don't know why it is id and not match_id. I should use set_match
     @event = @match.bracket.event
+    @match.pause_timer
   end 
 
   def end_match_submit
     @match = Match.find(params[:id])
     @event = @match.bracket.event
-    
-    if @match.update(end_match_params)
-    # if @match.update(status: "finished", end_match_params)
+    if @match.update(end_match_params.merge(status: "finished"))
       redirect_to event_match_path(@match.bracket.event, @match.id), notice: 'Match was successfully ended.'
     else
       render :show, status: :unprocessable_entity
@@ -98,6 +97,6 @@ class MatchesController < ApplicationController
   end
 
   def end_match_params
-    params.require(:match).permit(:winner, :win_type)
+    params.require(:match).permit(:winner_id, :win_type)
   end
 end

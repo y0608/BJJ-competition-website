@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.select :winner, options_for_select(
-      <!-- DOING: [[match.competitor1.full_name, match.competitor1.id], 
-      [match.competitor2.full_name, match.competitor2.id]],  -->
-      match.winner_id),
-
-      prompt: "Select Winner", required: true, class: "form-select" %>
+    <!-- .compact removes nil values from array -->
+      <%= form.collection_select :winner_id, [@match.competitor1, @match.competitor2].compact, :id, :full_name, prompt: "Select Winner", required: true %>
   </div>
 
   <div class="my-5">
-    <%= form.select :win_type, Match.win_types.keys, prompt: "Select Win Type", required: true %>
+    <%= form.select :win_type, Match.win_types.map { |key, value| [key.humanize.capitalize, key] }, prompt: "Select Win Type", required: true %>
   </div>
 
   <div class="inline">
