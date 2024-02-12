@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
   # TODO: check ability.rb for permissions!
   #   e.g scoreboard/:match_id/pause_timer only organizer!
-  
+
   resources :events do
     resources :brackets, only: [:show, :index]
     resources :brackets_and_matches, only: [:create]
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
     resources :matches, only: [:show, :index] do
       member do
-        patch :end_match_submit
-        get :end_match
+        patch :end_match_submit, to: 'end_matches#create'
+        get :end_match, to: 'end_matches#new'
       end
     end
 

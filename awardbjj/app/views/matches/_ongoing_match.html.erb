@@ -1,29 +1,30 @@
 <div id="show_<%= match.id %>" class="p-4 border border-gray-300 rounded-lg shadow-md">
 
-		<h3 class="text-center mb-4 font-medium capitalize">
-		<%= match.status.humanize %>
-		<% if match.status == "finished" %>
-			<p>Winner - <%=match.winner.full_name%> </p>
-		<% end %>
-	</h3>
+		<div class="text-center mb-4 font-medium capitalize">
+      <%= match.status.humanize %>
+      <% if match.status == "finished" %>
+        <p>Winner - <%=match.winner.full_name%></p>
+        <p> By <%= match.win_type.humanize.capitalize %></p>
+      <% end %>
+	  </div>
+    <% if match.status != "not_started" %>
+      <div class="bg-gray-200 rounded-lg p-4 font-bold mb-4 text-center">
+        <%= render "scoreboards/timer", match: match %>
+      </div>
 
-		<div class="bg-gray-200 rounded-lg p-4 font-bold mb-4 text-center">
-
-		<%= render "scoreboards/timer", match: match %>
-		</div>
-
-		<div class="grid sm:grid-cols-2 gap-6">
-		<div class="text-center">
-			<h3 class="text-lg font-medium mb-2"><%= match.competitor1_name %></h3>
-			<p>Points: <%= match.points1 %></p>
-			<p>Advantages: <%= match.advantages1 %></p>
-			<p>Penalties: <%= match.penalties1 %></p>
-		</div>
-		<div class="text-center">
-			<h3 class="text-lg font-medium mb-2"><%= match.competitor2_name %></h3>
-			<p>Points: <%= match.points2 %></p>
-			<p>Advantages: <%= match.advantages2 %></p>
-			<p>Penalties: <%= match.penalties2 %></p>
-		</div>
-		</div>
+      <div class="grid sm:grid-cols-2 gap-6">
+      <div class="text-center">
+        <h3 class="text-lg font-medium mb-2"><%= match.competitor1_name %></h3>
+        <p>Points: <%= match.points1 %></p>
+        <p>Advantages: <%= match.advantages1 %></p>
+        <p>Penalties: <%= match.penalties1 %></p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-lg font-medium mb-2"><%= match.competitor2_name %></h3>
+        <p>Points: <%= match.points2 %></p>
+        <p>Advantages: <%= match.advantages2 %></p>
+        <p>Penalties: <%= match.penalties2 %></p>
+      </div>
+      </div>
+    <% end %>
 </div>

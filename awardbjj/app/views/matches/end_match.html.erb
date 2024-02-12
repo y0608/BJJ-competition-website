@@ -1,6 +1,0 @@
-<main class="mx-auto my-10 md:w-2/3 w-full">
-	<h1 class="font-bold text-4xl">Declare winner</h1>
-
-	<%= render "end_match_form", match: @match, event: @event %>
-	<%= link_to "Back to scoreboard", event_scoreboard_path(@match.bracket.event, @match), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</main>

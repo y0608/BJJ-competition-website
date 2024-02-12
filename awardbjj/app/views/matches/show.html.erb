@@ -11,9 +11,5 @@
 		<%= link_to "Scoreboard", event_scoreboard_path(@event, match_id: @match.id), class: "mb-5 py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
 	<% end %>
 
-	<% if @match.status == "not_started" %>
-		Match hasn't started yet...
-	<% else%>
-		<%= render "matches/ongoing_match", match: @match %>
-	<% end %>
+  <%= render "matches/ongoing_match", match: @match %>
 </main>

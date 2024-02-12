@@ -2,7 +2,6 @@ class MatchesController < ApplicationController
   load_and_authorize_resource
   # TODO: fix the loading so you can remove set_match
   before_action :set_match, only: %i[add_scoreboard_values start_timer pause_timer]
-  before_action :end_match_params, only: [:end_match_submit]
 
   def index
   end
@@ -38,35 +37,6 @@ class MatchesController < ApplicationController
     @match.destroy
     redirect_to event_matches_url, notice: 'Match was successfully destroyed.'
   end
-
-
-  def end_match
-    @match = Match.find(params[:id])
-    @event = @match.bracket.event
-    @match.pause_timer
-  end
-
-  def end_match_submit
-    @match = Match.find(params[:id])
-    @event = @match.bracket.event
-    if @match.update(end_match_params.merge(status: "finished"))
-      if @match.next_match
-        if @match.next_match.competitor1.nil?
-          @match.next_match.update(competitor1: @match.winner)
-        elsif @match.next_match.competitor2.nil?
-          @match.next_match.update(competitor2: @match.winner)
-        end
-      end
-      if @match.round == 0
-        # set first_place, second_place, and third_places
-        @match.bracket.set_winners
-      end
-      redirect_to event_bracket_path(@match.bracket.event, @match.bracket), notice: 'Match was successfully ended.'
-    else
-      render :show, status: :unprocessable_entity
-    end
-  end
-
 
   def start_timer
     @match.start_timer
@@ -125,9 +95,5 @@ class MatchesController < ApplicationController
   private 
   def set_match
     @match = Match.find(params[:match_id])
-  end
-
-  def end_match_params
-    params.require(:match).permit(:winner_id, :win_type)
   end
 end
