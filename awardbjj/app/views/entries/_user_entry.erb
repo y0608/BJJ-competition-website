@@ -1,8 +1,13 @@
-<div>
-	<%= link_to(event_path(user_entry.bracket.event)) do %>
-		<%= user_entry.bracket.event.name %> -
-	<% end %>
-	<%= link_to(event_bracket_path(user_entry.bracket.event, user_entry.bracket)) do %>
-		<%= render user_entry.bracket.weightclass %>
-	<% end %>
+<div class="bg-white rounded-lg shadow-md p-4 mb-4">
+    <div class="flex items-center justify-between mb-2">
+        <%= link_to(event_path(user_entry.bracket.event), class: "hover:text-blue-500 hover:underline mr-4") do %>
+            <h2 class="font-semibold"><%= user_entry.bracket.event.name %></h2>
+        <% end %>
+    </div>
+
+    <div>
+        <%= link_to(event_bracket_path(user_entry.bracket.event, user_entry.bracket), class: "text-gray-700 hover:text-blue-500 hover:underline") do %>
+            <%= render user_entry.bracket.weightclass %>
+        <% end %>
+    </div>
 </div>

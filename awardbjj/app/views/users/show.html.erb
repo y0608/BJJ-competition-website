@@ -1,13 +1,15 @@
 <main class="mt-10 p-6">
 	<h1 class="text-3xl font-bold mb-6"> <%= @user.full_name %></h1>
 	<% if @user.organizer? %>
-		<%= link_to "Create Event", new_event_path, class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
-
+    <% if current_user == @user %>
+		  <%= link_to "Create Event", new_event_path, class: "py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+    <% end %>
 		<section class="my-5">
-			<%= render collection: @user.events, partial: "events/user_event" %>
+			<%= render collection: @user.events.order(start_at: :desc), partial: "events/user_event" %>
 		</section>
 	<% elsif @user.competitor? %>
 		<section>
+        <h2 class="font-medium mb-2"> Previous entries:</h2>
 				<%= render collection: @user.entries, partial: "entries/user_entry" %>
 		</section>
 	<% end %>

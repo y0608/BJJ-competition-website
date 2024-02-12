@@ -1,36 +1,35 @@
-<section class="flex justify-center items-center min-h-screen">
-  <div class="bg-gray-500 mx-auto p-16 rounded-xl">
-
+<section class="flex justify-center items-center m-10">
+  <div class="p-10 rounded-xl bg-white shadow-lg">
     <h2 class="text-4xl font-bold pb-6">Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <% f.options[:html][:class] = "grid gap-3" %>
 
-      <div class="field">
+      <div>
         <%= f.radio_button :role, "competitor", checked: true %>
         <%= f.label :role, "Competitor" %><br/>
         <%= f.radio_button :role, "organizer" %>
         <%= f.label :role, "Organizer" %> <br/>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", placeholder: "First Name" %>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.text_field :last_name,  autocomplete: "family-name", placeholder: "Last Name" %>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.text_field :organization_name, placeholder: "Organization name" %>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.label :password %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -38,12 +37,12 @@
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
       </div>
 
-      <div class="field">
+      <div>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation" %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up" %>
+      <div class="mb-5">
+        <%= f.submit "Sign up", class: "cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300"  %>
       </div>
     <% end %>
 
