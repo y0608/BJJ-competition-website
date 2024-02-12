@@ -34,14 +34,32 @@ class Match < ApplicationRecord
   belongs_to :competitor2, class_name: 'User', optional: true
   belongs_to :winner, class_name: 'User', optional: true
   
-  has_one :next_match, class_name: 'Match', foreign_key: 'next_match_id', dependent: :nullify
+  # WORKS: has_one :next_match, class_name: 'Match', foreign_key: 'next_match_id', dependent: :nullify
+  belongs_to :next_match, class_name: 'Match', foreign_key: 'next_match_id', optional: true
 
   def competitor1_name
-    competitor1.nil? ? "BYE" : competitor1.full_name
+    if round == bracket.rounds - 1
+      competitor1.nil? ? "BYE" : competitor1.full_name
+    else
+      competitor1.nil? ? "Waiting..." : competitor1.full_name
+    end
   end
 
   def competitor2_name
-    competitor2.nil? ? "BYE" : competitor2.full_name
+    if round == bracket.rounds - 1
+      competitor2.nil? ? "BYE" : competitor2.full_name
+    else
+      competitor2.nil? ? "Waiting..." : competitor2.full_name
+    end
+  end
+
+  def loser
+    if winner == competitor1
+      return competitor2
+    elsif winner == competitor2
+      return competitor1
+    end
+    nil
   end
 
   def time_remaining_minutes_and_seconds

@@ -4,7 +4,12 @@ class Bracket < ApplicationRecord
   has_one :weightclass, dependent: :destroy
   
   has_many :entries, dependent: :destroy
-  has_many :matches, dependent: :destroy  
+  has_many :matches, dependent: :destroy
+
+  belongs_to :first_place, class_name: 'User', foreign_key: 'first_place_id', optional: true
+  belongs_to :second_place, class_name: 'User', foreign_key: 'second_place_id', optional: true
+  belongs_to :third_place, class_name: 'User', foreign_key: 'third_place_id', optional: true
+  belongs_to :third_place2, class_name: 'User', foreign_key: 'third_place2_id', optional: true
 
   scope :has_entries, -> {
     joins(:entries).where.not(entries: { id: nil})
@@ -28,6 +33,8 @@ class Bracket < ApplicationRecord
     end
 
     rounds_count = Math.log2(players_count).ceil
+    self.update(rounds: rounds_count)
+
 	  byes_count = 2 ** rounds_count - players_count
 
     entries_with_byes = entries.to_a
@@ -44,24 +51,37 @@ class Bracket < ApplicationRecord
       current_matches = []
       (0..(matches_in_round-1)).each do |match_index|
         if round_number == rounds_count - 1
-          new_match = matches.create(
+          new_match = matches.create!(
             competitor1: entries_with_byes[match_index * 2] ? entries_with_byes[match_index * 2].competitor : nil,
             competitor2: entries_with_byes[match_index * 2 + 1] ? entries_with_byes[match_index * 2 + 1].competitor : nil,
             round: round_number,
             next_match: previous_matches[match_index / 2] # nil if match_index == 0
           )
         else
-          new_match = matches.create(
+          new_match = matches.create!(
             competitor1: nil,
             competitor2: nil,
             round: round_number,
             next_match: previous_matches[match_index / 2]
           )
         end
+        
         current_matches.push(new_match)
       end
       previous_matches = current_matches
     end
+  end
+
+  def set_winners
+    final = matches.where(round: 0).where(status: "finished").first
+    semi_final1 = matches.where(round: 1).where(status: "finished").first
+    semi_final2 = matches.where(round: 1).where(status: "finished").last
+    self.update(
+      first_place: final&.winner, 
+      second_place: final&.loser, 
+      third_place: semi_final1&.loser, 
+      third_place2: semi_final2&.loser
+    )
   end
 
   private

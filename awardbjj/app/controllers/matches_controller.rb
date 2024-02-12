@@ -50,7 +50,18 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @event = @match.bracket.event
     if @match.update(end_match_params.merge(status: "finished"))
-      redirect_to event_match_path(@match.bracket.event, @match.id), notice: 'Match was successfully ended.'
+      if @match.next_match
+        if @match.next_match.competitor1.nil?
+          @match.next_match.update(competitor1: @match.winner)
+        elsif @match.next_match.competitor2.nil?
+          @match.next_match.update(competitor2: @match.winner)
+        end
+      end
+      if @match.round == 0
+        # set first_place, second_place, and third_places
+        @match.bracket.set_winners
+      end
+      redirect_to event_bracket_path(@match.bracket.event, @match.bracket), notice: 'Match was successfully ended.'
     else
       render :show, status: :unprocessable_entity
     end

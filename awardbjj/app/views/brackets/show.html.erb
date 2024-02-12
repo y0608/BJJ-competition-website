@@ -5,7 +5,7 @@
         <%= render "weightclasses/weightclass", weightclass: @bracket.weightclass %>  
     </h1>
 
-    <% matches_by_round = @bracket.matches.group_by(&:round).sort.reverse.to_h %>
+    <% matches_by_round = @bracket.matches.sort.group_by(&:round).sort.reverse.to_h %>
     <section class="my-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-<%= matches_by_round.keys.count %> gap-4">
         <% matches_by_round.each do |round, matches| %>
             <div class="col-span-1 text-center">
@@ -15,5 +15,15 @@
                 </div>
             </div>
         <% end %>
+    </section>
+
+    <section>
+        <% if @bracket.first_place_id %>
+            <h2>Winners:</h2>
+            <%= render "brackets/winners", bracket: @bracket %>
+        <% else %>
+            <h2>Winners yet to be announced...</h2>
+        <% end %>
+
     </section>
 </main>

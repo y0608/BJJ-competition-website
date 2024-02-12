@@ -1,6 +1,8 @@
 <!-- this is scoreboard for match <%= @match.id %> -->
 <main class="m-4">
     <%= link_to sanitize("&larr; Back to match"), event_match_path(@match.bracket.event, @match), class: "text-blue-500 hover:underline mb-4 inline-block" %>
+    <br>
+    <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(@match.bracket.event, @match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>
 
     <section>
         <%= render "scoreboards/competitor", match: @match, competitor_index: 1 %>

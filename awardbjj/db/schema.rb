@@ -16,14 +16,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
 
   create_table "brackets", force: :cascade do |t|
     t.bigint "event_id", null: false
+    t.integer "rounds", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "first_place_id"
     t.bigint "second_place_id"
     t.bigint "third_place_id"
+    t.bigint "third_place2_id"
     t.index ["event_id"], name: "index_brackets_on_event_id"
     t.index ["first_place_id"], name: "index_brackets_on_first_place_id"
     t.index ["second_place_id"], name: "index_brackets_on_second_place_id"
+    t.index ["third_place2_id"], name: "index_brackets_on_third_place2_id"
     t.index ["third_place_id"], name: "index_brackets_on_third_place_id"
   end
 
@@ -108,10 +111,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_201719) do
     t.index ["bracket_id"], name: "index_weightclasses_on_bracket_id"
   end
 
-  add_foreign_key "brackets", "entries", column: "first_place_id"
-  add_foreign_key "brackets", "entries", column: "second_place_id"
-  add_foreign_key "brackets", "entries", column: "third_place_id"
   add_foreign_key "brackets", "events"
+  add_foreign_key "brackets", "users", column: "first_place_id"
+  add_foreign_key "brackets", "users", column: "second_place_id"
+  add_foreign_key "brackets", "users", column: "third_place2_id"
+  add_foreign_key "brackets", "users", column: "third_place_id"
   add_foreign_key "entries", "brackets"
   add_foreign_key "entries", "users", column: "competitor_id"
   add_foreign_key "events", "users", column: "organizer_id"

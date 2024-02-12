@@ -1,14 +1,13 @@
 <div class="bg-gray-300 rounded-lg p-2 my-4 w-40 divide-y-2 text-black">
     <%= link_to(event_match_path(event, match), data: {turbo_frame: "_top"}) do %>
-    <div>
-        <%= match.competitor1_name %>
-    </div>
-    <!-- line -->
-    <!-- <div class="border-t-2 border-gray-400 my-2"></div> -->
-    <!-- <hr class="bg-black"> -->
-    <hr class="h-px my-0.5 bg-gray-400 border-0">
-    <div>
-        <%= match.competitor2_name %>
-    </div>
+        <div>
+            <%= match.competitor1_name %>
+        </div>
+
+        <hr class="h-px my-0.5 bg-gray-400 border-0">
+
+        <div>
+            <%= match.competitor2_name %>
+        </div>
     <% end %>
 </div>
