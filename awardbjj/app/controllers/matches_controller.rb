@@ -70,11 +70,13 @@ class MatchesController < ApplicationController
 
   def start_timer
     @match.start_timer
+    # TODO: send turbo_stream to start timers 
     redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
   def pause_timer
     @match.pause_timer
+    # TODO: send turbo_stream to pause timers 
     redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
@@ -96,7 +98,7 @@ class MatchesController < ApplicationController
           turbo_tag: attribute
         }
       }
-      # test without javascript
+      # TODO: test without javascript
       format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
     end
   end
