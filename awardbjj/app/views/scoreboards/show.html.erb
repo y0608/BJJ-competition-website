@@ -1,4 +1,3 @@
-<!-- this is scoreboard for match <%= @match.id %> -->
-<%= turbo_stream_from "matches_scoreboard_1" %>
+<%= turbo_stream_from "matches_scoreboard_#{@match.id}" %>
 
 <%= render "scoreboard", match: @match %>

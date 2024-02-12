@@ -15,7 +15,7 @@
                                         number_to_add: value.is_a?(Integer) ? "#{sign}#{value}".to_i : "#{sign}1".to_i, 
                                         attribute: (value == 'A' ? 'advantages' : value == 'P' ? 'penalties' : 'points')
                                     ), 
-                                { form_class: "contents", class: "text-xl m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400" } %>
+                                    { form_class: "contents", class: "text-xl m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400" } %>
                             </td>
                         <% end %>
                     </tr>

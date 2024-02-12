@@ -1,4 +1,4 @@
-<%= turbo_stream_from "matches_show_1" %>
+<%= turbo_stream_from "matches_show_#{@match.id}" %>
 
 <main class="max-w-2xl mx-auto mt-10 p-6">
     <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(@event, @match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>
@@ -11,6 +11,9 @@
         <%= link_to "Scoreboard", event_scoreboard_path(@event, match_id: @match.id), class: "mb-5 py-3 px-5 bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
     <% end %>
 
-    <%= render "matches/ongoing_match", match: @match %>
-
+    <% if @match.status == "not_started" %>
+        Match hasn't started yet...
+    <% else%>
+        <%= render "matches/ongoing_match", match: @match %>
+    <% end %>
 </main>

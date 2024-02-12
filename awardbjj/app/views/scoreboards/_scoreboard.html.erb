@@ -1,4 +1,4 @@
-<main class="m-4" id="match_scoreboard_1"> 
+<main class="m-4" id="scoreboard_<%= match.id %>"> 
     <%= link_to sanitize("&larr; Back to match"), event_match_path(match.bracket.event, match), class: "mr-5 text-blue-500 hover:underline mb-4 inline-block" %>
     <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(match.bracket.event, match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>
 
