@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   validate :start_date_after_today
 
   enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
-  
+
   belongs_to :organizer, class_name: "User"
   has_many :brackets, dependent: :destroy
   has_many :weightclasses, through: :brackets
@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   end
 
   private
-  
+
   def end_date_after_start_date
     if end_at.present? && start_at.present? && end_at < start_at
       errors.add(:end_at, "must be after the start date") 

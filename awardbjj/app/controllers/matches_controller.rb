@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
   # TODO: fix the loading so you can remove set_match
   before_action :set_match, only: %i[add_scoreboard_values start_timer pause_timer]
   before_action :end_match_params, only: [:end_match_submit]
-  
+
   def index
   end
 
@@ -22,7 +22,7 @@ class MatchesController < ApplicationController
   #   end
   # end
 
-  # def edit 
+  # def edit
   # end
 
   # def update
@@ -33,7 +33,7 @@ class MatchesController < ApplicationController
   #   end
   # end
 
-  
+
   def destroy
     @match.destroy
     redirect_to event_matches_url, notice: 'Match was successfully destroyed.'
@@ -44,7 +44,7 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @event = @match.bracket.event
     @match.pause_timer
-  end 
+  end
 
   def end_match_submit
     @match = Match.find(params[:id])
@@ -66,11 +66,11 @@ class MatchesController < ApplicationController
       render :show, status: :unprocessable_entity
     end
   end
-  
+
 
   def start_timer
     @match.start_timer
-    # TODO: send turbo_stream to start timers 
+    # TODO: send turbo_stream to start timers
     respond_to do |format|
       format.turbo_stream {
         render "display_timer",

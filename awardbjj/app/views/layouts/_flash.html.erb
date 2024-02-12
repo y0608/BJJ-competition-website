@@ -1,7 +1,7 @@
 <div data-controller="flash" class="fixed top-20 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 max-w-full p-0 md:p-4">
-    <% flash.each do |flash_type, message| %>
-        <div class="text-sm text-white px-4 py-2 bg-gray-600 rounded-xl">
-            <%= message %>
-        </div>
-    <% end %>
+	<% flash.each do |flash_type, message| %>
+		<div class="text-sm text-white px-4 py-2 bg-gray-600 rounded-xl">
+			<%= message %>
+		</div>
+	<% end %>
 </div>

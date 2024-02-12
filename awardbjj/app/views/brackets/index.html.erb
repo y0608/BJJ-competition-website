@@ -1,20 +1,20 @@
 <main class="m-20 justify-center">
-    <%= link_to sanitize("&larr; Back to event"), event_path(@event), class: "text-blue-500 hover:underline mb-4 inline-block" %>
+	<%= link_to sanitize("&larr; Back to event"), event_path(@event), class: "text-blue-500 hover:underline mb-4 inline-block" %>
 
-    <% if @event.organizer == current_user %>
-        <%= button_to "Generate All Matches", event_brackets_and_matches_path, method: :post , class: "text-blue-500 hover:underline" %>
-        <%= button_to "Delete All Matches", event_brackets_and_matches_path, method: :delete , class: "text-red-500 hover:underline", form: { data: { 'turbo-confirm': 'Are you sure?' } }%>
-    <% end %>
+	<% if @event.organizer == current_user %>
+		<%= button_to "Generate All Matches", event_brackets_and_matches_path, method: :post , class: "text-blue-500 hover:underline" %>
+		<%= button_to "Delete All Matches", event_brackets_and_matches_path, method: :delete , class: "text-red-500 hover:underline", form: { data: { 'turbo-confirm': 'Are you sure?' } }%>
+	<% end %>
 
-    <!-- <section class="mb-10">
-        TODO: serach by age,weight,..
-    </section> -->
-    
-    <section>
-        <%= render @brackets %>
-    </section>
+	<!-- <section class="mb-10">
+		TODO: serach by age,weight,..
+	</section> -->
 
-    <section class="mt-10">
-        <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-    </section>
+	<section>
+		<%= render @brackets %>
+	</section>
+
+	<section class="mt-10">
+	<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+	</section>
 </main>

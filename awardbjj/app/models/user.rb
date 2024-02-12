@@ -5,12 +5,12 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, if: :competitor?
   validates_presence_of :organization_name, if: :organizer?
-  
+
   has_many :events, inverse_of: :organizer, dependent: :destroy
   has_many :entries, inverse_of: :competitor, dependent: :destroy
 
-  enum role: { 
-    organizer: 0, 
+  enum role: {
+    organizer: 0,
     competitor: 1
   }
 

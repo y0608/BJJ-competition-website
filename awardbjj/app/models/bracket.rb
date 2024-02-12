@@ -2,7 +2,7 @@ class Bracket < ApplicationRecord
   belongs_to :event
 
   has_one :weightclass, dependent: :destroy
-  
+
   has_many :entries, dependent: :destroy
   has_many :matches, dependent: :destroy
 
@@ -65,7 +65,7 @@ class Bracket < ApplicationRecord
             next_match: previous_matches[match_index / 2]
           )
         end
-        
+
         current_matches.push(new_match)
       end
       previous_matches = current_matches
@@ -77,9 +77,9 @@ class Bracket < ApplicationRecord
     semi_final1 = matches.where(round: 1).where(status: "finished").first
     semi_final2 = matches.where(round: 1).where(status: "finished").last
     self.update(
-      first_place: final&.winner, 
-      second_place: final&.loser, 
-      third_place: semi_final1&.loser, 
+      first_place: final&.winner,
+      second_place: final&.loser,
+      third_place: semi_final1&.loser,
       third_place2: semi_final2&.loser
     )
   end
@@ -87,23 +87,23 @@ class Bracket < ApplicationRecord
   private
   def insert_byes(entries, byes_count)
     players_count = entries.size
-  
+
     if byes_count <= 1
       entries.insert(players_count, nil)
       return entries
     elsif players_count <= 1
       return entries
     end
-  
+
     byes_upper = (byes_count / 2).ceil
     byes_lower = byes_count - byes_upper
-  
+
     upper_half = entries[0..(players_count/2 - 1)]
     lower_half = entries[(players_count/2)..-1]
-  
+
     upper_half = insert_byes(upper_half, byes_upper)
     lower_half = insert_byes(lower_half, byes_lower)
-  
+
     return upper_half + lower_half
   end
 end

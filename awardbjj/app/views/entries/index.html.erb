@@ -1,11 +1,11 @@
 <main class="p-5">
-    <%= turbo_frame_tag "entries" do%>
-        <section class="">
-            <%= render @entries %>
-        </section>
+	<%= turbo_frame_tag "entries" do%>
+		<section class="">
+			<%= render @entries %>
+		</section>
 
-        <section class="mt-4">
-            <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-        </section>
-    <% end %>
+		<section class="mt-4">
+			<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+		</section>
+	<% end %>
 </main>

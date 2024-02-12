@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
 
 	# load_and_authorize_resource :entry, through: :bracket, only: [:show, :index]
 	load_and_authorize_resource :entry, through: :event
-	
+
 	# TODO: before action to load ages, belt, weights for new and edit
 	# TODO: payments with strype
 	# TODO: register directly from event and choose weightclass correspondingly
@@ -15,19 +15,19 @@ class EntriesController < ApplicationController
 
 	def show
 	end
-	
+
 	def new
 		# TODO: try to use options from collection
 		find_weightclass
 		# weightclasses = @event.weightclasses
 		# @ages = weightclasses.pluck(:age).uniq
-		
+
 		# all_sexes = weightclasses.where(age: @age)
 		# @sexes = all_sexes.pluck(:sex).uniq
 
 		# all_belts =  all_sexes.where(sex: @sex)
 		# @belts = all_belts.pluck(:belt).uniq
-		
+
 		# all_weights = all_belts.where(belt: @belt)
 		# @weights = all_weights.pluck(:weight).uniq
 	end

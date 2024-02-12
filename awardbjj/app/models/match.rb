@@ -1,6 +1,6 @@
 class Match < ApplicationRecord
 
-  after_commit -> { 
+  after_commit -> {
     broadcast_replace_later_to "matches_scoreboard_#{self.id}", partial: "scoreboards/scoreboard", target: "scoreboard_#{self.id}", locals: { match: self }
     broadcast_replace_later_to "matches_show_#{self.id}", partial: "matches/ongoing_match", target: "show_#{self.id}", locals: { match: self }
   }
@@ -25,15 +25,15 @@ class Match < ApplicationRecord
     playing: 2,
     finished: 3
   }
-  
+
   validate :competitors_must_be_different
   validate :winner_must_be_competitor
-  
+
   belongs_to :bracket
   belongs_to :competitor1, class_name: 'User', optional: true
   belongs_to :competitor2, class_name: 'User', optional: true
   belongs_to :winner, class_name: 'User', optional: true
-  
+
   # WORKS: has_one :next_match, class_name: 'Match', foreign_key: 'next_match_id', dependent: :nullify
   belongs_to :next_match, class_name: 'Match', foreign_key: 'next_match_id', optional: true
 
@@ -86,8 +86,8 @@ class Match < ApplicationRecord
   def start_timer
     if !timer_running
       self.update(
-        timer_running: true, 
-        status: "playing", 
+        timer_running: true,
+        status: "playing",
         timer_last_started_at: Time.now
       )
     end
@@ -96,11 +96,11 @@ class Match < ApplicationRecord
   def pause_timer
     if timer_running
       self.update(
-        timer_running: false, 
+        timer_running: false,
         timer_value: time_remaining
       )
     end
-  end  
+  end
 
 
   private

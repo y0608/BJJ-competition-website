@@ -1,19 +1,19 @@
 <main class="p-5">
-  <section class="mb-5">
-    <%= form_with url: '/events', method: :get, data: { turbo_frame: "events", 
-      turbo_action: "advance", controller: "form", action: "input->form#submit" } do %>
-      <%= text_field_tag :filter, nil, placeholder: 'Filter', 
-        class: "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" %>
-    <% end %>
-  </section>
-  
-  <%= turbo_frame_tag "events" do %>
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-      <%= render @events %>
-    </section>
-  
-    <section class="mt-4">
-      <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-    </section>
-  <% end %>
+	<section class="mb-5">
+		<%= form_with url: '/events', method: :get, data: { turbo_frame: "events",
+			turbo_action: "advance", controller: "form", action: "input->form#submit" } do %>
+			<%= text_field_tag :filter, nil, placeholder: 'Filter',
+				class: "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" %>
+		<% end %>
+	</section>
+
+	<%= turbo_frame_tag "events" do %>
+		<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+			<%= render @events %>
+		</section>
+
+		<section class="mt-4">
+			<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+		</section>
+	<% end %>
 </main>

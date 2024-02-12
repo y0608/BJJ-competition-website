@@ -1,13 +1,13 @@
 <div class="mt-5 p-5 block bg-white rounded-xl shadow-lg overflow-hidden">
-    <div class="md:flex items-center pb-4">
-        <h2 class="mb-4 text-lg md:mb-0 md:text-xl font-semibold  mr-3">
-            <%= render "weightclasses/weightclass", weightclass: bracket.weightclass %>
-        </h2>
-        <%= link_to "See Bracket", event_bracket_path(bracket.event, bracket), class: "rounded-xl text-white bg-blue-600 p-2" %>
-    </div>
+	<div class="md:flex items-center pb-4">
+		<h2 class="mb-4 text-lg md:mb-0 md:text-xl font-semibold  mr-3">
+			<%= render "weightclasses/weightclass", weightclass: bracket.weightclass %>
+		</h2>
+		<%= link_to "See Bracket", event_bracket_path(bracket.event, bracket),
+			class: "rounded-xl text-white bg-blue-600 p-2" %>
+	</div>
 
-
-    <div class="flex flex-wrap gap-4">
-        <%= render bracket.entries %>
-    </div>
+	<div class="flex flex-wrap gap-4">
+		<%= render bracket.entries %>
+	</div>
 </div>
