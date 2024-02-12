@@ -1,8 +1,23 @@
 <%= turbo_frame_tag match do %>
+  <div class="p-4 border border-gray-300 rounded-lg shadow-md">
 
-    <%= match.competitor1_name %> vs <%= match.competitor2_name %>
-    Points: <%= match.points1 %> - <%= match.points2 %>
-    Advantages: <%= match.advantages1 %> - <%= match.advantages2 %>
-    Penalties: <%= match.penalties1 %> - <%= match.penalties2 %>
+    <div class="flex justify-between mb-4">
+      <h3 class="font-medium capitalize"><%= match.status.humanize %></h3>
+    </div>
 
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-lg font-medium mb-2"><%= match.competitor1_name %></h3>
+        <p>Points: <%= match.points1 %></p>
+        <p>Advantages: <%= match.advantages1 %></p>
+        <p>Penalties: <%= match.penalties1 %></p>
+      </div>
+      <div>
+        <h3 class="text-lg font-medium mb-2"><%= match.competitor2_name %></h3>
+        <p>Points: <%= match.points2 %></p>
+        <p>Advantages: <%= match.advantages2 %></p>
+        <p>Penalties: <%= match.penalties2 %></p>
+      </div>
+    </div>
+  </div>
 <% end %>
