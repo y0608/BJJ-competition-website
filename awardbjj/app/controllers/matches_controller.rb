@@ -71,13 +71,30 @@ class MatchesController < ApplicationController
   def start_timer
     @match.start_timer
     # TODO: send turbo_stream to start timers 
-    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
+    respond_to do |format|
+      format.turbo_stream {
+        render "display_timer",
+        locals: {
+          match: @match
+        }
+      }
+      # TODO: test without javascript
+      format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) }
+    end
   end
 
   def pause_timer
     @match.pause_timer
-    # TODO: send turbo_stream to pause timers 
-    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
+    respond_to do |format|
+      format.turbo_stream {
+        render "display_timer",
+        locals: {
+          match: @match
+        }
+      }
+      # TODO: test without javascript
+      format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) }
+    end
   end
 
   def add_scoreboard_values
@@ -90,17 +107,18 @@ class MatchesController < ApplicationController
     else
       new_value = 0
     end
-    respond_to do |format|
-      format.turbo_stream {
-        render "display",
-        locals: {
-          info_to_display: new_value,
-          turbo_tag: attribute
-        }
-      }
-      # TODO: test without javascript
-      format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
-    end
+    # respond_to do |format|
+    #   # format.turbo_stream {
+    #   #   render "display",
+    #   #   locals: {
+    #   #     info_to_display: new_value,
+    #   #     turbo_tag: attribute
+    #   #   }
+    #   # }
+    #   # TODO: test without javascript
+    #   format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
+    # end
+    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
 

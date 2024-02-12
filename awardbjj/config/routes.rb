@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
     resources :entries, only: [:create, :new]
 
-    post "/add_scoreboard_values", to: "matches#add_scoreboard_values"
+    post "/add_scoreboard_values", to: "matches#add_scoreboard_values", as: "add_scoreboard_values"
   end
 
 

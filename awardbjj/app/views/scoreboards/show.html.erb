@@ -1,25 +1,4 @@
 <!-- this is scoreboard for match <%= @match.id %> -->
-<main class="m-4">
-    <%= link_to sanitize("&larr; Back to match"), event_match_path(@match.bracket.event, @match), class: "mr-5 text-blue-500 hover:underline mb-4 inline-block" %>
-    <%= link_to sanitize("&larr; Back to bracket"), event_bracket_path(@match.bracket.event, @match.bracket), class: "text-blue-500 hover:underline mb-4 inline-block" %>
+<%= turbo_stream_from "matches_scoreboard_1" %>
 
-    <section>
-        <%= render "scoreboards/competitor", match: @match, competitor_index: 1 %>
-        <%= render "scoreboards/competitor", match: @match, competitor_index: 2 %>
-    </section>
-
-    <section class="m-10 flex flex-row justify-center">
-        <div class="flex flex-col items-start mr-16">
-            <div class="bg-gray-200 rounded-lg p-4 text-4xl font-bold mb-4 w-40 text-center"
-                data-controller="timer" data-timer-time-value=<%= @match.time_remaining %> data-timer-started-value="<%= @match.timer_running %>">
-                <p data-timer-target="time"><%= @match.time_remaining_minutes_and_seconds %></p>
-            </div>
-            <div class="flex space-x-4 mb-4">
-                <%= button_to "Start", event_start_timer_path(@match), method: :post, class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
-                <%= button_to "Stop", event_pause_timer_path(@match), method: :post, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
-            </div>
-        </div>
-        <%= button_to "End Match", end_match_event_match_path(@match.bracket.event, @match), method: :get, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
-    </section>
-    
-</main>
+<%= render "main", match: @match %>

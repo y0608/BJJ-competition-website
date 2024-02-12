@@ -10,7 +10,7 @@
                                 <%= button_to "#{sign}#{value}", { 
                                     controller: "matches", 
                                     action: "add_scoreboard_values", 
-                                    match_id: match.id, 
+                                    match_id: match.id,
                                     competitor_index: competitor_index,
                                     number_to_add: value.is_a?(Integer) ? "#{sign}#{value}".to_i : "#{sign}1".to_i ,
                                     attribute: value == 'A' ? 'advantages' : value == 'P' ? 'penalties' : 'points' },
@@ -29,7 +29,7 @@
                 <div class="text-xl">Advantage</div>
                 <div class="text-3xl font-bold">
                     <%= turbo_frame_tag "advantages#{competitor_index}" do %>
-                        <%= @match.send("advantages#{competitor_index}") %>
+                        <%= match.send("advantages#{competitor_index}") %>
                     <% end %>
             </div>
 
@@ -38,14 +38,14 @@
                 <div class="text-xl">Penalty</div>
                 <div class="text-3xl font-bold">
                     <%= turbo_frame_tag "penalties#{competitor_index}" do %>
-                        <%= @match.send("penalties#{competitor_index}") %>
+                        <%= match.send("penalties#{competitor_index}") %>
                     <% end %>
                 </div>
             </div>
         </div>
         <div class="text-4xl rounded-lg bg-<%= competitor_index == 1 ? 'red' : 'blue' %>-500 text-center text-white md:flex md:h-full md:w-36 md:items-center md:justify-center">
             <%= turbo_frame_tag "points#{competitor_index}" do %>
-                <%= @match.send("points#{competitor_index}") %>
+                <%= match.send("points#{competitor_index}") %>
             <% end %>
         </div>
     </div>

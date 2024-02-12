@@ -1,0 +1,7 @@
+<%= turbo_stream.update "timer_#{match.id}" do %>
+    <div data-controller="timer" 
+         data-timer-time-value="<%= match.time_remaining %>"
+         data-timer-started-value="<%= match.timer_running %>">
+      <p data-timer-target="time"><%= match.time_remaining_minutes_and_seconds %></p>
+    </div>
+<% end %>
