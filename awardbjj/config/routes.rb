@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     post "scoreboard/:match_id/start_timer", to: "matches#start_timer", as: "start_timer"
 
     resources :entries, only: [:create, :new]
-
+    
     post "/add_scoreboard_values", to: "matches#add_scoreboard_values", as: "add_scoreboard_values"
   end
 

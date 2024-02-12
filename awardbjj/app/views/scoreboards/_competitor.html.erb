@@ -7,15 +7,15 @@
                     <tr>
                         <% [1, 2, 3, 4, 'A', 'P'].each do |value| %> 
                             <td>
-                                <%= button_to "#{sign}#{value}", { 
-                                    controller: "matches", 
-                                    action: "add_scoreboard_values", 
-                                    match_id: match.id,
-                                    competitor_index: competitor_index,
-                                    number_to_add: value.is_a?(Integer) ? "#{sign}#{value}".to_i : "#{sign}1".to_i ,
-                                    attribute: value == 'A' ? 'advantages' : value == 'P' ? 'penalties' : 'points' },
-                                    { form_class: "contents", class:"text-xl m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400" } 
-                                %>
+                                <%= button_to "#{sign}#{value}", 
+                                    event_add_scoreboard_values_path(
+                                        event_id: match.bracket.event.id,
+                                        match_id: match.id, 
+                                        competitor_index: competitor_index, 
+                                        number_to_add: value.is_a?(Integer) ? "#{sign}#{value}".to_i : "#{sign}1".to_i, 
+                                        attribute: (value == 'A' ? 'advantages' : value == 'P' ? 'penalties' : 'points')
+                                    ), 
+                                { form_class: "contents", class: "text-xl m-1 rounded-md p-5 transition duration-300 hover:bg-gray-400" } %>
                             </td>
                         <% end %>
                     </tr>

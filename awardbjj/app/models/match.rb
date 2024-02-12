@@ -1,8 +1,8 @@
 class Match < ApplicationRecord
 
   after_commit -> { 
+    broadcast_replace_later_to "matches_scoreboard_1", partial: "scoreboards/scoreboard", target: "match_scoreboard_1", locals: { match: self }
     broadcast_replace_later_to "matches_show_1", partial: "matches/ongoing_match", target: "match_1", locals: { match: self }
-    broadcast_replace_later_to "matches_scoreboard_1", partial: "scoreboards/main", target: "match_scoreboard_1", locals: { match: self }
   }
 
   ROUND_LABELS = [

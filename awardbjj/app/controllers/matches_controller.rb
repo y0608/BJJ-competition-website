@@ -41,7 +41,7 @@ class MatchesController < ApplicationController
 
 
   def end_match
-    @match = Match.find(params[:id]) # i don't know why it is id and not match_id. I should use set_match
+    @match = Match.find(params[:id])
     @event = @match.bracket.event
     @match.pause_timer
   end 
@@ -107,18 +107,18 @@ class MatchesController < ApplicationController
     else
       new_value = 0
     end
-    # respond_to do |format|
-    #   # format.turbo_stream {
-    #   #   render "display",
-    #   #   locals: {
-    #   #     info_to_display: new_value,
-    #   #     turbo_tag: attribute
-    #   #   }
-    #   # }
-    #   # TODO: test without javascript
-    #   format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
-    # end
-    redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
+    respond_to do |format|
+      format.turbo_stream {
+        render "display",
+        locals: {
+          info_to_display: new_value,
+          turbo_tag: attribute
+        }
+      }
+      # TODO: test without javascript
+      format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
+    end
+    # redirect_to event_scoreboard_path(@match.bracket.event, @match.id)
   end
 
 

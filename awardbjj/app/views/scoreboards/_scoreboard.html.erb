@@ -19,11 +19,10 @@
             </div>
 
             <div class="flex space-x-4 mb-4">
-                <%= button_to "Start", event_start_timer_path(match), method: :post, class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
-                <%= button_to "Stop", event_pause_timer_path(match), method: :post, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
+                <%= button_to "Start", event_start_timer_path(event_id: match.bracket.event, match_id: match.id), method: :post, class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
+                <%= button_to "Stop", event_pause_timer_path(event_id: match.bracket.event.id, match_id: match.id), method: :post, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
             </div>
         </div>
         <%= button_to "End Match", end_match_event_match_path(match.bracket.event, match), method: :get, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-300" %>
     </section>
-    
 </main>
