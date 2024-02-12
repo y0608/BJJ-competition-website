@@ -1,13 +1,26 @@
 <% if bracket.first_place_id %>
-    <h3> <%= link_to "1st: #{bracket.first_place.full_name}", user_path(bracket.first_place) %></h3>
+    <h2>Winners: </h2>
+    <h3 class="text-md flex items-center">
+        <%= image_tag 'first_place.png', alt: "First Place: ", title: "First Place", class: "w-8 h-8 mr-2" %>
+        <%= link_to "#{bracket.first_place.full_name}", user_path(bracket.first_place) %>
+    </h3>
     <% if bracket.second_place_id %>
-        <h3><%= link_to "2nd: #{bracket.second_place.full_name}", user_path(bracket.second_place) %></h3>
+        <h3 class="text-md flex items-center">
+            <%= image_tag 'second_place.png', alt: "Second Place: ", title: "Second Place", class: "w-8 h-8 mr-2" %>
+            <%= link_to "#{bracket.second_place.full_name}", user_path(bracket.second_place) %>
+        </h3>
     <% end %>
     <% if bracket.third_place_id %>
-        <h3><%= link_to "3rd: #{bracket.third_place.full_name}", user_path(bracket.third_place) %></h3>
+        <h3 class="text-md flex items-center">
+            <%= image_tag 'third_place.png', alt: "Third Place: ", title: "Third Place", class: "w-8 h-8 mr-2" %>
+            <%= link_to "#{bracket.third_place.full_name}", user_path(bracket.third_place) %>
+        </h3>
     <% end %>
     <% if bracket.third_place2_id %>
-        <h3><%= link_to "3rd: #{bracket.third_place2.full_name}", user_path(bracket.third_place2) %></h3>
+        <h3 class="text-md flex items-center">
+            <%= image_tag 'third_place.png', alt: "Third Place: ", title: "Third Place", class: "w-8 h-8 mr-2" %>
+            <%= link_to "#{bracket.third_place2.full_name}", user_path(bracket.third_place2) %>
+        </h3>
     <% end %>
 <% else %>
     <h2>Winners yet to be announced...</h2>

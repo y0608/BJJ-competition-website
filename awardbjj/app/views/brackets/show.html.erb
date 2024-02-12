@@ -18,12 +18,6 @@
     </section>
 
     <section>
-        <% if @bracket.first_place_id %>
-            <h2>Winners:</h2>
-            <%= render "brackets/winners", bracket: @bracket %>
-        <% else %>
-            <h2>Winners yet to be announced...</h2>
-        <% end %>
-
+        <%= render "brackets/winners", bracket: @bracket %>
     </section>
 </main>
