@@ -2,7 +2,6 @@ class BracketsAndMatchesController < ApplicationController
 	load_and_authorize_resource :event
 
 	def create
-		# for the future: add three person comeback, single elimination with bronze, ...
 		if @event.matches.empty?
 			if @event.create_matches
 				redirect_to event_brackets_path(@event), notice: 'Matches were successfully created.'
