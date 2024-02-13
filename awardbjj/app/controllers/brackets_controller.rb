@@ -3,7 +3,7 @@ class BracketsController < ApplicationController
 	load_and_authorize_resource :bracket, through: :event
 
 	def index
-		@pagy, @brackets = pagy(@brackets, items: 10)
+		@pagy, @brackets = pagy(@brackets)
 	end
 
 	def show

@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
 	# TODO: register directly from event and choose weightclass correspondingly
 
 	def index
-		@pagy, @entries = pagy(@entries, items: 10)
+		@pagy, @entries = pagy(@entries)
 	end
 
 	def show

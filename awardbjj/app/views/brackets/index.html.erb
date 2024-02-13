@@ -14,7 +14,7 @@
 		<%= render @brackets %>
 	</section>
 
-	<section class="mt-10">
-	<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-	</section>
 </main>
+<section class="m-10 sm:m-20">
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+</section>

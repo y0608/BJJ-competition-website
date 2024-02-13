@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     filtered = Event.where("name LIKE ?", "%#{params[:filter]}%").all
-    @pagy, @events = pagy(filtered.all, items: 10)
+    @pagy, @events = pagy(filtered.all)
   end
 
   def show
