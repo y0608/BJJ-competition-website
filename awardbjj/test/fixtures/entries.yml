@@ -1,10 +1,10 @@
-<% (1..2).each do |i| %>
+<% (1..9).each do |i| %>
 entry<%= i %>:
   competitor: competitor<%= i %>
   bracket: bracket1
 <% end %>
 
-<% (6..20).each do |i| %>
+<% (15..20).each do |i| %>
 entry<%= i %>:
   competitor: competitor<%= i %>
   bracket: bracket2

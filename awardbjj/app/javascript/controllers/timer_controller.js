@@ -1,9 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
-let my_interval = null;
 
 // Connects to data-controller="timer"
 export default class extends Controller {
+  myInterval = null;
 
   static values = {
     time: Number, // in seconds
@@ -12,32 +12,34 @@ export default class extends Controller {
   static targets = ["time"]
 
   connect() {
-    this.updateTarget(this.timeValue, this.timeTarget);
+    this.updateTarget();
     if (this.startedValue) {
-      my_interval = setInterval(this.updateTimer, 200, this);
+      this.myInterval = setInterval(() => { this.updateTimer() }, 100);
     }
   }
 
   disconnect() {
-    clearInterval(my_interval);
+    clearInterval(this.myInterval);
   }
-  
-  updateTarget(time, display) {
-    var minutes = parseInt(time / 60, 10);
-    var seconds = parseInt(time % 60, 10);
+
+  updateTarget() {
+    let minutes = parseInt(this.timeValue / 60, 10);
+    let seconds = parseInt(this.timeValue % 60, 10);
 
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    display.textContent = minutes + ":" + seconds;
+    this.timeTarget.textContent = minutes + ":" + seconds;
   }
 
-  updateTimer(that) {
-    console.log("updateTimer")
-    that.timeValue -= 0.2;
-    if (that.timeValue < 0) {
-      that.timeValue = 0;
+  updateTimer() {
+    this.timeValue -= 0.1;
+
+    if (this.timeValue < 0) {
+      this.timeValue = 0;
+      this.startedValue = false;
+      clearInterval(this.myInterval);
     }
-    that.updateTarget(that.timeValue, that.timeTarget);
+    this.updateTarget();
   }
 }
