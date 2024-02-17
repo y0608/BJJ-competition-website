@@ -72,14 +72,13 @@ class Match < ApplicationRecord
   def time_remaining
     time_remaining = timer_value
 
-    if !timer_last_started_at.nil?
-      if timer_running
-        time_remaining = (time_remaining - (Time.now - timer_last_started_at)).round(2)
-        if time_remaining <= 0
-          time_remaining = 0
-        end
+    if !timer_last_started_at.nil? && timer_running
+      time_remaining = (time_remaining - (Time.now - timer_last_started_at)).round(2)
+      if time_remaining <= 0
+        time_remaining = 0
       end
     end
+
     time_remaining
   end
 

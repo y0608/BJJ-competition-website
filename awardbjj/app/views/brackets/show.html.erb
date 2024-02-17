@@ -16,12 +16,13 @@
           </div>
         </div>
       <% end %>
-    <% else %>
-      <p>No matches, yet</p>
-    <% end %>
-	</section>
+    	</section>
 
-	<section>
-		<%= render "brackets/winners", bracket: @bracket %>
-	</section>
+      <section>
+        <%= render "brackets/winners", bracket: @bracket %>
+  </section>
+    <% else %>
+      <p class="text-gray-600">Matches are not published yet</p>
+  </section>
+    <% end %>
 </main>

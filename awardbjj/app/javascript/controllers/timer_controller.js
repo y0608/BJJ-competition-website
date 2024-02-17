@@ -12,7 +12,6 @@ export default class extends Controller {
   static targets = ["time"]
 
   connect() {
-    this.updateTarget();
     if (this.startedValue) {
       this.myInterval = setInterval(() => { this.updateTimer() }, 100);
     }

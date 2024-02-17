@@ -5,5 +5,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if @user.competitor?
+      @pagy, @entries = pagy(@user.entries)
+    else
+      @pagy, @events = pagy(@user.events.order(start_at: :desc))
+    end
   end
 end
