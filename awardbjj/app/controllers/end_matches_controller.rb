@@ -9,6 +9,7 @@ class EndMatchesController < ApplicationController
 
   def create
     if @match.update(end_match_params.merge(status: "finished"))
+      # TODO: this could be moved to a helper, because it is used in the create_matches method in the Bracket model
       if @match.next_match
         if @match.next_match.competitor1.nil?
           @match.next_match.update(competitor1: @match.winner)

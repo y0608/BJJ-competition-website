@@ -20,7 +20,8 @@ class BracketsAndMatchesController < ApplicationController
 		else
 			@event.brackets.each do |bracket|
 				bracket.matches.delete_all # using delete_all, because it does not trigger callbacks
-			end
+        bracket.update(first_place: nil, second_place: nil, third_place: nil, third_place2: nil)
+      end
 			redirect_to event_brackets_path(@event), notice: 'Matches were successfully destroyed.'
 		end
 	end

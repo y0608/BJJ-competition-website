@@ -59,7 +59,13 @@ class Bracket < ApplicationRecord
           )
           if new_match.competitor1.nil? ^ new_match.competitor2.nil?
             winner = new_match.competitor1 || new_match.competitor2
-            new_match.next_match.update(competitor1: winner)
+            if new_match.next_match.competitor1.nil?
+              new_match.update(winner: winner, status: "finished", win_type: "walkover")
+              new_match.next_match.update(competitor1: winner)
+            else
+              new_match.update(winner: winner, status: "finished", win_type: "walkover")
+              new_match.next_match.update(competitor2: winner)
+            end
           end
         else
           new_match = matches.create!(

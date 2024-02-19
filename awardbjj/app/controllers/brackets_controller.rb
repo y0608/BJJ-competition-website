@@ -3,6 +3,7 @@ class BracketsController < ApplicationController
 	load_and_authorize_resource :bracket, through: :event
 
 	def index
+    @brackets = @brackets.order(created_at: :asc)
 		@pagy, @brackets = pagy(@brackets)
 	end
 

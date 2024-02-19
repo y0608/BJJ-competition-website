@@ -40,7 +40,6 @@ class MatchesController < ApplicationController
 
   def start_timer
     @match.start_timer
-    # TODO: send turbo_stream to start timers
     respond_to do |format|
       format.turbo_stream {
         render "display_timer",
@@ -48,7 +47,6 @@ class MatchesController < ApplicationController
           match: @match
         }
       }
-      # TODO: test without javascript
       format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) }
     end
   end
@@ -62,7 +60,6 @@ class MatchesController < ApplicationController
           match: @match
         }
       }
-      # TODO: test without javascript
       format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) }
     end
   end
@@ -85,7 +82,6 @@ class MatchesController < ApplicationController
           turbo_tag: attribute
         }
       }
-      # TODO: test without javascript
       format.html { redirect_to event_scoreboard_path(@match.bracket.event, @match.id) } # catch browsers that don't support turbo_stream
     end
     # redirect_to event_scoreboard_path(@match.bracket.event, @match.id)

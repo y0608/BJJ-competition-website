@@ -6,11 +6,12 @@ class Ability
   # TODO: admin role
 
   def initialize(user)
-    can :read, Event
-    can :read, Bracket
-    can :read, Entry
-    can :read, User
-    can :read, Match
+    # can :read, Event
+    # can :read, Bracket
+    # can :read, Entry
+    # can :read, User
+    # can :read, Match
+    can :read, [Event, Bracket, Entry, User, Match]
     return unless user.present? # if we don't return here, the next line will throw an error if user is nil
 
     # TODO: can :mange, User, id: user.id (not sure how devise handles this)
