@@ -6,23 +6,20 @@
       <%= render "users/shared/error_messages", resource: resource %>
       <% f.options[:html][:class] = "grid gap-3" %>
 
-      <div>
-        <%= f.radio_button :role, "competitor", checked: true %>
-        <%= f.label :role, "Competitor" %><br/>
-        <%= f.radio_button :role, "organizer" %>
-        <%= f.label :role, "Organizer" %> <br/>
-      </div>
+      <div data-controller="select-role">
+        <div data-action="change->select-role#roleChanged">
+          <%= f.radio_button :role, "competitor", checked: true %>
+          <%= f.label :role, "Competitor" %><br/>
+          <%= f.radio_button :role, "organizer" %>
+          <%= f.label :role, "Organizer" %> <br/>
+        </div>
 
-      <div>
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", placeholder: "First Name" %>
-      </div>
+        <div class="mt-5" data-select-role-target="competitorFields">
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", placeholder: "First Name" %>
+          <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last Name", class: "mt-2 block" %>
+        </div>
 
-      <div>
-        <%= f.text_field :last_name,  autocomplete: "family-name", placeholder: "Last Name" %>
-      </div>
-
-      <div>
-        <%= f.text_field :organization_name, placeholder: "Organization name" %>
+        <%= f.text_field :organization_name, placeholder: "Organization name", class: "mt-4 hidden", data: { select_role_target: "organizerFields" } %>
       </div>
 
       <div>
