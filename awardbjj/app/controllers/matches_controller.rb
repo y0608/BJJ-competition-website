@@ -4,6 +4,7 @@ class MatchesController < ApplicationController
   before_action :set_match, only: %i[add_scoreboard_values start_timer pause_timer]
 
   def index
+    @event = Event.find(params[:event_id])
   end
 
   def show

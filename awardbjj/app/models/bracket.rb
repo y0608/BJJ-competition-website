@@ -45,11 +45,12 @@ class Bracket < ApplicationRecord
 
     # make rounds
     previous_matches = []
-    (0..(rounds_count-1)).each do |round_number|
-      matches_in_round = 2**round_number
 
+    rounds_count.times do |round_number|
+      matches_in_round = 2**round_number
       current_matches = []
-      (0..(matches_in_round-1)).each do |match_index|
+
+      matches_in_round.times do |match_index|
         if round_number == rounds_count - 1 #first round
           new_match = matches.create!(
             competitor1: entries_with_byes[match_index * 2] ? entries_with_byes[match_index * 2].competitor : nil,
@@ -59,11 +60,10 @@ class Bracket < ApplicationRecord
           )
           if new_match.competitor1.nil? ^ new_match.competitor2.nil?
             winner = new_match.competitor1 || new_match.competitor2
+            new_match.update(winner: winner, status: "finished", win_type: "walkover")
             if new_match.next_match.competitor1.nil?
-              new_match.update(winner: winner, status: "finished", win_type: "walkover")
               new_match.next_match.update(competitor1: winner)
             else
-              new_match.update(winner: winner, status: "finished", win_type: "walkover")
               new_match.next_match.update(competitor2: winner)
             end
           end

@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   #   e.g scoreboard/:match_id/pause_timer only organizer!
 
   resources :events do
-    resources :brackets, only: [:show, :index]
+    resources :brackets, only: [:show, :index] do
+      resources :bracket_entries, only: [:index], path: "entries", as: "entries"
+      resources :brackets_and_matches, only: [:index], path: "matches", as: "matches"
+    end
+
     resources :brackets_and_matches, only: [:create]
     delete "brackets_and_matches", to: "brackets_and_matches#destroy"
 
@@ -24,7 +28,7 @@ Rails.application.routes.draw do
     post "scoreboard/:match_id/pause_timer", to: "matches#pause_timer", as: "pause_timer"
     post "scoreboard/:match_id/start_timer", to: "matches#start_timer", as: "start_timer"
 
-    resources :entries, only: [:create, :new]
+    resources :entries, only: [:index, :create, :new]
 
     post "/add_scoreboard_values", to: "matches#add_scoreboard_values", as: "add_scoreboard_values"
   end

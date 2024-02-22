@@ -54,10 +54,12 @@ class Match < ApplicationRecord
   end
 
   def loser
-    if winner == competitor1
-      return competitor2
-    elsif winner == competitor2
-      return competitor1
+    if winner
+      if winner == competitor1
+        return competitor2
+      elsif winner == competitor2
+        return competitor1
+      end
     end
     nil
   end

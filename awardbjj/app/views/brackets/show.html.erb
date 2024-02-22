@@ -5,24 +5,20 @@
 		<%= render "weightclasses/weightclass", weightclass: @bracket.weightclass %>
 	</h1>
 
-	<% matches_by_round = @bracket.matches.sort.group_by(&:round).sort.reverse.to_h %>
-	<section class="my-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-<%= matches_by_round.keys.count %> gap-4">
-		<% if matches_by_round.keys.count != 0 %>
-      <% matches_by_round.each do |round, matches| %>
-        <div class="col-span-1 text-center">
-        <h2 class="text-lg font-semibold"><%= Match::ROUND_LABELS[round] %></h2>
-          <div class="h-full flex flex-col justify-center items-center">
-            <%= render matches, event:@bracket.event%>
-          </div>
-        </div>
-      <% end %>
-    	</section>
+  <ul class="flex">
+    <li class="mr-4 my-4">
+      <%= link_to "Matches", event_bracket_matches_path(@bracket.event, @bracket),
+        data: { turbo_frame: "content" },
+        class: "bg-blue-700 rounded-xl text-white p-2 hover:bg-blue-600 transition duration-300" %>
+    </li>
+    <li class="my-4">
+      <%= link_to "Entries", event_bracket_entries_path(@bracket.event, @bracket),
+        data: { turbo_frame: "content" },
+        class: "bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-600 transition duration-300" %>
+    </li>
+  </ul>
 
-      <section>
-        <%= render "brackets/winners", bracket: @bracket %>
-  </section>
-    <% else %>
-      <p class="text-gray-600">Matches are not published yet</p>
-  </section>
-    <% end %>
+  <%= turbo_frame_tag "content" do %>
+    <%= render "brackets_and_matches/matches_tree", matches: @bracket.matches %>
+  <% end %>
 </main>

@@ -1,6 +1,10 @@
 class BracketsAndMatchesController < ApplicationController
 	load_and_authorize_resource :event
 
+  def index
+    @bracket = @event.brackets.find(params[:bracket_id])
+  end
+
 	def create
 		if @event.matches.empty?
 			if @event.create_matches

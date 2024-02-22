@@ -1,0 +1,2 @@
+module BracketEntriesHelper
+end
