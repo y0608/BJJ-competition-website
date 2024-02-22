@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  # NOTE: should I use lockable to prevent brute force attacks??
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, 
+         :confirmable, :lockable
 
   validates_presence_of :first_name, :last_name, if: :competitor?
   validates_presence_of :organization_name, if: :organizer?

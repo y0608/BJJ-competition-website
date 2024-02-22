@@ -752,3 +752,530 @@ Processing by EventsController#new as HTML
 Completed 200 OK in 32ms (Views: 22.8ms | ActiveRecord: 0.2ms | Allocations: 11739)
 
 
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (3430.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_development"[0m
+  [1m[35m (30.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "awardbjj_test"[0m
+  [1m[35m (142.4ms)[0m  [1m[35mCREATE DATABASE "awardbjj_development" ENCODING = 'unicode'[0m
+  [1m[35m (93.7ms)[0m  [1m[35mCREATE DATABASE "awardbjj_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-02-22 11:59:58.254074', '2024-02-22 11:59:58.254080') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20231216064840)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "role" integer NOT NULL, "first_name" character varying, "last_name" character varying, "organization_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "failed_attempts" integer DEFAULT 0 NOT NULL, "unlock_token" character varying, "locked_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231216064840') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20231220110951)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying NOT NULL, "start_at" timestamp(6) NOT NULL, "end_at" timestamp(6), "location" character varying NOT NULL, "game_type" character varying DEFAULT 'NoGi' NOT NULL, "description" text, "organizer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91125650cd"
+FOREIGN KEY ("organizer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_events_on_organizer_id" ON "events" ("organizer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231220110951') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrackets (20240127110324)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "brackets" ("id" bigserial primary key, "event_id" bigint NOT NULL, "rounds" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7eea4d748b"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_event_id" ON "brackets" ("event_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110324') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateWeightclasses (20240127110334)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "weightclasses" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "age" character varying NOT NULL, "belt" character varying NOT NULL, "sex" character varying NOT NULL, "weight" float NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5196be2864"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_weightclasses_on_bracket_id" ON "weightclasses" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110334') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEntries (20240127110340)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "entries" ("id" bigserial primary key, "competitor_id" bigint NOT NULL, "bracket_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_ed3fe2a3b0"
+FOREIGN KEY ("competitor_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_62c3a98325"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_entries_on_competitor_id" ON "entries" ("competitor_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_entries_on_bracket_id" ON "entries" ("bracket_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127110340') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPlacesToBrackets (20240127132519)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "brackets" ADD "first_place_id" bigint[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_first_place_id" ON "brackets" ("first_place_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c774fcc090"
+FOREIGN KEY ("first_place_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "second_place_id" bigint[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_second_place_id" ON "brackets" ("second_place_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_c47aa01fd7"
+FOREIGN KEY ("second_place_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "third_place_id" bigint[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place_id" ON "brackets" ("third_place_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_704f4411f6"
+FOREIGN KEY ("third_place_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brackets" ADD "third_place2_id" bigint[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_brackets_on_third_place2_id" ON "brackets" ("third_place2_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "brackets" ADD CONSTRAINT "fk_rails_90d26c3e60"
+FOREIGN KEY ("third_place2_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127132519') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMatches (20240127201719)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "matches" ("id" bigserial primary key, "bracket_id" bigint NOT NULL, "status" integer DEFAULT 0 NOT NULL, "next_match_id" bigint, "round" integer DEFAULT 0 NOT NULL, "competitor1_id" bigint, "competitor2_id" bigint, "timer_value" float DEFAULT 300.0 NOT NULL, "timer_last_started_at" timestamp(6), "timer_running" boolean DEFAULT FALSE NOT NULL, "points1" integer DEFAULT 0 NOT NULL, "points2" integer DEFAULT 0 NOT NULL, "advantages1" integer DEFAULT 0 NOT NULL, "advantages2" integer DEFAULT 0 NOT NULL, "penalties1" integer DEFAULT 0 NOT NULL, "penalties2" integer DEFAULT 0 NOT NULL, "winner_id" bigint, "win_type" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_f27c04348d"
+FOREIGN KEY ("bracket_id")
+  REFERENCES "brackets" ("id")
+, CONSTRAINT "fk_rails_553ace5216"
+FOREIGN KEY ("next_match_id")
+  REFERENCES "matches" ("id")
+, CONSTRAINT "fk_rails_5f982e14c3"
+FOREIGN KEY ("competitor1_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_1e56b02c9d"
+FOREIGN KEY ("competitor2_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_9d0deeb219"
+FOREIGN KEY ("winner_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_matches_on_bracket_id" ON "matches" ("bracket_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_matches_on_next_match_id" ON "matches" ("next_match_id")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor1_id" ON "matches" ("competitor1_id")[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_matches_on_competitor2_id" ON "matches" ("competitor2_id")[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_matches_on_winner_id" ON "matches" ("winner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240127201719') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2460021245018435385)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "weightclasses" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "entries" DISABLE TRIGGER ALL;ALTER TABLE "brackets" DISABLE TRIGGER ALL;ALTER TABLE "matches" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.0ms)[0m  [1m[31mDELETE FROM "brackets";
+DELETE FROM "entries";
+DELETE FROM "events";
+DELETE FROM "matches";
+DELETE FROM "users";
+DELETE FROM "weightclasses";
+INSERT INTO "brackets" ("id", "event_id", "rounds", "created_at", "updated_at", "first_place_id", "second_place_id", "third_place_id", "third_place2_id") VALUES (697806286, 190150649, DEFAULT, '2024-02-22 12:00:05.725101', '2024-02-22 12:00:05.725101', DEFAULT, DEFAULT, DEFAULT, DEFAULT), (815725686, 190150649, DEFAULT, '2024-02-22 12:00:05.725101', '2024-02-22 12:00:05.725101', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "entries" ("id", "competitor_id", "bracket_id", "created_at", "updated_at") VALUES (334675737, 893350012, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (184282797, 741745088, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (1039982138, 456200535, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (597183387, 89490680, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (345996050, 844280933, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (227945142, 727442905, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (982587939, 475845968, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (707659700, 216254689, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (489240359, 1004861514, 697806286, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (817261633, 886344956, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (700399101, 769514824, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (515378542, 450555347, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (235344125, 174452802, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (956309612, 1029882071, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826'), (737266444, 798174129, 815725686, '2024-02-22 12:00:05.730826', '2024-02-22 12:00:05.730826');
+INSERT INTO "events" ("id", "name", "start_at", "end_at", "location", "game_type", "description", "organizer_id", "created_at", "updated_at") VALUES (190150649, 'Event One', '2024-02-22 11:59:59', '2024-02-23 11:59:59', 'Event One Location', 'NoGi', 'Event One Description', 172563265, '2024-02-22 12:00:05.734685', '2024-02-22 12:00:05.734685');
+INSERT INTO "users" ("id", "role", "first_name", "last_name", "organization_name", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "failed_attempts", "unlock_token", "locked_at", "created_at", "updated_at") VALUES (37241071, 1, 'Competitor', '0', DEFAULT, 'competitor0@gmail.com', '$2a$12$cPrEbJYrsJ2SGOEc2TXEYOqxRtUsv9BhJjSXshG8BM9dhOxk22OEe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 11:59:59', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (893350012, 1, 'Competitor', '1', DEFAULT, 'competitor1@gmail.com', '$2a$12$xpvaP0myGgF6hn2XJQN6g.4IcQ66ug7uXemmd4v5WYAJA1lSnr0Cu', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 11:59:59', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (741745088, 1, 'Competitor', '2', DEFAULT, 'competitor2@gmail.com', '$2a$12$9BH4BSbWXw1KWeOHX4787uhqtTQMCX1KWlJqMLmX2ccAubVXrnFo.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:00', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (456200535, 1, 'Competitor', '3', DEFAULT, 'competitor3@gmail.com', '$2a$12$rvHkLb.d7jp5.DgQlMn.1OlnUx6TDLlFfHHEbClRJZIItlTXfVdxy', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:00', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (89490680, 1, 'Competitor', '4', DEFAULT, 'competitor4@gmail.com', '$2a$12$SSGvTQm0ZCwas06jgoGzS.Z4ewPGSBUetA41dkBbnO4ky3SFv5IfG', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:00', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (844280933, 1, 'Competitor', '5', DEFAULT, 'competitor5@gmail.com', '$2a$12$.D8.HDuVQBo2VLFtkWZOBeZ0Cg9bsCVu4HDDOCc0/IQqyJektDSki', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:00', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (727442905, 1, 'Competitor', '6', DEFAULT, 'competitor6@gmail.com', '$2a$12$v0B54XyhEVnZHihgJ0xtkuSSB3xMJmSDStRWI5Jh5jW5/06cY/cla', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:01', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (475845968, 1, 'Competitor', '7', DEFAULT, 'competitor7@gmail.com', '$2a$12$9FRvzPrNoiRz6.EB/cyk4u5qBghU4SgPoEfD9081lKkzBd37.H7W.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:01', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (216254689, 1, 'Competitor', '8', DEFAULT, 'competitor8@gmail.com', '$2a$12$8l5gNYhMtHtH9wW/UD8W.ukdotfJRviElKcjef.SjsYVNHW3tXKcO', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:01', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (1004861514, 1, 'Competitor', '9', DEFAULT, 'competitor9@gmail.com', '$2a$12$cAlplyZNhXkGKmn9kCG3.eVwm.gTSs69I2V.aJVKiMt.ypDDtIGOi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:01', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (79591540, 1, 'Competitor', '10', DEFAULT, 'competitor10@gmail.com', '$2a$12$zDX0aGUiGKqETlscZCPCcObOupgdBHEHTTC0bvq8U3Q9sc.E7xEiS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (867780837, 1, 'Competitor', '11', DEFAULT, 'competitor11@gmail.com', '$2a$12$lR4dLgXhUV87V7bC2.hqn.7r6cDAbZ0aLf3QRfXS51nZv8k5n5Pzq', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (716183905, 1, 'Competitor', '12', DEFAULT, 'competitor12@gmail.com', '$2a$12$eG.AHDlIr0eusvzdAYRM8ue//KWzFiC8/EI.JYpB0VStZvzn930W2', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (498543052, 1, 'Competitor', '13', DEFAULT, 'competitor13@gmail.com', '$2a$12$/YYSmK9qqocEtMxWfidHi.ADUC71slVtLC8fRR0I2jXZ1Qd4Ymj0O', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (64207979, 1, 'Competitor', '14', DEFAULT, 'competitor14@gmail.com', '$2a$12$rc.E7HRNZP3Gdjf7Hr0V2O8/cFoFCBw/o2cMpbcrG2MZqMQTezzg6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:02', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (886344956, 1, 'Competitor', '15', DEFAULT, 'competitor15@gmail.com', '$2a$12$QZhSlzxqpVjCpS3TeE8Jp.Mb3vU6nFEqpvdS5OxFzTunk0sE2RuNi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:03', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (769514824, 1, 'Competitor', '16', DEFAULT, 'competitor16@gmail.com', '$2a$12$/99NhNmeUa88O1RAb3fuqOCw2o0kk7Q7veYQ7IyMLauirUIxalqLC', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:03', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (450555347, 1, 'Competitor', '17', DEFAULT, 'competitor17@gmail.com', '$2a$12$OEctXZ0rClKqxu6wo68Rl.OQt1WKxNW/lQ1O6Ftrh7lHAz.DfPZ.e', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:03', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (174452802, 1, 'Competitor', '18', DEFAULT, 'competitor18@gmail.com', '$2a$12$.2oIb2tHUq0vmjWnKNhs6evFNlafhtz4HGAnp2G13E.tQ4BrrE95i', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:03', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (1029882071, 1, 'Competitor', '19', DEFAULT, 'competitor19@gmail.com', '$2a$12$HaOHYWO.hZhn8Gkg/KshXeDg6IxiC12pglZ8BT15YYgsRt7z5bvcW', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:04', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (798174129, 1, 'Competitor', '20', DEFAULT, 'competitor20@gmail.com', '$2a$12$jUscLyC1r8KzUS2E0tMrruteOO7gWpO3GYQrBTPyjBvRBT/GyoSE6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:04', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (412359462, 1, 'Competitor', '21', DEFAULT, 'competitor21@gmail.com', '$2a$12$ecABZJo6RufBJwcC8cGpwuiF308KR095qa79Oh5b74uEEYMICfaPS', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:04', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (27085470, 1, 'Competitor', '22', DEFAULT, 'competitor22@gmail.com', '$2a$12$SmQ8gpaxXQXyCrZ2NqWZ1u/ZulWHSs9gwH/DoL/JITC7G0I9y7gWi', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:04', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (916093453, 1, 'Competitor', '23', DEFAULT, 'competitor23@gmail.com', '$2a$12$HBgyfvfWVHWbLEwCrZPz7u3j5AkPqM7JG8Pvf9yzRWnIaOv5Ph6ra', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (687796138, 1, 'Competitor', '24', DEFAULT, 'competitor24@gmail.com', '$2a$12$A1tWjO9U2RE5C.buYk1S7uQOnAdi/bI4kpWAD53keRVuRJ6Q89OIe', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002'), (172563265, 0, DEFAULT, DEFAULT, 'Organization One', 'organizer@gmail.com', '$2a$12$Pun86SR5Q1aT/4ELelRWRO8mfOR78PLKZG6poZ3R.Aihqhg6TQHb6', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2024-02-22 12:00:05.736002', '2024-02-22 12:00:05.736002');
+INSERT INTO "weightclasses" ("id", "bracket_id", "age", "belt", "sex", "weight", "created_at", "updated_at") VALUES (747608953, 697806286, 'Adult', 'White', 'Male', 77.0, '2024-02-22 12:00:05.737666', '2024-02-22 12:00:05.737666'), (364157937, 815725686, 'Adult', 'White', 'Male', 99.0, '2024-02-22 12:00:05.737666', '2024-02-22 12:00:05.737666')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "weightclasses" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "entries" ENABLE TRIGGER ALL;ALTER TABLE "brackets" ENABLE TRIGGER ALL;ALTER TABLE "matches" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.0ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2024-02-22 14:00:14 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  [1m[36mEvent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" WHERE (start_at >= '2024-02-22 12:00:14.661641') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:5:in `home'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2024-02-22 12:00:14.685828') ORDER BY "events"."start_at" DESC LIMIT $1[0m  [["LIMIT", 4]]
+  ↳ app/views/pages/home.html.erb:9
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 1.9ms | Allocations: 572)
+  Rendered pages/home.html.erb within layouts/application (Duration: 27.3ms | Allocations: 15007)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:11
+  Rendered layouts/_navbar.html.erb (Duration: 27.1ms | Allocations: 23840)
+  Rendered layouts/_flash.html.erb (Duration: 0.4ms | Allocations: 199)
+  Rendered layout layouts/application.html.erb (Duration: 187.5ms | Allocations: 141800)
+Completed 200 OK in 236ms (Views: 186.3ms | ActiveRecord: 15.4ms | Allocations: 155247)
+
+
+Started GET "/" for ::1 at 2024-02-22 14:00:14 +0200
+Processing by PagesController#home as HTML
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" WHERE (start_at >= '2024-02-22 12:00:14.914250') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:5:in `home'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2024-02-22 12:00:14.915601') ORDER BY "events"."start_at" DESC LIMIT $1[0m  [["LIMIT", 4]]
+  ↳ app/views/pages/home.html.erb:9
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.4ms | Allocations: 90)
+  Rendered pages/home.html.erb within layouts/application (Duration: 1.5ms | Allocations: 656)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 154)
+  Rendered layouts/_flash.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 9217)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.6ms | Allocations: 9980)
+
+
+Started GET "/events/190150649" for ::1 at 2024-02-22 14:00:15 +0200
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"190150649"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 190150649], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/events/show.html.erb:7
+  Rendered events/show.html.erb within layouts/application (Duration: 11.2ms | Allocations: 6587)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 17.5ms | Allocations: 14765)
+Completed 200 OK in 33ms (Views: 17.8ms | ActiveRecord: 0.3ms | Allocations: 24933)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-02-22 14:00:19 +0200
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.5ms | Allocations: 945)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 8.5ms | Allocations: 3253)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 152)
+  Rendered layouts/_flash.html.erb (Duration: 0.1ms | Allocations: 21)
+  Rendered layout layouts/application.html.erb (Duration: 16.3ms | Allocations: 11842)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.0ms | Allocations: 13509)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:00:25 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 254ms (ActiveRecord: 0.5ms | Allocations: 4209)
+
+
+Started GET "/" for ::1 at 2024-02-22 14:00:25 +0200
+Processing by PagesController#home as TURBO_STREAM
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" WHERE (start_at >= '2024-02-22 12:00:25.925776') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:5:in `home'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2024-02-22 12:00:25.927081') ORDER BY "events"."start_at" DESC LIMIT $1[0m  [["LIMIT", 4]]
+  ↳ app/views/pages/home.html.erb:9
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 90)
+  Rendered pages/home.html.erb within layouts/application (Duration: 1.7ms | Allocations: 699)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:11
+  Rendered layouts/_navbar.html.erb (Duration: 1.8ms | Allocations: 898)
+  Rendered layouts/_flash.html.erb (Duration: 0.1ms | Allocations: 21)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 10019)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.8ms | Allocations: 10830)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-02-22 14:00:28 +0200
+Processing by Users::SessionsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 9ms (ActiveRecord: 0.3ms | Allocations: 2611)
+
+
+Started GET "/" for ::1 at 2024-02-22 14:00:28 +0200
+Processing by PagesController#home as TURBO_STREAM
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" WHERE (start_at >= '2024-02-22 12:00:28.086298') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:5:in `home'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2024-02-22 12:00:28.087467') ORDER BY "events"."start_at" DESC LIMIT $1[0m  [["LIMIT", 4]]
+  ↳ app/views/pages/home.html.erb:9
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 90)
+  Rendered pages/home.html.erb within layouts/application (Duration: 1.3ms | Allocations: 656)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 154)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 9213)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.5ms | Allocations: 9976)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-02-22 14:00:28 +0200
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.5ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1040)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 127)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 18)
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 9371)
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.0ms | Allocations: 10034)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:00:47 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (2.1ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 267ms (ActiveRecord: 2.8ms | Allocations: 4528)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.6ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1035)
+  Rendered layouts/_navbar.html.erb (Duration: 0.1ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 9485)
+Completed 200 OK in 268ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 10071)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:00:58 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (1.9ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 259ms (ActiveRecord: 2.4ms | Allocations: 3847)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.7ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.1ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 9320)
+Completed 200 OK in 258ms (Views: 9.6ms | ActiveRecord: 0.0ms | Allocations: 9852)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:15 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (1.8ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 264ms (ActiveRecord: 2.2ms | Allocations: 3848)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.9ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.1ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 9321)
+Completed 200 OK in 265ms (Views: 11.7ms | ActiveRecord: 0.0ms | Allocations: 9854)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:18 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (1.9ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 259ms (ActiveRecord: 2.4ms | Allocations: 3839)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.7ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.1ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 9479)
+Completed 200 OK in 264ms (Views: 9.5ms | ActiveRecord: 0.0ms | Allocations: 10014)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:29 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (1.7ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."unlock_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["unlock_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "unlock_token" = $1, "locked_at" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["unlock_token", "[FILTERED]"], ["locked_at", "2024-02-22 12:01:29.411675"], ["updated_at", "2024-02-22 12:01:29.487922"], ["id", 172563265]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering /usr/share/rvm/gems/ruby-3.2.0/gems/devise-4.9.3/app/views/devise/mailer/unlock_instructions.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.2.0/gems/devise-4.9.3/app/views/devise/mailer/unlock_instructions.html.erb (Duration: 1.1ms | Allocations: 322)
+Devise::Mailer#unlock_instructions: processed outbound mail in 8.0ms
+Delivered mail 65d7379981ad0_897b3f98819b4@mydell.mail (165.7ms)
+Date: Thu, 22 Feb 2024 14:01:29 +0200
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: organizer@gmail.com
+Message-ID: <65d7379981ad0_897b3f98819b4@mydell.mail>
+Subject: Unlock instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello organizer@gmail.com!</p>
+
+<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+
+<p>Click the link below to unlock your account:</p>
+
+<p><a href="http://localhost:3000/users/unlock?unlock_token=8pRzmyusFA8JDf67dYYf">Unlock my account</a></p>
+
+Completed 401 Unauthorized in 542ms (ActiveRecord: 5.4ms | Allocations: 31757)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.8ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1030)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | Allocations: 9426)
+Completed 200 OK in 278ms (Views: 8.6ms | ActiveRecord: 0.0ms | Allocations: 9962)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:46 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (2.0ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 259ms (ActiveRecord: 2.4ms | Allocations: 3770)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.6ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.1ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 9479)
+Completed 200 OK in 256ms (Views: 10.4ms | ActiveRecord: 0.0ms | Allocations: 10011)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:48 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 402)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.6ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 100)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 9378)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.0ms | Allocations: 9877)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:01:51 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Update All (1.3ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = COALESCE("failed_attempts", 0) + $1 WHERE "users"."id" = $2[0m  [["failed_attempts", 1], ["id", 172563265]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+Completed 401 Unauthorized in 253ms (ActiveRecord: 1.7ms | Allocations: 3780)
+
+
+Processing by Users::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.5ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1027)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 97)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 9320)
+Completed 200 OK in 257ms (Views: 11.5ms | ActiveRecord: 0.0ms | Allocations: 9849)
+
+
+Started GET "/users/unlock?unlock_token=[FILTERED]" for ::1 at 2024-02-22 14:01:59 +0200
+Processing by Devise::UnlocksController#show as HTML
+  Parameters: {"unlock_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."unlock_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["unlock_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (2.4ms)[0m  [1m[33mUPDATE "users" SET "failed_attempts" = $1, "unlock_token" = $2, "locked_at" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["failed_attempts", 0], ["unlock_token", "[FILTERED]"], ["locked_at", nil], ["updated_at", "2024-02-22 12:01:59.303733"], ["id", 172563265]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 14ms (ActiveRecord: 4.2ms | Allocations: 4967)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-02-22 14:01:59 +0200
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.1ms | Allocations: 453)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1039)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 127)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | Allocations: 9428)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.0ms | Allocations: 10103)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-22 14:02:06 +0200
+Processing by Users::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"organizer@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "organizer@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 249ms (ActiveRecord: 0.2ms | Allocations: 2418)
+
+
+Started GET "/" for ::1 at 2024-02-22 14:02:07 +0200
+Processing by PagesController#home as TURBO_STREAM
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" WHERE (start_at >= '2024-02-22 12:02:07.207149') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:5:in `home'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2024-02-22 12:02:07.208467') ORDER BY "events"."start_at" DESC LIMIT $1[0m  [["LIMIT", 4]]
+  ↳ app/views/pages/home.html.erb:9
+  Rendered collection of events/_event.html.erb [1 times] (Duration: 0.2ms | Allocations: 90)
+  Rendered pages/home.html.erb within layouts/application (Duration: 1.5ms | Allocations: 656)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 172563265], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:11
+  Rendered layouts/_navbar.html.erb (Duration: 2.1ms | Allocations: 867)
+  Rendered layouts/_flash.html.erb (Duration: 0.0ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 10039)
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 1.0ms | Allocations: 10802)
+
+
