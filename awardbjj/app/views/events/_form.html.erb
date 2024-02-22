@@ -13,22 +13,30 @@
 	<% end %>
 
 	<div class="my-5">
-		<%= form.label :name %>
-		<%= form.text_field :name, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :name do %>
+      Name <span class="text-gray-400">*</span>
+    <% end %>
+    <%= form.text_field :name, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 	</div>
 
 	<div class="my-5">
-		<%= form.label :location %>
+		<%= form.label :location do %>
+		  Location <span class="text-gray-400">*</span>
+    <% end %>
 		<%= form.text_field :location, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 	</div>
 
 	<div class="my-5">
-		<%= form.label :game_type %>
+		<%= form.label :game_type do %>
+		  Game type <span class="text-gray-400">*</span>
+    <% end %>
 		<%= form.select :game_type, Event.game_types.keys.map { |key| [Event.game_types[key], key] }, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 	</div>
 
 	<div class="my-5">
-		<%= form.label :start_at %>
+		<%= form.label :start_at do %>
+		  Start at <span class="text-gray-400">*</span>
+    <% end %>
 		<%= form.datetime_field :start_at, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 	</div>
 
@@ -42,7 +50,7 @@
 		<%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 	</div>
 
-	<div class="inline">
+	<div class="">
 		<%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 	</div>
 <% end %>
