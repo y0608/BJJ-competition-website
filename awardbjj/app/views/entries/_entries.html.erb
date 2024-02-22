@@ -1,0 +1,5 @@
+<%= turbo_stream_from "show_bracket_entries_#{bracket.id}" %>
+
+<div class="flex flex-wrap" id="bracket_entries_<%= bracket.id %>">
+  <%= render entries %>
+</div>
