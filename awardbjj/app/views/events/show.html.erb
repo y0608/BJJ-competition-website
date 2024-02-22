@@ -11,7 +11,11 @@
 				class: "py-3 px-5 bg-red-500 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
 		</div>
 		<% elsif current_user && current_user.competitor? %>
-			<%= link_to "Register", new_event_entry_path(@event), class: "py-3 px-5 bg-blue-700 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+      <%= link_to "Register", new_event_entry_path(@event), class: "py-3 px-5 bg-blue-700 text-white rounded-lg inline-block hover:bg-blue-600 transition duration-300" %>
+      <% entry = @event.entries.where(competitor: current_user).first %>
+      <% if entry %>
+        <%= button_to "Unregister", event_entry_path(@event, entry), method: :delete, class: "ml-2 py-3 px-5 bg-red-700 text-white rounded-lg inline-block hover:bg-red-600 transition duration-300" %>
+      <% end %>
 		<% end %>
 	</div>
 

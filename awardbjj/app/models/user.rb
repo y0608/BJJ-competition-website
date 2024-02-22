@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, 
+         :recoverable, :rememberable, :validatable,
          :confirmable, :lockable
 
   validates_presence_of :first_name, :last_name, if: :competitor?

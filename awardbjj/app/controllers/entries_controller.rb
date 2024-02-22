@@ -59,8 +59,8 @@ class EntriesController < ApplicationController
 	# end
 
 	def destroy
-		@event.destroy
-		redirect_to event_bracket_path(@bracket), notice: 'Entry was successfully destroyed.'
+		@entry.destroy
+		redirect_to event_path(@event), notice: 'Entry was successfully destroyed.'
 	end
 
 	private
