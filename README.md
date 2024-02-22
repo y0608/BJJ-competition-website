@@ -4,14 +4,21 @@ A website for Brazilian Jiu Jitsu competitions
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
-
-What things you need to install the software and how to install them:
-
-- Ruby (3.2.0)
-- Rails (7.1.2)
-
 ### Installing
+Section still in progress.
+
+##### Ruby
+You can find instruction on how to install ruby with rvm on [the official website](https://rvm.io/rvm/install).
+
+##### PosgreSQL
+```
+sudo apt install postgresql postgresql-contrib libpq-dev
+```
+
+##### Rails
+
+
+### Run the project
 
 A step-by-step series of examples that tell you how to get a development environment running:
 
