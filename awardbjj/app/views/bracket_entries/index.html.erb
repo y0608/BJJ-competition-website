@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "content" do %>
   <section class="">
-    <%= render "entries/entries", entries: @bracket.entries, bracket: @bracket %>
+    <%= render "entries/entries", entries: @bracket.entries.order(created_at: :asc), bracket: @bracket %>
   </section>
 
   <section class="mt-4">

@@ -7,7 +7,7 @@ class Entry < ApplicationRecord
   # after_destroy_commit -> { broadcast_remove_to "quotes" }
 
   after_create_commit -> {
-    broadcast_prepend_to "show_bracket_entries_#{self.bracket.id}", partial: "entries/entry", target: "bracket_entries_#{self.bracket.id}", locals: { entry: self }
+    broadcast_append_to "show_bracket_entries_#{self.bracket.id}", partial: "entries/entry", target: "bracket_entries_#{self.bracket.id}", locals: { entry: self }
   }
 
   validate :uniqe_entry_for_competitor

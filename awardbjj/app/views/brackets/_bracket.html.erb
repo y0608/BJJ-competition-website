@@ -8,6 +8,6 @@
 	</div>
 
 	<div class="flex flex-wrap gap-4">
-		<%= render "entries/entries", bracket: bracket, entries: bracket.entries %>
+		<%= render "entries/entries", bracket: bracket, entries: bracket.entries.order(created_at: :asc) %>
 	</div>
 </div>
