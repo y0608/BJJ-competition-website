@@ -1,3 +1,5 @@
+Хостнат сайт: https://award-bjj-a08d09ff6f9c.herokuapp.com/
+
 # BJJ-competition-website
 A website for Brazilian Jiu Jitsu competitions
 
