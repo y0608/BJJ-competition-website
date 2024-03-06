@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     else
       filtered = filtered.where("start_at >= ?",Time.now).order(start_at: :asc)
     end
-    @pagy, @events = pagy(filtered.all, items: 6)
+    @pagy, @events = pagy(filtered.all, items: 12)
   end
 
   def show

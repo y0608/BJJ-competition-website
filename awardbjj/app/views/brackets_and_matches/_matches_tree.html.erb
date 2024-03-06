@@ -4,7 +4,7 @@
     <% matches_by_round.each do |round, matches| %>
       <div class="col-span-1 text-center">
       <h2 class="text-lg font-semibold"><%= Match::ROUND_LABELS[round] %></h2>
-        <div class="h-full flex flex-col justify-center items-center">
+        <div class="h-full flex flex-col justify-around items-center">
           <%= render matches, event:@bracket.event%>
         </div>
       </div>

@@ -1,31 +1,31 @@
-event1:
-  name: "Event One"
-  game_type: <%= Event.game_types[:no_gi] %>
-  description: "Event One Description"
-  start_at: <%= Time.current %>
-  end_at: <%= Time.current + 1.day %>
-  location: "Event One Location"
-  organizer: organizer1
+# event1:
+#   name: "Event One"
+#   game_type: <%= Event.game_types[:no_gi] %>
+#   description: "Event One Description"
+#   start_at: <%= Time.current %>
+#   end_at: <%= Time.current + 1.day %>
+#   location: "Event One Location"
+#   organizer: organizer1
 
-# <% (1..15).each do |i| %>
-# event<%= i %>:
-#   name: "Event <%= i %>"
-#   game_type: <%= Event.game_types[[:no_gi, :gi].sample] %>
-#   description: "Event <%= i %> Description"
-#   <% date = Time.current - Random.rand(1..20).day %>
-#   start_at: <%= date %>
-#   end_at: <%= date + 1.day %>
-#   location: "Event <%= i %> Location"
-#   organizer: organizer1
-# <% end %>
-# <% (16..30).each do |i| %>
-# event<%= i %>:
-#   name: "Event <%= i %>"
-#   game_type: <%= Event.game_types[[:no_gi, :gi].sample] %>
-#   description: "Event <%= i %> Description"
-#   <% date = Time.current + Random.rand(1..20).day %>
-#   start_at: <%= date %>
-#   end_at: <%= date + 1.day %>
-#   location: "Event <%= i %> Location"
-#   organizer: organizer1
-# <% end %>
+<% (1..15).each do |i| %>
+event<%= i %>:
+  name: "Event <%= i %>"
+  game_type: <%= Event.game_types[[:no_gi, :gi].sample] %>
+  description: "Event <%= i %> Description"
+  <% date = Time.current - Random.rand(1..20).day %>
+  start_at: <%= date %>
+  end_at: <%= date + 1.day %>
+  location: "Event <%= i %> Location"
+  organizer: organizer1
+<% end %>
+<% (16..30).each do |i| %>
+event<%= i %>:
+  name: "Event <%= i %>"
+  game_type: <%= Event.game_types[[:no_gi, :gi].sample] %>
+  description: "Event <%= i %> Description"
+  <% date = Time.current + Random.rand(1..20).day %>
+  start_at: <%= date %>
+  end_at: <%= date + 1.day %>
+  location: "Event <%= i %> Location"
+  organizer: organizer1
+<% end %>
