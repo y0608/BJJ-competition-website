@@ -1,29 +1,36 @@
 <section class="flex justify-center items-center m-10">
   <div class="p-10 rounded-xl bg-white shadow-lg">
+
     <h2 class="text-2xl font-bold pb-6">Change your password</h2>
 
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
-        <% f.options[:html][:class] = "grid gap-3" %>
+    <%= form_for(
+      resource,
+      as: resource_name,
+      url: password_path(resource_name),
+      data: { turbo: "false" },
+      html: { method: :post, class: "grid gap-3"}
+    ) do |f| %>
 
-        <%= f.hidden_field :reset_password_token %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-        <div>
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-          <% end %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password" %>
-        </div>
+      <%= f.hidden_field :reset_password_token %>
 
-        <div>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm new password" %>
-        </div>
+      <div>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password" %>
+      </div>
 
-        <div class="mb-5">
-          <%= f.submit "Change", class: "cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300"  %>
-        </div>
-      <% end %>
+      <div>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm new password" %>
+      </div>
 
-      <%= render "users/shared/links" %>
+      <div class="mb-5">
+        <%= f.submit "Change", class: "cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300"  %>
+      </div>
+    <% end %>
+
+    <%= render "users/shared/links" %>
   </div>
 </section>

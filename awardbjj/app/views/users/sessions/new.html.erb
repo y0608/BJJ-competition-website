@@ -3,8 +3,13 @@
 
     <h2 class="text-4xl font-bold pb-6">Log in</h2>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo:"false"}) do |f| %>
-      <% f.options[:html][:class] = "grid gap-3" %>
+    <%= form_for(
+      resource,
+      as: resource_name,
+      url: session_path(resource_name),
+      data: { turbo: "false" },
+      html: { class: "grid gap-3"}
+    ) do |f| %>
 
       <div>
         <%= f.email_field :email,

@@ -1,30 +1,18 @@
 # frozen_string_literal: true
 
 class Users::UnlocksController < Devise::UnlocksController
-  # GET /resource/unlock/new
-  # def new
-  #   super
-  # end
+  prepend_before_action :check_captcha, only: [:create]
 
-  # POST /resource/unlock
-  # def create
-  #   super
-  # end
+  private
 
-  # GET /resource/unlock?unlock_token=abcdef
-  # def show
-  #   super
-  # end
+  def check_captcha
+    return if verify_recaptcha
 
-  # protected
+    self.resource = resource_class.new
 
-  # The path used after sending unlock password instructions
-  # def after_sending_unlock_instructions_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after unlocking the resource
-  # def after_unlock_path_for(resource)
-  #   super(resource)
-  # end
+    respond_with_navigational(resource) do
+      flash.discard(:recaptcha_error)
+      render :new
+    end
+  end
 end
