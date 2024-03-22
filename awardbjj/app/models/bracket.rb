@@ -11,6 +11,9 @@ class Bracket < ApplicationRecord
   belongs_to :third_place, class_name: 'User', foreign_key: 'third_place_id', optional: true
   belongs_to :third_place2, class_name: 'User', foreign_key: 'third_place2_id', optional: true
 
+  validates_presence_of :weightclass, :rounds
+  validates :rounds, numericality: { only_integer: true }, comparison: { greater_or_equal_to: 0, less_than_or_equal_to: 11 }
+
   scope :has_entries, -> {
     joins(:entries).where.not(entries: { id: nil})
   }

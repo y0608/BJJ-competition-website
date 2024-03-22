@@ -9,11 +9,11 @@ class Entry < ApplicationRecord
     broadcast_remove_to "show_bracket_entries_#{self.bracket.id}", target: "bracket_entry_#{self.id}"
   }
 
-  validate :uniqe_entry_for_competitor
+  validate :unique_entry_for_competitor
 
   private
 
-  def uniqe_entry_for_competitor
+  def unique_entry_for_competitor
     if Entry.where(competitor: competitor, bracket_id: bracket).exists?
       errors.add(:competitor_id, 'can only register once for the event.')
     end

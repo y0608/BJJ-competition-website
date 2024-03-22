@@ -33,7 +33,6 @@ module.exports = {
       'grid-cols-9',
       'grid-cols-10',
       'grid-cols-11',
-      'grid-cols-12',
     ],
   },
 }
