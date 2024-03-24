@@ -6,8 +6,8 @@ class Match < ApplicationRecord
   }
 
   ROUND_LABELS = [
-    "Final", "Semi-final", "Quarter-final", "Round of 16", "Round of 32", 
-    "Round of 64", "Round of 128", "Round of 256", "Round of 512", "Round of 1024"
+    "Final", "Semi-final", "Quarter-final", "Round of 16", "Round of 32",
+    "Round of 64", "Round of 128", "Round of 256", "Round of 512", "Round of 1024", "Round of 2048"
   ]
 
   enum win_type: {
@@ -25,6 +25,15 @@ class Match < ApplicationRecord
     playing: 2,
     finished: 3
   }
+
+  validates_presence_of :status, :round, :timer_value,
+    :points1, :points2, :advantages1, :advantages2, :penalties1, :penalties2
+  validates :timer_running, exclusion: { in: [nil], message: "must be true or false" }
+  validates :winner_id, presence: true, if: :win_type
+  validates :win_type, presence: true, if: :winner_id
+
+  validates :round, numericality: { only_integer: true } , comparison: { greater_than_or_equal_to: 0, less_than_or_equal_to: 11}
+  validates :timer_value, numericality: { greater_than_or_equal_to: 0 }
 
   validate :competitors_must_be_different
   validate :winner_must_be_competitor

@@ -1,11 +1,16 @@
 class Event < ApplicationRecord
   after_create :create_brackets_and_weightclasses
 
-  validates_presence_of :name, :start_at, :location, :game_type, :organizer_id
+  enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
+
+  validates_presence_of :name, :start_at, :location, :game_type
+
+  validates :name, length: { maximum: 100 }
+  validates :location, length: { maximum: 255 }
+  validates :description, length: { maximum: 1000 }
+
   validate :end_date_after_start_date
   validate :start_date_after_today
-
-  enum game_type: { gi: 'Gi', no_gi: 'NoGi'}
 
   belongs_to :organizer, class_name: "User"
   has_many :brackets, dependent: :destroy
@@ -23,13 +28,13 @@ class Event < ApplicationRecord
 
   def end_date_after_start_date
     if end_at.present? && start_at.present? && end_at < start_at
-      errors.add(:end_at, "must be after the start date") 
+      errors.add(:end_at, "must be after the start date")
     end
   end
 
   def start_date_after_today
     if start_at.present? && start_at < Date.today
-      errors.add(:start_at, "must be after today") 
+      errors.add(:start_at, "must be after today")
     end
   end
 
@@ -49,8 +54,8 @@ class Event < ApplicationRecord
           weight_classes.each do |weight_class, weight|
             next if age_group == 'Juvenile' && (belt == 'Brown' || belt == 'Black')
 
-            bracket = brackets.create() # automatically creates bracket ties it to an event
-            weightclass = bracket.create_weightclass(age: age_group, sex: gender, belt: belt, weight: weight)
+            weightclass = Weightclass.create(age: age_group, sex: gender, belt: belt, weight: weight)
+            bracket = brackets.create(weightclass: weightclass) # automatically creates bracket ties it to an event
           end
         end
       end

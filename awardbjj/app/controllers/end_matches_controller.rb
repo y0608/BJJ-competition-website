@@ -22,7 +22,7 @@ class EndMatchesController < ApplicationController
       end
       redirect_to event_match_path(@match.bracket.event, @match), notice: 'Match was successfully ended.'
     else
-      render :show, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

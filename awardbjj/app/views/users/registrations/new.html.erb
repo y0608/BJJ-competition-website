@@ -2,9 +2,15 @@
   <div class="p-10 rounded-xl bg-white shadow-lg">
     <h2 class="text-4xl font-bold pb-6">Sign up</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(
+      resource,
+      as: resource_name,
+      url: registration_path(resource_name),
+      data: { turbo: "false" },
+      html: { class: "grid gap-3"}
+    ) do |f| %>
+
       <%= render "users/shared/error_messages", resource: resource %>
-      <% f.options[:html][:class] = "grid gap-3" %>
 
       <div data-controller="select-role">
         <div data-action="change->select-role#roleChanged">
@@ -15,15 +21,15 @@
         </div>
 
         <div class="mt-5" data-select-role-target="competitorFields">
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", placeholder: "First Name" %>
-          <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last Name", class: "mt-2 block" %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", placeholder: "First Name", class: "w-full" %>
+          <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last Name", class: "mt-2 block w-full" %>
         </div>
 
-        <%= f.text_field :organization_name, placeholder: "Organization name", class: "mt-4 hidden", data: { select_role_target: "organizerFields" } %>
+        <%= f.text_field :organization_name, placeholder: "Organization name", class: "mt-4 hidden w-full", data: { select_role_target: "organizerFields" } %>
       </div>
 
       <div>
-        <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "w-full" %>
       </div>
 
       <div>
@@ -31,12 +37,14 @@
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br/>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "w-full" %>
       </div>
 
       <div>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: "w-full" %>
       </div>
+
+      <%= recaptcha_tags %>
 
       <div class="mb-5">
         <%= f.submit "Sign up", class: "cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300"  %>
